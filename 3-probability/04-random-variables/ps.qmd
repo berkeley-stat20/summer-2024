@@ -1,0 +1,98 @@
+---
+title: "Random Variables"
+subtitle: "PS"
+format: stat20handout-pdf
+---
+
+For each of the boxes below, draw one ticket at random, and let $X$ be the value of the ticket that you draw. 
+
+@. \fbox{\fbox{-2} \fbox{-1} \fbox{0} \fbox{2}}
+
+Write down the pmf, and draw the graph of the cdf of $X$.
+
+\
+
+\
+
+\
+
+
+\
+
+\
+
+
+@.  \fbox{\fbox{0} \fbox{1} \fbox{1} \fbox{6}}
+
+Write down the pmf, and draw the graph of the cdf of $X$.
+
+\
+
+\
+
+\
+
+\
+
+\
+
+
+
+
+<!--A very useful property of Poisson random variables is that if $X$ and $Y$ are independent random variables, where $X \sim$ Poisson$(\lambda)$ and $Y \sim$ Poisson$(\mu)$, then $X+Y \sim$ Poisson$(\lambda+\mu)$. Use this fact to figure out the probabilities in the next three questions.-->
+
+Suppose  $X \sim$ Poisson$(6)$, where $X$ represents the number of students who earn an A+ in Stat 20, and  $Y \sim$ Poisson$(5)$ represents the number of students who earn an F in stat 20. We can assume that these two quantities are independent, since the class is not curved. 
+
+@. What is the probability that *no one* fails Stat 20? After writing the expression for this probability, compute it in R, using an appropriate function, and copy your code here.
+
+\
+
+\
+
+\
+
+@. What is the probability that *at least* 10 students earn an A+ in Stat 20? Write the expression for this probability, and then compute it in R, using an appropriate function, and copy your code here.
+
+
+
+{{< pagebreak >}}
+
+@. Suppose you are playing roulette in Las Vegas, and you bet on red each time (recall that an American roulette wheel has 18 red, 18 black, and 2 green slots). You play 50 times, and bet on red every single time. Let $X$ be the number of times you win in 50 plays. What is the distribution of $X$? Make sure to state the parameters of the distribution. What is the probability that you win at least 12 times? Use an appropriate function to compute this probability in R and copy your code here. 
+
+\
+
+\
+
+\
+
+
+@. I tried to use the *Hypergeometric* distribution to simulate drawing spades ($\spadesuit$)  from a standard 52-card deck with the following line of code, but I received an error and the code would not run.
+
+```r
+rhyper(m = 13, n = 39, k = 60, nn = 1)
+```
+Why didn't my code run? What caused the error?
+
+\
+
+\
+
+\
+
+@. I decided to try again to use the function `rhyper()` to simulate drawing 5 cards from a standard deck and counting the number of $\spadesuit$s. 
+
+```r
+rhyper(m = 13, n = 52, k = 5, nn = 1)
+```
+This code runs, but is it correct? Explain your answer clearly.
+
+
+\
+
+\
+
+\
+
+@. How would you simulate tossing a coin 10 times and counting the number of heads? Let $X$ be the number of heads in 10 tosses. What is the distribution of $X$? Write code to simulate 100 values from this distribution, and plot the empirical histogram for $X$. Copy the code here.
+
+

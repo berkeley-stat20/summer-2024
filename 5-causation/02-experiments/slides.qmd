@@ -1,0 +1,155 @@
+---
+title: "Experiments"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+execute: 
+  echo: false
+---
+
+## Agenda
+- Announcements
+- Concept Questions
+- Lab 7.2
+
+## Announcements
+
+- Lab 7.1 due **Friday 4/19** at 11:59 PM.  Aim to finish during class today.
+- Lab 7.2 due Tuesday 4/23 at 9:00 AM.
+- Experiment groups must be of size 3 or 4.
+- 2 problem sets will be assigned next week (both due Tuesday 4/30).
+
+# Concept Questions
+
+##
+
+We run an experiment to see if informative phone calls encourage people to vote.  We obtain phone numbers for 1000 registered voters and randomly assign half of them to receive calls from volunteers.  The volunteers tell them the location of their polling place and the date of the election.  Our outcome is whether or not the subjects vote in the next election.
+
+::: poll
+
+Which of the following are possible covariates for our study?
+
+A.  The party affiliation of the voter (Republican or Democrat).
+B.  Whether the next election is a presidential election or not.
+C.  Whether the voter voted in the last election.
+D.  Whether the voter votes primarily for Republicans or Democrats in the next election.
+E.  Whether the treated voters hung up on the volunteer.
+:::
+
+::: notes
+
+The point of this question is to get the students thinking about whether variables are measured before or after treatment assignment.A and C are correct answers, D and E are not (although E is measured before the primary outcome, it is still after treatment).  B is technically a covariate but probably not a useful one; unless our experiments spans multiple election cycles, it will have the same value for all subjects.
+
+:::
+
+```{r}
+countdown::countdown(1)
+```
+
+
+##
+::: poll
+
+Which of the following claims about covariate balance are true?
+
+A.   Randomized treatment assignment tends to produce covariate balance.
+B.   A standardized mean difference that is not equal to zero likely means that randomization was not conducted correctly.
+C.   The Love plot shows the difference in means or proportions 
+for each covariate across treatment groups.
+D.  In a hypothesis test for balance, the null hypothesis is that the
+treatment assignment and the covariate are independent.
+
+
+:::
+
+```{r}
+countdown::countdown(1)
+```
+
+<!--##
+
+Here is some code used to conduct a balance test for GPA in the 
+experiment discussed in the notes which assigns students to one
+of two groups: pdf or website.
+
+
+::: poll
+
+Which line correctly completes the code chunk?
+specify lines that play with which is explanatory 
+and which is response, whether we use both or not.
+
+
+:::
+
+-->
+
+## The Essential Question of Our Time
+
+```{r echo = FALSE, fig.align='center'}
+knitr::include_graphics("images/la-croix.png")
+```
+
+::: poll
+Which is the best flavor?
+:::
+
+:::notes
+This purely for fun. Some people have strong opinions about this.
+:::
+
+
+# Lab 7.2
+
+Please:
+
+1. Conduct your experiment
+2. Record your data
+3. Complete and submit part II as a group
+
+If you don't finish in the allotted time, finish up after class.
+
+```{r}
+countdown::countdown(60)
+```
+
+
+##
+
+```{r echo = FALSE, fig.align='center'}
+knitr::include_graphics("images/la-croix.png")
+```
+
+::: poll
+Could your taster distinguish between flavors?
+
+A.  Yes, and it was statistically significant (p < .05).  
+B.  Yes, but it was not statistically significant (p > .05).  
+C.  Yes, but we haven't conducted the test yet.
+D.  No.    
+E.  Not sure, we haven't computed the difference in proportions yet.
+F.  We tested a different claim.  
+:::
+
+:::notes
+The goal of this question is to allow all groups to concisely share their results with the class. It also opens up the conversation about how there were many different ways to carry out this experiment. Two groups might have come to different conclusions because their tasters really had different abilities, or because their claims and experiments were slightly different, or just due to random chance.
+
+You may want to project 1 or 2 protocols and ask the groups to talk through how they uses the principles of experimental design.
+:::
+
+

@@ -1,0 +1,130 @@
+---
+title: "Method of Least Squares"
+format:
+  revealjs:
+    self-contained: true
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+execute: 
+  echo: false
+---
+
+## Agenda
+
+- Announcements
+- Concept Questions
+- Problem Set 16: *The Method of Least Squares*
+- Lab 5.1: Understanding the Context of the Data
+
+## Announcements
+
+-   Problem Sets:
+    -   PS 16 released Tuesday and due next Tuesday at 9am
+    -   Extra Practice released Thursday (non-turn in)
+  
+. . . 
+
+-   Lab 5:
+    -   Lab 5.1 released Tuesday and due next Tuesday at 9am
+    -   Lab 5.2 released Thursday and due next Tuesday at 9am
+    -   Lab 5 Workshop next Monday
+
+# Concept Questions
+
+## Concept Question 1
+
+An engineer working for Waymo self-driving cars is working to solve a problem. When it rains, reflections of other cars in puddles can disorient the self-driving car. Their team is working on a model to determine when the self-driving car is seeing a reflection of a car vs a real car.
+
+:::{.poll}
+Think of a potential response and predictor, and about whether this is a  regression or classification problem.
+:::
+
+```{r}
+countdown::countdown(1)
+```
+
+:::{.notes}
+This is a serious challenge encountered by self-driving cars at the moment. This is probably best thought of as a classification problem, with the response being either reflection / not or puddle / not. The predictors could be sensor input (cameras, lidar) as well as weather info (to know if it's been raining).
+:::
+
+## Concept Question 2
+
+-   Here is a function `f`.
+
+```{r}
+#| echo: true
+f <- function(x, y) {
+  y*(x + 3) 
+}
+```
+
+. . . 
+
+:::{.poll}
+What will the following line of code return?
+:::
+
+. . . 
+
+```{r}
+#| echo: true
+#| eval: false
+f(3,5)
+```
+
+:::{.notes}
+This question reminds students that if function arguments are unnamed, they are assumed to have been input in the order they were originally specified as in the function definition. `x` will be assigned `3`, and `y` will be assigned `5`, so the correct answer is 30. 
+:::
+
+<!---
+## Scenario 2
+
+An analyst working for the UC Berkeley Admissions Office is working to help the university decide how many students to send offer letters to. They have a target class size (that fits within the budget and residence halls), but they're not sure how many students will accept the offer. How many should they admit?
+
+:::{.poll}
+Please identify A. the response, B. the predictor(s), and 
+C. whether it is regression or classification (poll only has C.)
+:::
+
+```{r}
+countdown::countdown(1)
+```
+
+:::{.notes}
+This is another very real task. Universities use what's called a "yield model" to predict whether or not a student will accept the offer. That's a classification method. Those classifiers aggregated up across all offers lead to a numerical prediction for the total yield, which looks more like a regression problem, so either answer could work. It could also be a direct regression model where they use aggregate stats of the class to predict the total yield.
+
+Response is either the decision of a single student or the total number of students that accept. Predictors could be either student level covariates (for classification) or class-level averages (for regression). Those might also include broader economic indicators like unemployment rate.
+:::
+-->
+
+
+# Problem Set 
+
+```{r}
+countdown::countdown(25)
+```
+
+
+# Break
+
+# Lab 
+
+```{r}
+countdown::countdown(25)
+```
+
+# End of Lecture

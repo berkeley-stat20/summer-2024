@@ -1,0 +1,79 @@
+---
+title: "A Simple Linear Model"
+subtitle: "Fitting a line by minimizing the squared residuals."
+date: "09/22/2022"
+image: images/poverty.png
+format:
+  html:
+    code-fold: true
+    code-link: true
+    code-summary: "."
+execute: 
+  warning: false
+  message: false
+---
+
+[[Discuss]{.btn .btn-primary}](https://edstem.org) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233)
+
+\
+
+:::{style="text-align: center"}
+## Welcome to Unit II: Prediction
+:::
+
+In the last unit we considered four different claims that might be made based on the line plot found in the news story below[^nyt]. 
+
+1. The Consumer Price Index rose 8.3% in April.
+2. The Consumer Price Index will likely rise throughout the summer.
+3. The global consumer price index rose in April.
+4. The Consumer Price Index rose 8.3% because of the war in Ukraine.
+
+![](images/nyt-inflation.png){#fig-inflation fig-align=center width="600px"}
+
+The last unit dealt with claims like the first one, claims made about the nature of the data that is on hand. In this unit use, we aim to make claims like the second one, "The Consumer Price Index will likely rise throughout the summer". This is a *prediction*, a claim that uses the structure of the data at hand to predict the value of observations about which we have only partial information. In midsummer, we know the date will be July 15th, that's the x-coordinate. But what will the y-coordinate be, the Consumer Price Index?
+
+The realm of prediction is the subject of intense research activity and commercial investment at the moment. Falling under the terms "machine learning" and "AI", models for prediction have become very powerful in recent years; they can diagnose diseases, help drive autonomous vehicles, and compose text with eerily human sensibilities. At the core of these complicated models, thought, are a few simple ideas that make it all possible.
+
+![Four types of claims made with data covered in this class.](images/claims-only.png){#fig-claims width="500px"}
+
+
+[^nyt]: Smialek, Jeanna (2022, May 11). Consumer Prices are Still Climbing Rapidly. *The New York Times*. <https://www.nytimes.com/2022/05/11/business/economy/april-2022-cpi.html>
+
+## A Simple Linear Model
+
+Our introduction to building a model for prediction begins with a simple question:
+
+> What is the relationship between educational attainment and poverty?
+
+As framed, this question is so general as to be challenging to answer convincingly. To make the question more tractable, let's start from the other end: what data could be brought to bear on this question?
+
+The `poverty` data frame contains data from the 50 US states (plus the District of Columbia) with two variables observed on each: the percentage of the population living below the poverty line and the percentage of current residents who have graduated from high school.
+
+```{r}
+#| code-fold: false
+
+library(tidyverse)
+poverty <- read_csv("https://tinyurl.com/stat20poverty")
+poverty
+```
+
+With this data set, we can start by addressing the more specific question:
+
+> What is the relationship between the poverty rate and the high school graduation rate among the 50 US states plus DC?
+
+A good first start to answering this question is to perform some exploratory data analysis and visualize the relationship using a natural choice for two numerical variables: a scatter plot.
+
+```{r}
+poverty %>%
+    ggplot(aes(x = Poverty,
+               y = Graduates)) +
+    geom_point() +
+    theme_bw()
+```
+
+A good second step might be to summarizing the strength of this relationship with a statistic: the Pearson correlation coefficient.
+
+For the remainder of these notes, we'll turn you over to two lectures that can now be found under "Media Gallery" in Stat 20 - Main on bCourses. You're encouraged to copy the code from these notes into RStudio and code along as you watch the videos. Any questions that come up, please ask them on Ed.
+
+1. [Simple Linear Regression 1](https://bcourses.berkeley.edu/courses/1517492/external_tools/78985): 8 minutes
+2. [Simple Linear Regression 2](https://bcourses.berkeley.edu/courses/1517492/external_tools/78985): 32 minutes

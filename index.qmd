@@ -1,0 +1,57 @@
+---
+toc: false
+page-layout: custom
+resources:
+  - "homepage-readings"
+listing:
+  id: schedule-listing
+  contents: schedule.yml
+  template: assets/listings/schedule.ejs
+---
+
+:::::{.content-block}
+::::{.grid}
+:::{#banner .g-col-12 .g-col-md-6 style="margin: 3em 1em 0em 1em"}
+
+:::{.content-visible unless-profile="staff-site"}
+
+:::{.banner-text}
+Introduction to Probability and Statistics
+:::
+
+[Stat 20 UC Berkeley]{.smallcaps}
+
+:::
+
+:::{.content-hidden unless-profile="staff-site"}
+
+:::{.banner-text}
+Staff Site
+:::
+
+A home base for course staff with:
+
+- Draft versions of all [notes](notes.qmd) and [assignments](assignments.qmd).
+- A [guide](staff-guide/index.qmd) with helpful information for course staff.
+- [Documentation](docs/index.qmd) of the structure of the curriculum and website.
+
+:::
+:::
+
+:::{#hex .g-col-12 .g-col-md-6 .text-center style="margin: 0em 1em 0em 1em"}
+
+\
+
+![](assets/stat20-hex.png){fig-alt="Hex logo of Stat 20 showing a golden bear." .img-fluid width=250}
+:::
+::::
+:::::
+
+:::::{.content-block}
+
+:::{#schedule-listing}
+:::
+
+:::::
+
+

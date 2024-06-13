@@ -1,0 +1,21 @@
+---
+title: License
+toc: false
+---
+
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+The source materials for the curriculum for this course and the software that builds this website are available under at:
+
+<https://github.com/stat20/course-materials>
+
+
+### Testing zone
+
+The content below are experimental tests for future functionality.
+
+#### Distributing assignments via nbgitpuller
+
+Below is a test of a new method of distributing assignments. Click the R logo to synchronize your RStudio with the most recent assignments.
+
+[{{< fa brands r-project >}}](https://stat20.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fstat20%2Fstat20-assignments&urlpath=rstudio%2F&branch=master)
