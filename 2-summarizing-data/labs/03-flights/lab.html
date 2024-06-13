@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Stat 20 - Lab 2: Flights</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../assets/favicon.ico" rel="icon">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<meta property="og:title" content="Stat 20 - Lab 2: Flights">
+<meta property="og:description" content="Introduction to Probability and Statistics at UC Berkeley">
+<meta property="og:image" content="https://www.stat20.org/2-summarizing-data/labs/03-flights/images/airline.png">
+<meta property="og:site_name" content="Stat 20">
+<meta property="og:image:height" content="486">
+<meta property="og:image:width" content="730">
+<meta name="twitter:title" content="Stat 20 - Lab 2: Flights">
+<meta name="twitter:description" content="Introduction to Probability and Statistics at UC Berkeley">
+<meta name="twitter:image" content="https://www.stat20.org/2-summarizing-data/labs/03-flights/images/airline.png">
+<meta name="twitter:image-height" content="486">
+<meta name="twitter:image-width" content="730">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-sm " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../assets/stat20-hex-small.png" alt="Stat 20 logo" class="navbar-logo"></a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../../../syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../office-hours.html"> 
+<span class="menu-text">Office Hours</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../notes.html"> 
+<span class="menu-text">Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../assignments.html"> 
+<span class="menu-text">Assignments</span></a>
+  </li>  
+</ul>
+</div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools tools-wide">
+    <a href="https://edstem.org/us/courses/51198" title="" class="quarto-navigation-tool px-1" aria-label="Ed Discussion Forum"><i class="bi bi-chat-fill"></i></a>
+    <a href="https://www.gradescope.com/courses/693050" title="" class="quarto-navigation-tool px-1" aria-label="Gradescope"><i class="bi bi-bar-chart-fill"></i></a>
+    <a href="https://stat20.datahub.berkeley.edu/" title="" class="quarto-navigation-tool px-1" aria-label="RStudio"><i class="bi bi-r-circle-fill"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#part-i-understanding-the-context-of-the-data" id="toc-part-i-understanding-the-context-of-the-data" class="nav-link active" data-scroll-target="#part-i-understanding-the-context-of-the-data">Part I: Understanding the Context of the Data</a></li>
+  <li><a href="#part-ii-computing-on-the-data" id="toc-part-ii-computing-on-the-data" class="nav-link" data-scroll-target="#part-ii-computing-on-the-data">Part II: Computing on the Data</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Lab 2: Flights</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><!-- The bit before that is commented out adds publish date to document metadata and button links at the top of the doc. This workflow can be revisited but currently doesn't work because listings aren't updated with these dates, only the renderd docs. --><p><a href="../../../2-summarizing-data/labs/03-flights/slides.html"><span class="btn btn-primary">Slides</span></a></p>
+<section id="part-i-understanding-the-context-of-the-data" class="level2"><h2 class="anchored" data-anchor-id="part-i-understanding-the-context-of-the-data">Part I: Understanding the Context of the Data</h2>
+<p>For the questions on the handout, consult the image of the data frame found in the slides linked above.</p>
+<ul>
+<li><a href="../../../2-summarizing-data/labs/03-flights/lab-context.pdf">Part 1: Understanding the Context of the Data</a></li>
+</ul></section><section id="part-ii-computing-on-the-data" class="level2"><h2 class="anchored" data-anchor-id="part-ii-computing-on-the-data">Part II: Computing on the Data</h2>
+<p>The data for this lab can be found in the <code>flights</code> data frame in the <code>stat20data</code> package. Run <code>?flights</code> at the console to learn more about the columns. <em>Where applicable, answer each question with one pipeline, which may include <code>dplyr</code> code, <code>ggplot2</code> code or both</em>.</p>
+<section id="question-1" class="level4"><h4 class="anchored" data-anchor-id="question-1">Question 1</h4>
+<p>How many flights in the dataset left in the springtime and were destined for Portland, Oregon?</p>
+</section><section id="question-2" class="level4"><h4 class="anchored" data-anchor-id="question-2">Question 2</h4>
+<p>Arrange the data set to find out: which flight holds the record for longest departure delay (in hrs) and what was its destination? What was the destination and delay time (in hrs) for the flight that was least delayed, i.e.&nbsp;that left the most ahead of schedule? This can be done in two separate pipelines.</p>
+</section><section id="question-3" class="level4"><h4 class="anchored" data-anchor-id="question-3">Question 3</h4>
+<p>I attempted to find some summary statistics on the arrival delay of flights, grouped by their airline carrier. You can find the mininmum and maximum of numerical variables using the <code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code> and <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code> function, respectively. This is the code that I ran.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">group_by</span><span class="op">(</span><span class="va">carrier</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">summarise</span><span class="op">(</span>min_arr_delay <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">arr_delay</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">summarise</span><span class="op">(</span>max_arr_delay <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">arr_delay</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">summarise</span><span class="op">(</span>prop_long_flight <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">distance</span> <span class="op">&gt;</span> <span class="fl">1000</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>However, I received an error and the code would not run. Explain the origin of this error, then modify/correct the code and run it to display the output I was hoping to achieve.</p>
+</section><section id="question-4" class="level4"><h4 class="anchored" data-anchor-id="question-4">Question 4</h4>
+<p>Using the airport nearest your hometown, which day of the week and which airline seems best for flying there from San Francisco? If you’re from near SFO or OAK or from abroad, use Chicago as your hometown. Be clear on how you’re defining best. Feel free to mutate a column(s) to your dataset which might be your preferred way to determine best.</p>
+<p>There is no explicit weekday column in this data set, but there is sufficient information to piece it together. The following line of code can be added to your pipeline to create that new column. Note also that it uses functions which are contained in the <code>lubridate</code> package.</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">mutate</span><span class="op">(</span>day_of_week <span class="op">=</span></span>
+<span>            <span class="fu">wday</span><span class="op">(</span><span class="fu">ymd</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">month</span>, <span class="va">day</span>, set <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>            label <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="question-5" class="level4"><h4 class="anchored" data-anchor-id="question-5">Question 5</h4>
+<p>The plot below shows the relationship between the number of flights going out of SFO and the average departure delay. It illustrates the hypothesis that more flights on a given day would lead to a more congested airport which would lead to greater delays on average. Each point represents single day in 2020; there are 366 of them on the plot. Form a single <code>dplyr</code> and <code>ggplot2</code> chain that will create this plot, starting with the original data set. <em>Hint: What does each point on the plot represent? Is it the same as the unit of observation of the initial dataset?</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/complex-ggplot.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section><section id="question-6" class="level4"><h4 class="anchored" data-anchor-id="question-6">Question 6</h4>
+<p>Create a histogram showing the distribution of departure delays for all flights. You must follow the steps below:</p>
+<ul>
+<li><p>Set the limits of the x-axis to focus on where most of the data lie.</p></li>
+<li><p>Outline the bars of your histogram with one color.</p></li>
+<li><p>Add a text annotation somewhere on the plot that explains the meaning of a negative departure delay.</p></li>
+<li><p>Finally, title your plot with a claim about the shape and modality of the distribution.</p></li>
+</ul></section><section id="question-7" class="level4"><h4 class="anchored" data-anchor-id="question-7">Question 7</h4>
+<p>Create a plot to examine the relationship between average speed and distance (you will have to make the average speed column first) in one pipeline, labeling your x and y axes. Save this plot into an object and print it to the screen.</p>
+</section><section id="question-8" class="level4"><h4 class="anchored" data-anchor-id="question-8">Question 8</h4>
+<p>Rewrite the code for the plot you made in <strong>Question 7</strong>, coloring the points by destination, and use this to provide a possible explanation for the relationship between the two variables (particularly, the noticeable gap) in the plot title.</p>
+</section><section id="question-9" class="level4"><h4 class="anchored" data-anchor-id="question-9">Question 9</h4>
+<ul>
+<li><p>First, calculate the correlation coefficient between average speed and distance.</p></li>
+<li>
+<p>Then, mutate two new variables onto the data frame:</p>
+<ul>
+<li>(natural) log of average speed</li>
+<li>(natural) log of distance</li>
+</ul>
+</li>
+<li><p>Visualize the new variables and title your plot with a claim based on what you see.</p></li>
+<li><p>Finally, calculate the correlation coefficient between log of average speed and log of distance.</p></li>
+</ul>
+<p>The process of applying functions to existing variables (such as logarithm or squaring) in a dataset is often called <strong>transforming</strong> one’s data.</p>
+</section><section id="question-10" class="level4"><h4 class="anchored" data-anchor-id="question-10">Question 10</h4>
+<p>Explain which pair of variables have a relationship which is better described via a linear model:</p>
+<ul>
+<li>distance and average speed</li>
+<li>log distance and log average speed</li>
+</ul>
+<p>Explain in one or two sentences, using your results from <strong>Question 7</strong> and <strong>Question 9</strong> as support.</p>
+</section><section id="question-11" class="level4"><h4 class="anchored" data-anchor-id="question-11">Question 11</h4>
+<p>Fit a linear model to the variables you chose from <strong>Question 10</strong>. Then determine which flight had the fastest average speed given its distance traveled.</p>
+</section><section id="question-12" class="level4"><h4 class="anchored" data-anchor-id="question-12">Question 12</h4>
+<p>Fit a multiple linear regression model that explains arrival delay using departure delay and the distance of the flight and print out the coefficients (the intercept and two slopes).</p>
+</section><section id="question-13" class="level4"><h4 class="anchored" data-anchor-id="question-13">Question 13</h4>
+<p>On average, which carrier’s flights had the smallest arrival delay given their departure delay and distance?</p>
+</section><section id="question-14" class="level4"><h4 class="anchored" data-anchor-id="question-14">Question 14</h4>
+<p>Can we compare the coefficients for departure delay and distance to understand which has the stronger relationship? Why or why not? State your answer in 2-3 sentences.</p>
+<!--
+
+#### Question 1
+
+Filter the data set to contain only the flights that left in the springtime destined for Portland, Oregon and print the first few rows of the data frame. How many were there in 2020?
+
+
+#### Question 2
+
+Mutate a new variable called `avg_speed` that is the average speed of the plane during the flight, measured in miles per hour. Save it back into the data frame; you'll use it later on (Look through the column names or the help file to find variables that can be used to calculate this.)
+
+
+#### Question 3
+
+Arrange the data frame to figure out: which flight holds the record for longest departure delay (in hrs) and what was its destination? What was the destination and delay time (in hrs) for the flight that was least delayed, i.e. that left the most ahead of schedule?
+
+
+#### Question 4
+
+Confirm the records for departure delay from the question above by summarizing that variable by its maximum and its minimum value.
+
+
+#### Question 5
+
+What is the mean departure delay of flights leaving from Oakland and San Francisco separately? (calculate two means)
+
+
+#### Question 6
+
+What proportion of the flights left on or ahead of schedule? For Oakland and SFO separately, what proportion of flights left on or ahead of schedule?
+
+
+#### Question 7
+
+How many flights left SFO during March 2020? See the examples of Data Pipelines in the Conditioning notes for a helpful function.
+
+
+#### Question 8
+
+How many flights left SFO during April 2020?
+
+
+#### Question 9
+
+Create a bar chart that shows the distribution by month of all the flights leaving the Bay Area (SFO and OAK). Do you any sign of an effect of the pandemic?
+
+
+#### Question 10
+
+Create a histogram showing the distribution of departure delays for all flights. Describe in words the shape and modality of the distribution and, using numerical summaries, (i.e. summary statistics) its center and spread. Be sure to use measures of center and spread that are most appropriate for this type of distribution. Also set the limits of the x-axis to focus on where most of the data lie.
+
+
+#### Question 11
+
+Add a new column to your data frame called `before_times` that takes values of `TRUE` and `FALSE` indicating whether the flight took place up through the end of March or after April 1st, respectively. Remake the histograms above, but now separated into two subplots: one with the departure delays from the before times, the other with the flights from afterwards. Can you visually detect any difference in the distribution of departure delays?
+
+This is best done with a new layer called `facet_wrap()`. Learn about it's use by reading the documentation: <https://ggplot2.tidyverse.org/reference/facet_wrap.html>.
+
+
+#### Question 12
+
+If you flew out of OAK or SFO during this time period, what is the tail number of the plane that you were on? If you did not fly in this period, find the tail number of the plane that flew JetBlue flight 40 to New York's JFK Airport from SFO on May 1st.
+
+
+#### Question 13
+
+Create a data frame that contains the median and interquartile range for departure delays, grouped by carrier. Which carrier has the lowest typical departure delay? Which one has the least variable departure delays?
+
+
+#### Question 14
+
+Create a plot that captures the relationship of average speed vs. distance and describe the shape and structure that you see. What phenomena related to taking flights from the Bay Area might explain this structure?
+
+
+
+#### Question 15
+
+For flights leaving SFO, which month has the highest average departure delay? What about the highest median departure delay? Which of these measures is more useful to know when deciding which month(s) to avoid flying if you particularly dislike flights that are severely delayed?
+
+#### Question 16
+
+Each individual airplane can be uniquely identified by its tailnumber in the same way that US citizens can be by their social security numbers. Which airplane flew the farthest during this year for which we have data? How many times around the planet does that translate to?
+
+
+#### Question 17
+
+What is the tailnumber of the fastest plane in the data set? What type of plane is it (google it!)? Be sure to be clear how you're defining fastest.
+
+#### Question 18
+
+Using the airport nearest your hometown, which day of the week and which airline seems best for flying there from San Francisco?  If you're from near SFO or OAK or from abroad, use Chicago as your hometown. Be clear on how you're defining *best*.
+
+Note that there is no explicit weekday column in this data set, but there is sufficient information to piece it together. The following line of code can be added to your pipeline to create that new column. It uses functions in the `lubridate` package, so be sure to load it in at the start of this exercise.
+
+
+::: {.cell}
+
+```{.r .cell-code  code-fold="false"}
+mutate(day_of_week = wday(ymd(paste(year, month, day, set = "-")), label = T))
+```
+:::
+
+
+#### Question 19
+
+The plot below shows the relationship between the number of flights going out of SFO and the average departure delay. It illustrates the hypothesis that more flights on a given day would lead to a more congested airport which would lead to greater delays on average. Each point represents single day in 2020; there are 366 of them on the plot. Please form a single chain that will create this plot, starting with the raw data set.
+
+![](images/complex-ggplot.png){fig-align=center}
+
+#### Question 20
+
+Create a plot to illustrate the association between departure delay and arrival delay. Summarize the linear relationship by calculating the correlation coefficient and by fitting a linear model.
+
+Which flight has the highest arrival delay given its departure delay? (Consult the slides from Summarizing Associations for helpful code. For an extra challenge, use the code from the notes to superimpose the linear model on the scatter plot).
+
+
+#### Question 21
+
+Fit a multiple linear regression model that explains arrival delay using departure delay and the distance of the flight and print out the coefficients (the intercept and two slopes). Speculate as to why the *sign* (positive or negative) of the distance coefficient is what it is. Can we compare the coefficients for departure delay and distance to understand which has the stronger relationship? Why or why not?
+
+-->
+
+
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+      <ul class="footer-items list-unstyled">
+<li class="nav-item">
+    <a class="nav-link" href="https://www.netlify.com/">
+<p>This site is hosted by Netlify.</p>
+</a>
+  </li>  
+</ul>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+<li class="nav-item">
+    <a class="nav-link" href="../../../license.html">
+<p>License</p>
+</a>
+  </li>  
+</ul>
+</div>
+  </div>
+</footer>
+
+
+</body></html>

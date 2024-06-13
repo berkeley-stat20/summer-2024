@@ -1,0 +1,39 @@
+[
+  {
+    "listing": "/index.html",
+    "items": []
+  },
+  {
+    "listing": "/assignments.html",
+    "items": [
+      "1-questions-and-data/labs/00-getting-started/lab.html",
+      "2-summarizing-data/labs/02-class-survey/lab.html",
+      "2-summarizing-data/labs/03-flights/lab.html",
+      "3-probability/labs/04-elections/lab.html",
+      "4-generalization/labs/05-peoples-park/lab.html",
+      "6-prediction/labs/07-baseball/lab.html",
+      "6-prediction/labs/08-cancer/lab.html",
+      "5-causation/labs/06-taste-test/lab.html",
+      "1-questions-and-data/02-taxonomy-of-data/ps.pdf",
+      "2-summarizing-data/01-summarizing-categorical-data/ps.pdf",
+      "2-summarizing-data/02-summarizing-numerical-data/ps.pdf",
+      "2-summarizing-data/04-conditioning/ps.pdf",
+      "2-summarizing-data/06-summarizing-associations/ps.pdf",
+      "3-probability/01-chance-intro/ps.pdf",
+      "3-probability/02-cond-prob-indep/ps.pdf",
+      "3-probability/03-probability-dsns/ps.pdf",
+      "3-probability/04-random-variables/ps.pdf",
+      "3-probability/05-ev-se/ps.pdf",
+      "4-generalization/01-sampling-distributions/ps.pdf",
+      "4-generalization/03-bootstrapping/ps.pdf",
+      "4-generalization/04-hypothesis-tests/ps.pdf",
+      "4-generalization/05-hypothesis-tests-2/ps.pdf",
+      "4-generalization/06-wrong-by-design/ps.pdf",
+      "6-prediction/01-method-of-least-squares/ps.pdf",
+      "6-prediction/02-improving-predictions/ps.pdf",
+      "6-prediction/03-overfitting/ps.pdf",
+      "5-causation/03-matching/ps.pdf",
+      "5-causation/04-time/ps.pdf"
+    ]
+  }
+]

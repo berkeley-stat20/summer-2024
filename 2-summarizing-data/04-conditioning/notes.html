@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Stat 20 - Data Pipelines</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../2-summarizing-data/03-a-grammar-of-graphics/notes.html" rel="next">
+<link href="../../2-summarizing-data/02-summarizing-numerical-data/notes.html" rel="prev">
+<link href="../../assets/favicon.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<meta property="og:title" content="Stat 20 - Data Pipelines">
+<meta property="og:description" content="Data pipelines, filtering, logical variables and comparison operators">
+<meta property="og:image" content="https://www.stat20.org/2-summarizing-data/04-conditioning/images/mammals.png">
+<meta property="og:site_name" content="Stat 20">
+<meta property="og:image:height" content="628">
+<meta property="og:image:width" content="756">
+<meta name="twitter:title" content="Stat 20 - Data Pipelines">
+<meta name="twitter:description" content="Data pipelines, filtering, logical variables and comparison operators">
+<meta name="twitter:image" content="https://www.stat20.org/2-summarizing-data/04-conditioning/images/mammals.png">
+<meta name="twitter:image-height" content="628">
+<meta name="twitter:image-width" content="756">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body class="nav-sidebar floating nav-fixed slimcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-sm " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../assets/stat20-hex-small.png" alt="Stat 20 logo" class="navbar-logo"></a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../../syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../office-hours.html"> 
+<span class="menu-text">Office Hours</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../notes.html" aria-current="page"> 
+<span class="menu-text">Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../assignments.html"> 
+<span class="menu-text">Assignments</span></a>
+  </li>  
+</ul>
+</div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools tools-wide">
+    <a href="https://edstem.org/us/courses/51198" title="" class="quarto-navigation-tool px-1" aria-label="Ed Discussion Forum"><i class="bi bi-chat-fill"></i></a>
+    <a href="https://www.gradescope.com/courses/693050" title="" class="quarto-navigation-tool px-1" aria-label="Gradescope"><i class="bi bi-bar-chart-fill"></i></a>
+    <a href="https://stat20.datahub.berkeley.edu/" title="" class="quarto-navigation-tool px-1" aria-label="RStudio"><i class="bi bi-r-circle-fill"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../2-summarizing-data/04-conditioning/notes.html">Data Pipelines</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../1-questions-and-data/01-understanding-the-world/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Understanding the World with Data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../1-questions-and-data/02-taxonomy-of-data/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Taxonomy of Data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2-summarizing-data/01-summarizing-categorical-data/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summarizing Categorical Data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2-summarizing-data/02-summarizing-numerical-data/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summarizing Numerical Data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2-summarizing-data/04-conditioning/notes.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Data Pipelines</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2-summarizing-data/03-a-grammar-of-graphics/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A Grammar of Graphics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2-summarizing-data/06-summarizing-associations/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summarizing Numerical Associations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2-summarizing-data/07-multiple-linear-regression/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multiple Linear Regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../3-probability/01-chance-intro/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introducing Probability</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../3-probability/02-cond-prob-indep/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Computing Probabilities</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../3-probability/03-probability-dsns/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability Distributions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../3-probability/04-random-variables/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Random Variables</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../3-probability/05-ev-se/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Expected value and variance of a random variable</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../3-probability/06-normal-approx/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous Distributions and Normal Approximations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../4-generalization/01-sampling-distributions/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">From Samples to Populations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../4-generalization/02-confidence-intervals/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Confidence Intervals</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../4-generalization/03-bootstrapping/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bootstrapping</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../4-generalization/04-hypothesis-tests/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis Testing</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../4-generalization/05-hypothesis-tests-2/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis Tests II</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../4-generalization/06-wrong-by-design/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wrong by Design</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../6-prediction/01-method-of-least-squares/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Method of Least Squares</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../6-prediction/02-improving-predictions/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Evaluating and Improving Predictions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../6-prediction/03-overfitting/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overfitting</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../6-prediction/05-logistic-regression/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logistic Regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../5-causation/01-defining-causality/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Defining Causality</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../5-causation/02-experiments/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Randomized Experiments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../5-causation/03-matching/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Causal Effects in Observational Studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../5-causation/04-time/notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using Time to Measure Causal Effects</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li>
+<a href="#introducing-the-pipe" id="toc-introducing-the-pipe" class="nav-link active" data-scroll-target="#introducing-the-pipe">Introducing the pipe</a>
+  <ul class="collapse">
+<li><a href="#breaking-the-pipe" id="toc-breaking-the-pipe" class="nav-link" data-scroll-target="#breaking-the-pipe">Breaking the pipe</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#the-pipe-in-action" id="toc-the-pipe-in-action" class="nav-link" data-scroll-target="#the-pipe-in-action">The pipe in action</a>
+  <ul class="collapse">
+<li><a href="#example-1-mutation" id="toc-example-1-mutation" class="nav-link" data-scroll-target="#example-1-mutation">Example 1: Mutation</a></li>
+  <li><a href="#example-2-filtering" id="toc-example-2-filtering" class="nav-link" data-scroll-target="#example-2-filtering">Example 2: Filtering</a></li>
+  <li><a href="#example-2-detour-comparison-operators" id="toc-example-2-detour-comparison-operators" class="nav-link" data-scroll-target="#example-2-detour-comparison-operators">Example 2 Detour: Comparison Operators</a></li>
+  <li><a href="#example-2-detour-logical-operators" id="toc-example-2-detour-logical-operators" class="nav-link" data-scroll-target="#example-2-detour-logical-operators">Example 2 Detour: Logical Operators</a></li>
+  <li><a href="#taxonomy-of-data-logicals" id="toc-taxonomy-of-data-logicals" class="nav-link" data-scroll-target="#taxonomy-of-data-logicals">Taxonomy of Data: Logicals</a></li>
+  <li><a href="#example-3" id="toc-example-3" class="nav-link" data-scroll-target="#example-3">Example 3</a></li>
+  <li><a href="#example-4-arranging" id="toc-example-4-arranging" class="nav-link" data-scroll-target="#example-4-arranging">Example 4: Arranging</a></li>
+  </ul>
+</li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">—————————</a></li>
+  <li><a href="#the-ideas-in-code" id="toc-the-ideas-in-code" class="nav-link" data-scroll-target="#the-ideas-in-code">The Ideas in Code</a></li>
+  </ul><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="notes.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Data Pipelines</h1>
+<p class="subtitle lead">Data pipelines, filtering, logical variables and comparison operators</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><section id="introducing-the-pipe" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="introducing-the-pipe">Introducing the pipe</h2>
+<p><span class="dropcap">A</span>t this stage in the course, the number of functions that you are familiar with has grown dramatically. To do truly powerful things with data, you need to not just call one of these functions, but string together many of them in a thoughtful and organized manner.</p>
+<p>An an example, let’s return to our work with the <code>penguins</code> dataset from last lecture. In order to calculate the mean and standard deviation of bill length across each species of penguin, we need to take the original data frame and</p>
+<ol type="1">
+<li><p>Use <code>group_by()</code> to inform R we would like to calculate summaries across levels of a categorical variable (namely, the <code>species</code> variable).</p></li>
+<li><p>Use <code>summarise()</code> to calculate these summaries.</p></li>
+</ol>
+<p>A conventional approach breaks this process into two distinct lines of code and saves the output mid-way through.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">grouped_penguins</span> <span class="op">&lt;-</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">penguins</span>, <span class="va">species</span><span class="op">)</span></span>
+<span><span class="fu">summarise</span><span class="op">(</span><span class="va">grouped_penguins</span>, </span>
+<span>          bill_length_mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">bill_length_mm</span><span class="op">)</span>,</span>
+<span>          bill_length_sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">bill_length_mm</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  species   bill_length_mean bill_length_sd
+  &lt;fct&gt;                &lt;dbl&gt;          &lt;dbl&gt;
+1 Adelie                38.8           2.66
+2 Chinstrap             48.8           3.34
+3 Gentoo                47.6           3.11</code></pre>
+</div>
+</div>
+<p>An approach that is more concise, easier to read, and generally faster to run is to compose these functions together with “the pipe”. The pipe, written <code>|&gt;</code>, is an operator that you have access to when you load the tidyverse package. If you have two functions, <code>f1</code> and <code>f2</code>, both of which take a data frame as the first argument, you can pipe the output of <code>f1</code> directly into <code>f2</code> using.</p>
+<div style="font-size: 1.5em; text-align: center">
+<pre><code>f1(DF) |&gt; f2()</code></pre>
+</div>
+<p>Let’s use the pipe to rewrite the code shown above.</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">group_by</span><span class="op">(</span><span class="va">penguins</span>, <span class="va">species</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">summarise</span><span class="op">(</span>bill_length_mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">bill_length_mm</span><span class="op">)</span>,</span>
+<span>            bill_length_sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">bill_length_mm</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  species   bill_length_mean bill_length_sd
+  &lt;fct&gt;                &lt;dbl&gt;          &lt;dbl&gt;
+1 Adelie                38.8           2.66
+2 Chinstrap             48.8           3.34
+3 Gentoo                47.6           3.11</code></pre>
+</div>
+</div>
+<p>The first function, <code>group_by()</code>, is unchanged. However the second function, <code>summarise()</code>, is now missing its first argument, the data frame. That is because it is being <em>piped directly in</em> from the output of the first function.</p>
+<p>While this is a fine way to use the pipe, your code is made much more readable if you format it like this:</p>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">species</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">summarise</span><span class="op">(</span>bill_length_mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">bill_length_mm</span><span class="op">)</span>,</span>
+<span>            bill_length_sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">bill_length_mm</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  species   bill_length_mean bill_length_sd
+  &lt;fct&gt;                &lt;dbl&gt;          &lt;dbl&gt;
+1 Adelie                38.8           2.66
+2 Chinstrap             48.8           3.34
+3 Gentoo                47.6           3.11</code></pre>
+</div>
+</div>
+<p>For the rest of the examples given in the notes, we will stick with this formatting when using the pipe operator. This code results in the same output as the first version, but it now reads a bit like a poem: “Take the <code>penguins</code> data frame, prepare it for calculations across each species, then calculate the mean and standard deviation of bill length (across each species of penguin)”.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>This poem is admittedly not particularly poetic.</p>
+</div></div><section id="breaking-the-pipe" class="level3"><h3 class="anchored" data-anchor-id="breaking-the-pipe">Breaking the pipe</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/pipeline-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Here’s another, less poetic way to think about the pipe, as described by the above image! Most claims about data start with a <em>raw</em> data set, undergo many subsetting, aggregating, and cleaning operations, then return a <em>data product</em>. Each one of these operations can be represented by one of the turns through the pipe. It’s good practice to understand the output of each line of code by <em>breaking the pipe</em>. With regards to our previous example, we can remove the <code>summarise()</code> and just look at the output of the <code>group_by()</code> step.</p>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">species</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 333 × 8
+# Groups:   species [3]
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+ 1 Adelie  Torgersen           39.1          18.7               181        3750
+ 2 Adelie  Torgersen           39.5          17.4               186        3800
+ 3 Adelie  Torgersen           40.3          18                 195        3250
+ 4 Adelie  Torgersen           36.7          19.3               193        3450
+ 5 Adelie  Torgersen           39.3          20.6               190        3650
+ 6 Adelie  Torgersen           38.9          17.8               181        3625
+ 7 Adelie  Torgersen           39.2          19.6               195        4675
+ 8 Adelie  Torgersen           41.1          17.6               182        3200
+ 9 Adelie  Torgersen           38.6          21.2               191        3800
+10 Adelie  Torgersen           34.6          21.1               198        4400
+# ℹ 323 more rows
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+<p>This looks . . . exactly like the original data frame. Well, not <em>exactly</em> like it: there is now a note at the top that the data frame now has the notion of groups based on <code>species</code>. In effect, <code>group_by()</code> has taken the generic data frame and turned it into the one in the middle below: the same data frame but with rows now flagged as belonging to one group or another. When we pipe this grouped data frame into <code>summarise()</code>, <code>summarise()</code> collapses that data frame down into a single row for each group and creates a new column for each new summary statistic.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/group-by.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>In addition to providing greater insight on each step in your data pipeline, breaking the pipe is a fantastic way to troubleshoot any errors in your pipeline. If you run just the first piece of your pipeline and it works, add the second piece and try again. Continue this process with the rest of the pieces until the error occurs. When you run into the error, the piece you just added is the guilty party.</p>
+</section></section><section id="the-pipe-in-action" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="the-pipe-in-action">The pipe in action</h2>
+<p>We will now look at a few examples to understand the power of such a simple piece of syntax. In doing so, we will introduce a few more <code>dplyr</code> functions that will expand your ability to perform more specific pieces of data analysis.</p>
+<p>Our data set of choice begins with a very general focus. In 2007, Savage and West published <em>A qualitative, theoretical framework for understanding mammalian sleep</em><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, wherein they “develop a general, quantitative theory for mammalian sleep that relates many of its fundamental parameters to metabolic rate and body size”. Characterizing the sleep patterns of <em>all</em> mammals is a broad task and their data set is corresponding diverse. Take a look at the first ten rows of their data below.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 83 × 5
+   name                       sleep_total log_bodywt vore  conservation
+   &lt;chr&gt;                            &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       
+ 1 Cheetah                           12.1      10.8  carni lc          
+ 2 Owl monkey                        17         6.17 omni  &lt;NA&gt;        
+ 3 Mountain beaver                   14.4       7.21 herbi nt          
+ 4 Greater short-tailed shrew        14.9       2.94 omni  lc          
+ 5 Cow                                4        13.3  herbi domesticated
+ 6 Three-toed sloth                  14.4       8.26 herbi &lt;NA&gt;        
+ 7 Northern fur seal                  8.7       9.93 carni vu          
+ 8 Vesper mouse                       7         3.81 &lt;NA&gt;  &lt;NA&gt;        
+ 9 Dog                               10.1       9.55 carni domesticated
+10 Roe deer                           3         9.60 herbi lc          
+# ℹ 73 more rows</code></pre>
+</div>
+</div>
+<p>In this data set, the unit of observation is a single species and the variables observed on each are its name, the average length of sleep each day, the natural log of the average weight, its dietary pattern, and its conservation status. We can visualize the relationship between sleep and body size in all 83 species using a <strong>scatter plot.</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="notes_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The mammals vary from the wee brown bat, slumbering for nearly 20 hours a day, to the massive African elephant, nodding off for less than five. That is quite a range! Lets drill down to smaller subsets of this data frame to gain a more nuanced sense of what is going on.</p>
+<section id="example-1-mutation" class="level3"><h3 class="anchored" data-anchor-id="example-1-mutation">Example 1: Mutation</h3>
+<p>Oftentimes the variables we are most interested in analyzing in a data set don’t exist in the form most conducive for doing so. Other times, they don’t exist at all. For example, note how in our first output of the <code>msleep</code> data and the scatter plot that body weight is being presented in <em>log grams</em> (<code>log_bodywt</code>). In reality, the body weight as originally present in the <code>msleep</code> dataset is called <code>bodywt</code> and is recorded in kilograms! To get to <code>log_bodywt</code>, we will perform what is called a mutation.</p>
+<p><strong>Mutation</strong></p>
+<p>The act of creating a new column in a dataset based on information in existing column(s).</p>
+<p>There are a variety of different mutations that you can apply to a column(s) in a dataset. In the last lecture, we <em>overwrote</em> an existing column with an updated version of itself. Today, we will perform a mathematical mutation on the <code>bodywt</code> column.</p>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">msleep</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">mutate</span><span class="op">(</span>log_bodywt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">bodywt</span> <span class="op">*</span> <span class="fl">1000</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">select</span><span class="op">(</span><span class="va">log_bodywt</span>, <span class="va">bodywt</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 83 × 2
+   log_bodywt  bodywt
+        &lt;dbl&gt;   &lt;dbl&gt;
+ 1      10.8   50    
+ 2       6.17   0.48 
+ 3       7.21   1.35 
+ 4       2.94   0.019
+ 5      13.3  600    
+ 6       8.26   3.85 
+ 7       9.93  20.5  
+ 8       3.81   0.045
+ 9       9.55  14    
+10       9.60  14.8  
+# ℹ 73 more rows</code></pre>
+</div>
+</div>
+<p>Here, the first argument, <code>msleep</code>, is piped to the <code>dplyr</code> function <strong><code>mutate()</code></strong> and the second argument, <code>log_bodywt</code>, creates a new column named <code>log_bodywt</code> by multiplying the <code>bodywt</code> column by 100 (converting kilograms to grams) and then taking the natural log. We then pipe this output into <code>select()</code> to compare the two columns.</p>
+<p>You can use <code>mutate()</code> to create multiple columns at the same time:</p>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">msleep</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">mutate</span><span class="op">(</span>log_bodywt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">bodywt</span> <span class="op">*</span> <span class="fl">1000</span><span class="op">)</span>,</span>
+<span>           sleep_total_min <span class="op">=</span> <span class="va">sleep_total</span><span class="op">*</span><span class="fl">60</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">select</span><span class="op">(</span><span class="va">log_bodywt</span>, <span class="va">bodywt</span>,</span>
+<span>           <span class="va">sleep_total</span>, <span class="va">sleep_total_min</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 83 × 4
+   log_bodywt  bodywt sleep_total sleep_total_min
+        &lt;dbl&gt;   &lt;dbl&gt;       &lt;dbl&gt;           &lt;dbl&gt;
+ 1      10.8   50            12.1             726
+ 2       6.17   0.48         17              1020
+ 3       7.21   1.35         14.4             864
+ 4       2.94   0.019        14.9             894
+ 5      13.3  600             4               240
+ 6       8.26   3.85         14.4             864
+ 7       9.93  20.5           8.7             522
+ 8       3.81   0.045         7               420
+ 9       9.55  14            10.1             606
+10       9.60  14.8           3               180
+# ℹ 73 more rows</code></pre>
+</div>
+</div>
+<p>If you plan to use these new columns after creating them more than once, it’s best to <em>save them back</em> into the original dataset!</p>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">msleep</span> <span class="op">&lt;-</span> <span class="va">msleep</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>log_bodywt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">bodywt</span> <span class="op">*</span> <span class="fl">1000</span><span class="op">)</span>,</span>
+<span>           sleep_total_min <span class="op">=</span> <span class="va">sleep_total</span><span class="op">*</span><span class="fl">60</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="example-2-filtering" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="example-2-filtering">Example 2: Filtering</h3>
+<p>If you think about the shape of a data frame, there are two basic ways you might go about slicing and dicing it into smaller subsets.</p>
+<p>One way is to go at it is column-by-column. The act of selecting a subset of the columns of a data frame is called, well, <em>selecting</em>. This is what we touched on briefly in the last lecture and in the previous example. When you select a column, you can do so either by its name or by its column number (or index). Selecting columns by name is more useful because their order tends to be arbitrary and might change over the course of an analysis.</p>
+<p>The other way to go at it is row-by-row. The act of subsetting the rows of the data frame based on their row number is called <em>slicing</em>. As with columns, the order of the rows is also often arbitrary, so this is of limited use. Much more useful is <em>filtering</em>.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>In the tidyverse, these functions are named <code>select()</code>, <code>slice()</code>, and <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code>.</p>
+</div></div><dl>
+<dt><strong>Filtering</strong></dt>
+<dd>
+<p>The act of subsetting the rows of a data frame based on the values of one or more variables to extract the observations of interest.</p>
+</dd>
+</dl>
+<p>Filters are powerful because they comb through the values of the data frame, which is where most of the information is. The key part of any filter is the condition that you assert for the rows that are retained in your data frame. Let’s set up a filter to return only the little brown bat.</p>
+<div class="cell">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">msleep</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op">==</span> <span class="st">"Little brown bat"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 13
+  name    genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+1 Little… Myot… inse… Chir… &lt;NA&gt;                19.9         2         0.2   4.1
+# ℹ 4 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;, log_bodywt &lt;dbl&gt;,
+#   sleep_total_min &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Here <code>name == "Little brown bat"</code> is the condition that must be met by any row in the data set to be retained. The syntax used to set up the condition is a comparison between a column in the data frame on the left and a possible value of that column on the right.</p>
+</section><section id="example-2-detour-comparison-operators" class="level3"><h3 class="anchored" data-anchor-id="example-2-detour-comparison-operators">Example 2 Detour: Comparison Operators</h3>
+<p>The filter above uses the most direct condition: it retains the rows that have a value in the <code>name</code> variable that is precisely <code>"Little brown bat"</code>. In this case, there is only one such row. There are a range of different comparisons that can be made, though, and each has its own operator.</p>
+<div class="columns">
+<div class="column" style="width:20%;">
+
+</div><div class="column" style="width:60%;">
+<table class="table">
+<thead><tr class="header">
+<th>Operator</th>
+<th>Translation</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>==</code></td>
+<td>equal to</td>
+</tr>
+<tr class="even">
+<td><code>!=</code></td>
+<td>not equal to</td>
+</tr>
+<tr class="odd">
+<td><code>&lt;</code></td>
+<td>less than</td>
+</tr>
+<tr class="even">
+<td><code>&gt;</code></td>
+<td>greater than</td>
+</tr>
+<tr class="odd">
+<td><code>&lt;=</code></td>
+<td>less than or equal to</td>
+</tr>
+<tr class="even">
+<td><code>&gt;=</code></td>
+<td>greater than or equal to</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:20%;">
+
+</div>
+</div>
+<p>At first, the <code>==</code> operator looks like a typo. Why doesn’t we use <code>=</code>? The reason is that a single equals sign is already busy at work in R: it sets the values of arguments inside a function. Instead of assignment, we want to determine whether the thing on the left holds the same value as the thing on the right, so we use <code>==</code>. It might help you keep things straight if you read it in your head as “is exactly equal to”.</p>
+<p>Let’s return only the rows with large animals, defined as those with a log body weight greater than 12.</p>
+<div class="cell">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">msleep</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">log_bodywt</span> <span class="op">&gt;</span> <span class="fl">12</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 13
+  name    genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+1 Cow     Bos   herbi Arti… domesticated         4         0.7       0.667  20  
+2 Asian … Elep… herbi Prob… en                   3.9      NA        NA      20.1
+3 Horse   Equus herbi Peri… domesticated         2.9       0.6       1      21.1
+4 Donkey  Equus herbi Peri… domesticated         3.1       0.4      NA      20.9
+5 Giraffe Gira… herbi Arti… cd                   1.9       0.4      NA      22.1
+6 Pilot … Glob… carni Ceta… cd                   2.7       0.1      NA      21.4
+7 Africa… Loxo… herbi Prob… vu                   3.3      NA        NA      20.7
+8 Brazil… Tapi… herbi Peri… vu                   4.4       1         0.9    19.6
+9 Bottle… Turs… carni Ceta… &lt;NA&gt;                 5.2      NA        NA      18.8
+# ℹ 4 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;, log_bodywt &lt;dbl&gt;,
+#   sleep_total_min &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>There were 9 such animals and you can see all of them are large.</p>
+</section><section id="example-2-detour-logical-operators" class="level3"><h3 class="anchored" data-anchor-id="example-2-detour-logical-operators">Example 2 Detour: Logical Operators</h3>
+<p>What if you want both the little brown bat and the African elephant? What if you want both the large creatures as well as those that sleep only briefly? These are tasks that call for multiple comparisons composed together with the logical operators <code>&amp;</code>, <code>|</code>, and <code>%in%</code>.</p>
+<p>This filter returns the creatures who are large and who sleep little.</p>
+<div class="cell">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">msleep</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">log_bodywt</span> <span class="op">&gt;</span> <span class="fl">12</span> <span class="op">&amp;</span> <span class="va">sleep_total</span> <span class="op">&lt;</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 13
+  name    genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+1 Cow     Bos   herbi Arti… domesticated         4         0.7       0.667  20  
+2 Asian … Elep… herbi Prob… en                   3.9      NA        NA      20.1
+3 Horse   Equus herbi Peri… domesticated         2.9       0.6       1      21.1
+4 Donkey  Equus herbi Peri… domesticated         3.1       0.4      NA      20.9
+5 Giraffe Gira… herbi Arti… cd                   1.9       0.4      NA      22.1
+6 Pilot … Glob… carni Ceta… cd                   2.7       0.1      NA      21.4
+7 Africa… Loxo… herbi Prob… vu                   3.3      NA        NA      20.7
+8 Brazil… Tapi… herbi Peri… vu                   4.4       1         0.9    19.6
+# ℹ 4 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;, log_bodywt &lt;dbl&gt;,
+#   sleep_total_min &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>This can be read as “filter the <code>msleep</code> data frame to return the rows where both the log body weight is greater than 12 and the sleep total is less than 5”. We see that there are 8 such creatures, one fewer than the data frame with only the body weight filter (bottle-nosed dolphins sleep, on average, 5.2 hrs).</p>
+<p>Using <code>&amp;</code> to represent “and” is common across most computer languages but you can alternatively use the somewhat more compact syntax of simply adding the second filter after a comma.</p>
+<div class="cell">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">msleep</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">log_bodywt</span> <span class="op">&gt;</span> <span class="fl">12</span>,</span>
+<span>         <span class="va">sleep_total</span> <span class="op">&lt;</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 13
+  name    genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+1 Cow     Bos   herbi Arti… domesticated         4         0.7       0.667  20  
+2 Asian … Elep… herbi Prob… en                   3.9      NA        NA      20.1
+3 Horse   Equus herbi Peri… domesticated         2.9       0.6       1      21.1
+4 Donkey  Equus herbi Peri… domesticated         3.1       0.4      NA      20.9
+5 Giraffe Gira… herbi Arti… cd                   1.9       0.4      NA      22.1
+6 Pilot … Glob… carni Ceta… cd                   2.7       0.1      NA      21.4
+7 Africa… Loxo… herbi Prob… vu                   3.3      NA        NA      20.7
+8 Brazil… Tapi… herbi Peri… vu                   4.4       1         0.9    19.6
+# ℹ 4 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;, log_bodywt &lt;dbl&gt;,
+#   sleep_total_min &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p><em>These two methods are equivalent.</em></p>
+<p>To return all rows that either have a high body weight or low sleep time or both, use the <code>|</code> operator (sometimes called “vertical bar”).</p>
+<div class="cell">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">msleep</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">log_bodywt</span> <span class="op">&gt;</span> <span class="fl">12</span> <span class="op">|</span> <span class="va">sleep_total</span> <span class="op">&lt;</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 13
+   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  
+ 2 Roe d… Capr… herbi Arti… lc                   3        NA        NA      21  
+ 3 Asian… Elep… herbi Prob… en                   3.9      NA        NA      20.1
+ 4 Horse  Equus herbi Peri… domesticated         2.9       0.6       1      21.1
+ 5 Donkey Equus herbi Peri… domesticated         3.1       0.4      NA      20.9
+ 6 Giraf… Gira… herbi Arti… cd                   1.9       0.4      NA      22.1
+ 7 Pilot… Glob… carni Ceta… cd                   2.7       0.1      NA      21.4
+ 8 Afric… Loxo… herbi Prob… vu                   3.3      NA        NA      20.7
+ 9 Sheep  Ovis  herbi Arti… domesticated         3.8       0.6      NA      20.2
+10 Caspi… Phoca carni Carn… vu                   3.5       0.4      NA      20.5
+11 Brazi… Tapi… herbi Peri… vu                   4.4       1         0.9    19.6
+12 Bottl… Turs… carni Ceta… &lt;NA&gt;                 5.2      NA        NA      18.8
+# ℹ 4 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;, log_bodywt &lt;dbl&gt;,
+#   sleep_total_min &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Be cautious in deciding whether you want to use <code>&amp;</code> or <code>|</code>. While <code>|</code> is generally read as “or”, we could also describe the above filter as one that returns the rows that have a high body weight and the rows that have low sleep times.</p>
+<p>One way to keep them straight is to keep an eye on the number of observations that are returned. The intersection of multiple conditions (using <code>&amp;</code>) should result in the same or fewer rows (the orange area) than the union of multiple conditions (using <code>|</code>) (the blue area).</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="notes_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>When working with nominal categorical variables, the only operator that you’ll be using is <code>==</code>. You can return a union like normal using <code>|</code>,</p>
+<div class="cell">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">msleep</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op">==</span> <span class="st">"Little brown bat"</span> <span class="op">|</span> <span class="va">name</span> <span class="op">==</span> <span class="st">"African elephant"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 13
+  name    genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+1 Africa… Loxo… herbi Prob… vu                   3.3        NA        NA    20.7
+2 Little… Myot… inse… Chir… &lt;NA&gt;                19.9         2         0.2   4.1
+# ℹ 4 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;, log_bodywt &lt;dbl&gt;,
+#   sleep_total_min &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Or you can save some typing (and craft more readable code) by using <code>%in%</code> instead:</p>
+<div class="cell">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">msleep</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Little brown bat"</span>, <span class="st">"African elephant"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 13
+  name    genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+1 Africa… Loxo… herbi Prob… vu                   3.3        NA        NA    20.7
+2 Little… Myot… inse… Chir… &lt;NA&gt;                19.9         2         0.2   4.1
+# ℹ 4 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;, log_bodywt &lt;dbl&gt;,
+#   sleep_total_min &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section><section id="taxonomy-of-data-logicals" class="level3"><h3 class="anchored" data-anchor-id="taxonomy-of-data-logicals">Taxonomy of Data: Logicals</h3>
+<p>It is useful to pause here to look under the hood of this code. Once you get accustomed to the comparison operators and the syntax, the R code reads very similarly to the equivalent English command. But how are those comparisons being represented in terms of data?</p>
+<p>To answer this question, consider a simple numeric vector of four integers.</p>
+<div class="cell">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can apply a comparison operator to this vector using the same syntax as above. Let’s compare each value in this vector to see if its less than 5.</p>
+<div class="cell">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;</span> <span class="fl">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE  TRUE FALSE FALSE</code></pre>
+</div>
+</div>
+<p>The result is a vector of the same length as <code>a</code> where each value indicates whether the comparison to each element was true or false. While it looks like a factor or a character vector <code>TRUE</code> and <code>FALSE</code>, this is actually our newest entry into the Taxonomy of Data: the <strong>logical vector</strong>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">a</span> <span class="op">&lt;</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "logical"</code></pre>
+</div>
+</div>
+<p>A logical vector can only take two values, <code>TRUE</code> and <code>FALSE</code> (R also recognizes <code>T</code> and <code>F</code> but not <code>True</code> or <code>true</code>). While it might seem like a categorical variable with only two levels, a logical vector has an important property that makes it behave like a numerical variable.</p>
+<div class="cell">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">a</span> <span class="op">&lt;</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+<p>In a logical vector, a value of true is represented both by <code>TRUE</code> and by the number 1 and false by <code>FALSE</code> and the number 0. This integer representation is why <code>TRUE + TRUE</code> will work (it’s 2!) but <code>"TRUE" + "TRUE"</code> will not.</p>
+<p>This dual representation is very useful because it allows us to compute a proportion using, paradoxically, the <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> function.</p>
+<div class="cell">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">a</span> <span class="op">&lt;</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5</code></pre>
+</div>
+</div>
+<p><code>a &lt; 5</code> results in a vector with two 1s and two 0s. When you take the mean like this, you’re really finding the proportion of the elements that meet the condition that you laid out in your comparison. This is a very handy trick. Let’s apply it to the <code>msleep</code> dataset as part of our next example.</p>
+</section><section id="example-3" class="level3"><h3 class="anchored" data-anchor-id="example-3">Example 3</h3>
+<p>In the following data pipeline, we will</p>
+<ol type="1">
+<li><p>Split our mammals up by diet (carnivore, herbivore, omnivore, etc.)</p></li>
+<li><p>Calculate the proportion of mammals in each diet group that sleep over eight hours in the day</p></li>
+<li><p>Calculate the number of mammals in each group</p></li>
+</ol>
+<p>This will require both <code>group_by()</code> and <code>summarise()</code>, as well as our <em>handy trick</em> discussed above and a new summary function.</p>
+<div class="cell">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">msleep</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">vore</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">summarise</span><span class="op">(</span>p_gt_8hrs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sleep_total</span> <span class="op">&gt;</span> <span class="fl">8</span><span class="op">)</span>,</span>
+<span>            n <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+  vore    p_gt_8hrs     n
+  &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;
+1 carni       0.684    19
+2 herbi       0.594    32
+3 insecti     1         5
+4 omni        0.95     20
+5 &lt;NA&gt;        0.714     7</code></pre>
+</div>
+</div>
+<ul>
+<li><p>In the above code, <code>sleep_total &gt; 8</code> creates a vector of <code>TRUE</code>s and <code>FALSE</code>s depending on whether the mammal slept for over eight hours a day. <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> then treats these <code>TRUE</code>s and <code>FALSE</code>s like 1s and 0s, and produces a proportion of mammals who sleep over eight hours a day in each diet group.</p></li>
+<li><p>The <strong><code>n()</code></strong> summary statistic <em>counts the number of observations within each group</em>. For example, there are nineteen carnivores in the <code>msleep</code> dataset. Based on this, we can deduce that thirteen carnviores satisfied our sleeping condition. This means that when calculating the proportion for carnivores, the <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> function is taking the average of thirteen 1s/<code>TRUE</code>s and six 0s/<code>FALSE</code>s!</p></li>
+</ul>
+<p>The code written above could be equivalently written as follows:</p>
+<div class="cell">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">msleep</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>long_sleep <span class="op">=</span> <span class="va">sleep_total</span> <span class="op">&gt;</span> <span class="fl">8</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">vore</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">summarise</span><span class="op">(</span>p_gt_8hrs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">long_sleep</span><span class="op">)</span>,</span>
+<span>            n <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In this version, the <code>sleep_total &gt; 8</code> vector is made into a new <em>column</em> using <code>mutate()</code> called <code>long_sleep</code>. This is a column of <code>TRUE</code>s and <code>FALSE</code>s, and we can then take its mean directly in the <code>summarise()</code> step.</p>
+<!-- ## Missing Data -->
+<!-- ```{r} -->
+<!-- #| code-fold: false -->
+<!-- filter(msleep, log_bodywt > 6) -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- #| code-fold: false -->
+<!-- filter(msleep, !is.na(log_bodywt), -->
+<!--        log_bodywt > 6) -->
+<!-- ``` -->
+</section><section id="example-4-arranging" class="level3"><h3 class="anchored" data-anchor-id="example-4-arranging">Example 4: Arranging</h3>
+<p>Sometimes, we are interested in arranging the rows of a data frame according to some logical ordering of a column. This ordering is straightforward for numeric columns; the smallest numbers should be placed first and ascend to the larger ones (or vice versa). We might also think about what happens when passing in a column of characters. Luckily, the <code>dplyr</code> package has a catch-all solution to this in the form of the <strong><code>arrange()</code></strong> function.</p>
+<p>Let’s take a look:</p>
+<div class="cell">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">msleep</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">arrange</span><span class="op">(</span><span class="va">sleep_total</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">name</span>, <span class="va">sleep_total</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 83 × 2
+   name             sleep_total
+   &lt;chr&gt;                  &lt;dbl&gt;
+ 1 Giraffe                  1.9
+ 2 Pilot whale              2.7
+ 3 Horse                    2.9
+ 4 Roe deer                 3  
+ 5 Donkey                   3.1
+ 6 African elephant         3.3
+ 7 Caspian seal             3.5
+ 8 Sheep                    3.8
+ 9 Asian elephant           3.9
+10 Cow                      4  
+# ℹ 73 more rows</code></pre>
+</div>
+</div>
+<p>From this output, we can see that the giraffe sleeps for the smallest amount of time per day (not even two hours)! But maybe we are interested in which mammal sleeps the longest. If this is the case, we can modify the <code>arrange()</code> function slightly by wrapping our column of interest within <code>desc()</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">msleep</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">sleep_total</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">name</span>, <span class="va">sleep_total</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 83 × 2
+   name                           sleep_total
+   &lt;chr&gt;                                &lt;dbl&gt;
+ 1 Little brown bat                      19.9
+ 2 Big brown bat                         19.7
+ 3 Thick-tailed opposum                  19.4
+ 4 Giant armadillo                       18.1
+ 5 North American Opossum                18  
+ 6 Long-nosed armadillo                  17.4
+ 7 Owl monkey                            17  
+ 8 Arctic ground squirrel                16.6
+ 9 Golden-mantled ground squirrel        15.9
+10 Tiger                                 15.8
+# ℹ 73 more rows</code></pre>
+</div>
+</div>
+<p>What if you pass a column of characters to <code>arrange()</code>?</p>
+<div class="cell">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">msleep</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">arrange</span><span class="op">(</span><span class="va">vore</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">name</span>, <span class="va">vore</span>, <span class="va">sleep_total</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 83 × 3
+   name                       vore  sleep_total
+   &lt;chr&gt;                      &lt;chr&gt;       &lt;dbl&gt;
+ 1 Cheetah                    carni        12.1
+ 2 Northern fur seal          carni         8.7
+ 3 Dog                        carni        10.1
+ 4 Long-nosed armadillo       carni        17.4
+ 5 Domestic cat               carni        12.5
+ 6 Pilot whale                carni         2.7
+ 7 Gray seal                  carni         6.2
+ 8 Thick-tailed opposum       carni        19.4
+ 9 Slow loris                 carni        11  
+10 Northern grasshopper mouse carni        14.5
+# ℹ 73 more rows</code></pre>
+</div>
+</div>
+<p>When arranged by <code>vore</code>, <code>carni</code> comes first, and the rest of the diet groups will follow in alphabetical order. The mammals aren’t arranged in any specific order within a diet group, but we can change that by passing another column to <code>arrange()</code>. Passing additional columns to <code>arrange()</code> will systematically break ties. The below code arranges the data frame first by diet group (from A to Z) and then breaks ties by (ascending) sleep time:</p>
+<div class="cell">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">msleep</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">arrange</span><span class="op">(</span><span class="va">vore</span>, <span class="va">sleep_total</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">name</span>, <span class="va">vore</span>, <span class="va">sleep_total</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 83 × 3
+   name                 vore  sleep_total
+   &lt;chr&gt;                &lt;chr&gt;       &lt;dbl&gt;
+ 1 Pilot whale          carni         2.7
+ 2 Caspian seal         carni         3.5
+ 3 Bottle-nosed dolphin carni         5.2
+ 4 Common porpoise      carni         5.6
+ 5 Gray seal            carni         6.2
+ 6 Genet                carni         6.3
+ 7 Northern fur seal    carni         8.7
+ 8 Red fox              carni         9.8
+ 9 Dog                  carni        10.1
+10 Jaguar               carni        10.4
+# ℹ 73 more rows</code></pre>
+</div>
+</div>
+</section></section><section id="summary" class="level2"><h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>If you’re thinking, <span class="emoji" data-emoji="grimacing">😬</span> , yikes there was a <em>lot</em> of coding in these notes, you’re right. Don’t worry. We’ll have plenty of time to practice in class! Here’s a recap of what we went through.</p>
+<p>As we begin to do analyses that require multiple operations, the <strong>pipe operator</strong>, <code>|&gt;</code>, can be used to stitch the functions together into a single pipeline. With the pipe operator in tow, we then introduced some new types of data operations.</p>
+<p>We can express existing variables in new ways or create new variables altogether by performing a <strong>mutation</strong>. There are several ways to subset a data frame but the most important for data analysis is <strong>filtering</strong>: subsetting the rows according to a condition. In R, that condition is framed in terms of a <strong>comparison</strong> between a variable and a value (or set of values). Comparisons take many forms and can be combined using <strong>logical operators</strong>. The result is a <strong>logical vector</strong> that can be used for filtering or computing summary statistics. Finally, we learned to <strong>arrange</strong> a data frame by the ordering of a column.</p>
+</section><section id="section" class="level2"><h2 class="anchored" data-anchor-id="section">—————————</h2>
+</section><section id="the-ideas-in-code" class="level2"><h2 class="anchored" data-anchor-id="the-ideas-in-code">The Ideas in Code</h2>
+<p>Some notes rely heavily on code to augment your learning and understanding of the main concepts. This “Ideas in Code” section is meant to expand more on concepts and functions that the notes utilize but may not fully explain.</p>
+<p>This specific set of notes contains references to many functions from the <code>tidyverse</code> library such as <code>mutate()</code>, <code>select()</code> <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code>, <code>arrange()</code>, <code>ggplot()</code>, <code>group_by()</code>, <code>summarize()</code>. We delve more into some of these functions here.</p>
+<section id="mutate" class="level4"><h4 class="anchored" data-anchor-id="mutate"><code>mutate()</code></h4>
+<p>This function allows you to create a new column in a dataframe. In typical <code>tidyverse</code> fashion, the first argument is a dataframe. The second argument names and defines how that new column is created. Above, we saw:</p>
+<div class="cell">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">arbuthnot</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">mutate</span><span class="op">(</span>total <span class="op">=</span> <span class="va">boys</span> <span class="op">+</span> <span class="va">girls</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">total</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">select</span><span class="op">(</span><span class="va">year</span>, <span class="va">total</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 82 × 2
+    year total
+   &lt;int&gt; &lt;int&gt;
+ 1  1705 16145
+ 2  1707 16066
+ 3  1698 16052
+ 4  1708 15862
+ 5  1697 15829
+ 6  1702 15687
+ 7  1701 15616
+ 8  1703 15448
+ 9  1706 15369
+10  1699 15363
+# ℹ 72 more rows</code></pre>
+</div>
+</div>
+<p>Here, the first argument, <code>arbuthnot</code>, is piped to <code>mutate()</code> and the second argument, <code>total = boys + girls</code>, creates a new column named <code>total</code> by adding together the columns <code>boys</code> and <code>girls</code>. You can use <code>mutate()</code> to create multiple columns at the same time:</p>
+<div class="cell">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">arbuthnot</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">mutate</span><span class="op">(</span>total <span class="op">=</span> <span class="va">boys</span> <span class="op">+</span> <span class="va">girls</span>,</span>
+<span>           girl_proportion <span class="op">=</span> <span class="va">girls</span> <span class="op">/</span> <span class="va">total</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">total</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">select</span><span class="op">(</span><span class="va">year</span>, <span class="va">total</span>, <span class="va">girl_proportion</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 82 × 3
+    year total girl_proportion
+   &lt;int&gt; &lt;int&gt;           &lt;dbl&gt;
+ 1  1705 16145           0.482
+ 2  1707 16066           0.478
+ 3  1698 16052           0.475
+ 4  1708 15862           0.481
+ 5  1697 15829           0.491
+ 6  1702 15687           0.488
+ 7  1701 15616           0.481
+ 8  1703 15448           0.497
+ 9  1706 15369           0.483
+10  1699 15363           0.485
+# ℹ 72 more rows</code></pre>
+</div>
+</div>
+<p>Note that switching the order of the two new columns created above such that <code>girl_proportion = girls / total</code> comes before <code>total = boys + girls</code> will produce an error because <code>total</code> is used before it is created.</p>
+</section><section id="select" class="level4"><h4 class="anchored" data-anchor-id="select"><code>select()</code></h4>
+<p>This function is defined above as “selecting a subset of the columns of a data frame.” You’ve seen how to use <code>select()</code> to select or “grab” certain columns, but you can also use <code>select()</code> to <em>omit</em> certain columns. The last block of code can be rewritten to produce the same output by placing a minus sign, <code>-</code>, in front of the columns to omit:</p>
+<div class="cell">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">arbuthnot</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">mutate</span><span class="op">(</span>total <span class="op">=</span> <span class="va">boys</span> <span class="op">+</span> <span class="va">girls</span>,</span>
+<span>           girl_proportion <span class="op">=</span> <span class="va">girls</span> <span class="op">/</span> <span class="va">total</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">total</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">boys</span>, <span class="va">girls</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 82 × 3
+    year total girl_proportion
+   &lt;int&gt; &lt;int&gt;           &lt;dbl&gt;
+ 1  1705 16145           0.482
+ 2  1707 16066           0.478
+ 3  1698 16052           0.475
+ 4  1708 15862           0.481
+ 5  1697 15829           0.491
+ 6  1702 15687           0.488
+ 7  1701 15616           0.481
+ 8  1703 15448           0.497
+ 9  1706 15369           0.483
+10  1699 15363           0.485
+# ℹ 72 more rows</code></pre>
+</div>
+</div>
+</section><section id="arrange" class="level4"><h4 class="anchored" data-anchor-id="arrange"><code>arrange()</code></h4>
+<p>This function arranges the rows of a data frame according to some logical ordering of a column. This ordering is straightforward for numeric columns; the smallest numbers are placed first and ascend to the larger ones. That is, unless you use <code>desc()</code> (which stands for descending).</p>
+<p>But what if you pass a column of characters to <code>arrange()</code>? Let’s take a look:</p>
+<div class="cell">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">arrange</span><span class="op">(</span><span class="va">species</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">species</span>, <span class="va">island</span>, <span class="va">bill_length_mm</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 333 × 3
+   species island    bill_length_mm
+   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;
+ 1 Adelie  Torgersen           39.1
+ 2 Adelie  Torgersen           39.5
+ 3 Adelie  Torgersen           40.3
+ 4 Adelie  Torgersen           36.7
+ 5 Adelie  Torgersen           39.3
+ 6 Adelie  Torgersen           38.9
+ 7 Adelie  Torgersen           39.2
+ 8 Adelie  Torgersen           41.1
+ 9 Adelie  Torgersen           38.6
+10 Adelie  Torgersen           34.6
+# ℹ 323 more rows</code></pre>
+</div>
+</div>
+<p>When arranged by species, <code>Adelie</code> penguins come first, followed by <code>Chinstrap</code>, then <code>Gentoo</code>. The penguins aren’t arranged in any specific order within a species, but we can change that by passing another column to <code>arrange()</code>. Passing additional columns to <code>arrange()</code> will systematically break ties. The below code arranges the data frame first by species (alphabetically) and then breaks ties by (ascending) bill length:</p>
+<div class="cell">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">arrange</span><span class="op">(</span><span class="va">species</span>, <span class="va">bill_length_mm</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">species</span>, <span class="va">island</span>, <span class="va">bill_length_mm</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 333 × 3
+   species island    bill_length_mm
+   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;
+ 1 Adelie  Dream               32.1
+ 2 Adelie  Dream               33.1
+ 3 Adelie  Torgersen           33.5
+ 4 Adelie  Dream               34  
+ 5 Adelie  Torgersen           34.4
+ 6 Adelie  Biscoe              34.5
+ 7 Adelie  Torgersen           34.6
+ 8 Adelie  Torgersen           34.6
+ 9 Adelie  Biscoe              35  
+10 Adelie  Biscoe              35  
+# ℹ 323 more rows</code></pre>
+</div>
+</div>
+</section><section id="summarize" class="level4"><h4 class="anchored" data-anchor-id="summarize"><code>summarize()</code></h4>
+<p>This function summarizes a data frame into a single row. We can summarize a data frame by taking means or calculating the number of rows as above. We can also do other calculations like taking a median or calculating the variance of a column:</p>
+<div class="cell">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">msleep</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">summarize</span><span class="op">(</span>median_sleep <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">sleep_total</span><span class="op">)</span>,</span>
+<span>              variance_sleep <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">sleep_total</span><span class="op">)</span>,</span>
+<span>              n <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  median_sleep variance_sleep     n
+         &lt;dbl&gt;          &lt;dbl&gt; &lt;int&gt;
+1         10.1           19.8    83</code></pre>
+</div>
+</div>
+<p>However, if <code>summarize()</code> is preceded by <code>group_by()</code>, then it will output multiple rows according to groups specified by <code>group_by()</code>:</p>
+<div class="cell">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">msleep</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">group_by</span><span class="op">(</span><span class="va">vore</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">summarize</span><span class="op">(</span>median_sleep <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">sleep_total</span><span class="op">)</span>,</span>
+<span>              variance_sleep <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">sleep_total</span><span class="op">)</span>,</span>
+<span>              n <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  vore    median_sleep variance_sleep     n
+  &lt;chr&gt;          &lt;dbl&gt;          &lt;dbl&gt; &lt;int&gt;
+1 carni           10.4          21.8     19
+2 herbi           10.3          23.8     32
+3 insecti         18.1          35.1      5
+4 omni             9.9           8.70    20
+5 &lt;NA&gt;            10.6           9.02     7</code></pre>
+</div>
+</div>
+<p>This syntax looks a lot like the syntax used for <code>mutate()</code>! Like in <code>mutate()</code>, we name and define new columns: <code>new_column = formula</code>. The difference is that <code>summarize()</code> returns a brand new data frame that does not contain the columns of the original data frame where <code>mutate()</code> returns a data frame with all columns of the original data frame in addition to the newly defined ones.</p>
+
+
+</section></section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<ol>
+<li id="fn1"><p>V. M. Savage and G. B. West. <a href="https://www.pnas.org/doi/10.1073/pnas.0610080104">A quantitative, theoretical framework for understanding mammalian sleep</a>. Proceedings of the National Academy of Sciences, 104 (3):1051-1056, 2007.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="../../2-summarizing-data/02-summarizing-numerical-data/notes.html" class="pagination-link  aria-label=" summarizing="" numerical="" data="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Summarizing Numerical Data</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../2-summarizing-data/03-a-grammar-of-graphics/notes.html" class="pagination-link" aria-label="A Grammar of Graphics">
+        <span class="nav-page-text">A Grammar of Graphics</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+      <ul class="footer-items list-unstyled">
+<li class="nav-item">
+    <a class="nav-link" href="https://www.netlify.com/">
+<p>This site is hosted by Netlify.</p>
+</a>
+  </li>  
+</ul>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+<li class="nav-item">
+    <a class="nav-link" href="../../license.html">
+<p>License</p>
+</a>
+  </li>  
+</ul>
+</div>
+  </div>
+</footer>
+
+
+</body></html>
