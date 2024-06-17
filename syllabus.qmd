@@ -24,6 +24,13 @@ sidebar: false
 -   Mondays and Wednesdays: 2-4pm, Wheeler 212
 -   Thursdays: 2-4pm, Cory 77
 
+### Lab time and location
+
+-   Mondays: 4-5:30pm, Wheeler 212
+-   Thursdays: 4-5:30pm, Cory 77
+
+This period can be treated as extra time to work on your assignments. I will be there to help you!
+
 ### Course Culture
 
 Students taking Stat 20 come from a wide range of backgrounds. We hope to foster an inclusive and supportive learning environment based on curiosity rather than competition. All members of the course community—the instructor, students, tutors, and readers—are expected to treat each other with courtesy and respect. 
