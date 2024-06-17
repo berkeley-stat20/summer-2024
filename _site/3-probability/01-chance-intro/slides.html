@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Stat 20 - Introducing Probability</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WP7F4QKDC8"></script><script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-WP7F4QKDC8', { 'anonymize_ip': true});
+</script><link href="../../site_libs/countdown-0.4.0/countdown.css" rel="stylesheet">
+<script src="../../site_libs/countdown-0.4.0/countdown.js"></script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+<meta property="og:title" content="Stat 20 - Introducing Probability">
+<meta property="og:description" content="Introduction to Probability and Statistics at UC Berkeley">
+<meta property="og:image" content="https://stat20.berkeley.edu/summer-2024/3-probability/01-chance-intro/assets/stat20-hex.png">
+<meta property="og:site_name" content="Stat 20">
+<meta name="twitter:title" content="Stat 20 - Introducing Probability">
+<meta name="twitter:description" content="Introduction to Probability and Statistics at UC Berkeley">
+<meta name="twitter:image" content="https://stat20.berkeley.edu/summer-2024/3-probability/01-chance-intro/assets/stat20-hex.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-sm " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../assets/stat20-hex-small.png" alt="Stat 20 logo" class="navbar-logo"></a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../../syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../office-hours.html"> 
+<span class="menu-text">Office Hours</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../notes.html"> 
+<span class="menu-text">Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../assignments.html"> 
+<span class="menu-text">Assignments</span></a>
+  </li>  
+</ul>
+</div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools tools-wide">
+    <a href="https://edstem.org/us/courses/51198" title="" class="quarto-navigation-tool px-1" aria-label="Ed Discussion Forum"><i class="bi bi-chat-fill"></i></a>
+    <a href="https://www.gradescope.com/courses/693050" title="" class="quarto-navigation-tool px-1" aria-label="Gradescope"><i class="bi bi-bar-chart-fill"></i></a>
+    <a href="https://stat20.datahub.berkeley.edu/" title="" class="quarto-navigation-tool px-1" aria-label="RStudio"><i class="bi bi-r-circle-fill"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#probability-of-two-events" id="toc-probability-of-two-events" class="nav-link active" data-scroll-target="#probability-of-two-events">Probability of two events…</a></li>
+  <li><a href="#agenda" id="toc-agenda" class="nav-link" data-scroll-target="#agenda">Agenda</a></li>
+  <li><a href="#announcements" id="toc-announcements" class="nav-link" data-scroll-target="#announcements">Announcements</a></li>
+  <li>
+<a href="#concept-review-rules" id="toc-concept-review-rules" class="nav-link" data-scroll-target="#concept-review-rules">Concept review: Rules</a>
+  <ul class="collapse">
+<li><a href="#rules-of-probability" id="toc-rules-of-probability" class="nav-link" data-scroll-target="#rules-of-probability">Rules of probability</a></li>
+  </ul>
+</li>
+  <li><a href="#probability-refresher" id="toc-probability-refresher" class="nav-link" data-scroll-target="#probability-refresher">Probability refresher</a></li>
+  <li>
+<a href="#concept-question-1" id="toc-concept-question-1" class="nav-link" data-scroll-target="#concept-question-1">Concept Question 1</a>
+  <ul class="collapse">
+<li><a href="#the-linda-problem" id="toc-the-linda-problem" class="nav-link" data-scroll-target="#the-linda-problem">The Linda Problem</a></li>
+  <li><a href="#coin-tosses" id="toc-coin-tosses" class="nav-link" data-scroll-target="#coin-tosses">Coin tosses</a></li>
+  <li><a href="#coin-tosses-1" id="toc-coin-tosses-1" class="nav-link" data-scroll-target="#coin-tosses-1">Coin tosses</a></li>
+  <li><a href="#looking-at-proportions" id="toc-looking-at-proportions" class="nav-link" data-scroll-target="#looking-at-proportions">Looking at proportions:</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#concept-question-2" id="toc-concept-question-2" class="nav-link" data-scroll-target="#concept-question-2">Concept Question 2</a>
+  <ul class="collapse">
+<li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  </ul>
+</li>
+  <li>
+<a href="#concept-question-3" id="toc-concept-question-3" class="nav-link" data-scroll-target="#concept-question-3">Concept Question 3</a>
+  <ul class="collapse">
+<li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a></li>
+  </ul>
+</li>
+  <li>
+<a href="#concept-question-4" id="toc-concept-question-4" class="nav-link" data-scroll-target="#concept-question-4">Concept Question 4</a>
+  <ul class="collapse">
+<li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"></a></li>
+  </ul>
+</li>
+  <li><a href="#activity-coin-tossing" id="toc-activity-coin-tossing" class="nav-link" data-scroll-target="#activity-coin-tossing">Activity: Coin tossing</a></li>
+  <li><a href="#break" id="toc-break" class="nav-link" data-scroll-target="#break">Break</a></li>
+  <li><a href="#problem-set" id="toc-problem-set" class="nav-link" data-scroll-target="#problem-set">Problem Set</a></li>
+  <li><a href="#end-of-lecture" id="toc-end-of-lecture" class="nav-link" data-scroll-target="#end-of-lecture">End of Lecture</a></li>
+  </ul><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Introducing Probability</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><section id="probability-of-two-events" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="probability-of-two-events">Probability of two events…</h2>
+<div class="cell" data-layout-align="center">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"https://imgs.xkcd.com/comics/prediction.png"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="https://imgs.xkcd.com/comics/prediction.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="title-text-youd-think-itd-be-easy-to-just-bet-money-against-these-people-but-you-have-to-consider-the-probability-of-them-paying-up." class="level6"><h6 class="anchored" data-anchor-id="title-text-youd-think-itd-be-easy-to-just-bet-money-against-these-people-but-you-have-to-consider-the-probability-of-them-paying-up.">Title text: You’d think it’d be easy to just bet money against these people, but you have to consider the probability of them paying up.</h6>
+</section><section id="httpsimgs.xkcd.comcomicsprediction.png" class="level6"><h6 class="anchored" data-anchor-id="httpsimgs.xkcd.comcomicsprediction.png"><a href="https://imgs.xkcd.com/comics/prediction.png" class="uri">https://imgs.xkcd.com/comics/prediction.png</a></h6>
+<div class="notes">
+<p>Maybe a bit of discussion here about situations in which two things can happen, but what do they think about the chance of each eg. coin toss, even/odd number on a die roll, winning the lottery vs not winning, getting an A in stat 20 vs not etc.</p>
+</div>
+</section></section><section id="agenda" class="level2"><h2 class="anchored" data-anchor-id="agenda">Agenda</h2>
+<ul>
+<li>Announcements</li>
+<li>Review of ideas in notes</li>
+<li>Probability refresher</li>
+<li>Concept Questions</li>
+<li>Activity: coin tosses</li>
+<li>Problem set: Introducing Probability</li>
+</ul></section><section id="announcements" class="level2"><h2 class="anchored" data-anchor-id="announcements">Announcements</h2>
+<p>. . .</p>
+<ul>
+<li>Problem Set 6 due next Tuesday at 9am (paper, max. 3)</li>
+</ul>
+<p>. . .</p>
+<ul>
+<li>RQ: Conditional Probability due Wednesday/Thursday at 11:59pm</li>
+</ul>
+<p>. . .</p>
+<ul>
+<li>No lab this week.</li>
+</ul></section><section id="concept-review-rules" class="level1"><h1>Concept review: Rules</h1>
+<section id="rules-of-probability" class="level2 incremental"><h2 class="incremental anchored" data-anchor-id="rules-of-probability">Rules of probability</h2>
+<p>Let <span class="math inline">\(\Omega\)</span> be the outcome space, and let <span class="math inline">\(P(A)\)</span> denote the probability of the event <span class="math inline">\(A\)</span>. Then we have:</p>
+<p>. . .</p>
+<ol type="1">
+<li><span class="math inline">\(P(A) \ge 0\)</span></li>
+</ol>
+<p>. . .</p>
+<ol start="2" type="1">
+<li><span class="math inline">\(P(\Omega) = 1\)</span></li>
+</ol>
+<p>. . .</p>
+<ol start="3" type="1">
+<li>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are mutually exclusive (<span class="math inline">\(A \cap B = \{\}\)</span>), then <span class="math inline">\(P(A \cup B) = P(A) + P(B)\)</span>
+</li>
+</ol>
+<div class="notes">
+<p>Concepts to review: (KEEP THIS BRIEF, OR INCORPORATE INTO CQ’s) - The first two rules of probability - unions and intersections - mutually exclusive events and the addition rule - good idea to draw Venn diagrams here - Use rule 3 to write down the complement rule, and show what A^C means</p>
+</div>
+</section></section><section id="probability-refresher" class="level1"><h1>Probability refresher</h1>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">countdown</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/countdown/man/countdown.html">countdown</a></span><span class="op">(</span><span class="fl">5</span>, top <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="countdown" id="timer_b3973890" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls">
+<button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
+</div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+<div class="notes">
+<p>Give them five minutes, can use kahoot music</p>
+</div>
+</section><section id="concept-question-1" class="level1"><h1>Concept Question 1</h1>
+<section id="the-linda-problem" class="level2 scrollable"><h2 class="scrollable anchored" data-anchor-id="the-linda-problem">The Linda Problem</h2>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">countdown</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/countdown/man/countdown.html">countdown</a></span><span class="op">(</span><span class="fl">1</span>, top <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="countdown" id="timer_3d936496" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls">
+<button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
+</div>
+<code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+<p>The Linda problem is from a very famous experiment conducted by Daniel Kahneman and Amos Tversky in 1983 (The version below is from the book <em>Thinking, Fast and Slow</em> by Kahneman, page 156):</p>
+<p>Linda is thirty-one years old, single, outspoken, and very bright. She majored in philosophy. As a student, she was deeply concerned with issues of discrimination and social justice, and also participated in antinuclear demonstrations.</p>
+<div class="poll">
+<p>Which alternative is more probable?</p>
+</div>
+<ol type="a">
+<li><p>Linda is a bank teller.</p></li>
+<li><p>Linda is a bank teller and is active in the feminist movement.</p></li>
+</ol>
+<div class="notes">
+<p>Correct answer: (a) Depending on the response, you can discuss how even though (b) is clearly contained in (a) and therefore has lower probability, an overwhelming majority of their respondents ranked (b) as more likely. “About 85% to 90% of undergraduates at several major universities chose the second option, contrary to logic”, and talk about why this is so. Probability can be tricky and counter-intuitive. If they do well, congratulate them and say that they are among the rare people who understand that <span class="math inline">\(P(A \textbf{ and } B)\)</span> <em>must</em> be lower than <span class="math inline">\(P(A)\)</span>.</p>
+</div>
+<p>Kahneman, Daniel. Thinking, Fast and Slow (p.&nbsp;158). Farrar, Straus and Giroux.</p>
+<!--# Concept review: Simulation, empirical distributions
+
+## Rolling a die 
+
+Recall the following picture from the notes:
+
+![](images/die-emp-prob-dsn.png){fig-align=center} 
+
+:::{.notes}
+Show the picture, and then explain the what the golden and blue distributions are, and the difference. Show them, as you repeat an action over and over again, and take the proportion of the outcomes, these proportions settle down, in the "long run", to the probabilities of the outcomes.
+:::
+
+-->
+</section><section id="coin-tosses" class="level2 scrollable"><h2 class="scrollable anchored" data-anchor-id="coin-tosses">Coin tosses</h2>
+<div class="notes">
+<p>We can simulate coin tosses and see if the simulations justify our intuitive understanding of what happens when we toss a fair coin. Go over code and review <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> and <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code>. Maybe change arguments and see what happens.</p>
+</div>
+<p>Let’s simulate tossing a coin ten times:</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="va">coin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Heads"</span>, <span class="st">"Tails"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tosses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">coin</span>, <span class="fl">10</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">tosses</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">tosses</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">summarise</span><span class="op">(</span>n <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  tosses     n
+  &lt;chr&gt;  &lt;int&gt;
+1 Heads      3
+2 Tails      7</code></pre>
+</div>
+</div>
+</section><section id="coin-tosses-1" class="level2 scrollable"><h2 class="scrollable anchored" data-anchor-id="coin-tosses-1">Coin tosses</h2>
+<div class="notes">
+<p>Comment on the fact that it is not a 50-50 split. DON’T FORGET TO SCROLL DOWN!!</p>
+</div>
+<p>What about if we toss the coin fifty times?</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tosses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">coin</span>, <span class="fl">50</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">tosses</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">tosses</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">summarise</span><span class="op">(</span>n <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  tosses     n
+  &lt;chr&gt;  &lt;int&gt;
+1 Heads     15
+2 Tails     35</code></pre>
+</div>
+</div>
+<p>This doesn’t look so good… Maybe tossing five hundred times will improve the split:</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tosses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">coin</span>, <span class="fl">500</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">tosses</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">tosses</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">summarise</span><span class="op">(</span>n <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  tosses     n
+  &lt;chr&gt;  &lt;int&gt;
+1 Heads    251
+2 Tails    249</code></pre>
+</div>
+</div>
+<p>We see that as the number of tosses increases, the split of heads and tails begins to look closer to 50-50.</p>
+</section><section id="looking-at-proportions" class="level2"><h2 class="anchored" data-anchor-id="looking-at-proportions">Looking at proportions:</h2>
+<p>Here is a plot of the <em>proportion</em> of tosses that land heads when we toss a coin <span class="math inline">\(n\)</span> times, where <span class="math inline">\(n\)</span> varies from <span class="math inline">\(1\)</span> to <span class="math inline">\(1000\)</span>.</p>
+<div class="notes">
+<p>Be sure to explain what they are looking at. We see that at the beginning, for a small number of tosses, the proportion of times that the coin lands heads is all over the place, but it eventually settles down to be around 0.5. This verifies our intuition that if we toss a fair coin, the proportion of times that the coin lands heads should be about 0.5. This idea of the probability of a particular outcome as a long run proportion of times that we see that outcome is called the <em>frequentist theory of probability</em>, and we will be using this theory in our class. (A different theory of probability uses a <em>subjective</em> notion of probability, but we won’t get into that at this time.) We will think about the probability of heads as the long-run relative frequency, or the proportion of times the coin will land heads if we toss it many, many times. This fits with our intuition that if we have a <em>fair</em> coin, that means that each of the two possible outcomes will occur roughly the same number of times when we toss it over and over again. This is the justification for calling the two outcomes <em>equally likely</em> and allowing us to define the probability of heads to be 1/2.</p>
+</div>
+<div class="cell" data-layout-align="center">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span></span>
+<span><span class="va">coin1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"H"</span>, <span class="st">"T"</span><span class="op">)</span></span>
+<span><span class="va">toss_num</span> <span class="op">&lt;-</span> <span class="fl">1000</span> <span class="co"># total number of tosses </span></span>
+<span><span class="va">tosses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">coin1</span>, size <span class="op">=</span> <span class="va">toss_num</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
+<span><span class="co"># # simulating tossing a coin 1000 times</span></span>
+<span></span>
+<span><span class="va">prop_heads</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">tosses</span> <span class="op">==</span> <span class="st">"H"</span><span class="op">)</span> <span class="op">/</span> <span class="fl">1</span><span class="op">:</span><span class="va">toss_num</span></span>
+<span><span class="va">prop_heads</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">prop_heads</span>, <span class="fl">1</span><span class="op">:</span><span class="va">toss_num</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">prop_heads</span> <span class="op">&lt;-</span> <span class="fu">rename</span><span class="op">(</span><span class="va">prop_heads</span>, toss_num <span class="op">=</span> <span class="va">V2</span><span class="op">)</span></span>
+<span><span class="co">#  computing the fraction of tosses that land heads for each n and </span></span>
+<span><span class="co">#  making the resultant vector into a data frame and renaming the columns</span></span>
+<span></span>
+<span><span class="va">prop_heads</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">prop_heads</span>, x <span class="op">=</span> <span class="va">toss_num</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">annotate</span><span class="op">(</span><span class="st">"segment"</span>, x <span class="op">=</span> <span class="fl">0</span>, xend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">toss_num</span><span class="op">)</span> <span class="op">+</span> <span class="fl">50</span>, y <span class="op">=</span> <span class="fl">0.5</span>, yend <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>           color <span class="op">=</span> <span class="st">"red"</span>, linetype <span class="op">=</span> <span class="fl">2</span>, linewidth <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">ylim</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">xlab</span><span class="op">(</span><span class="st">"Number of tosses"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ylab</span><span class="op">(</span><span class="st">"Proportion of tosses that land heads"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"As we increase the number of tosses, \n the proportion of heads settles at about 50% "</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="slides_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section><section id="concept-question-2" class="level1"><h1>Concept Question 2</h1>
+<section id="section" class="level2"><h2 class="anchored" data-anchor-id="section"></h2>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">countdown</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/countdown/man/countdown.html">countdown</a></span><span class="op">(</span><span class="fl">1</span>, bottom <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="countdown" id="timer_8f6d7e70" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls">
+<button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
+</div>
+<code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+<p>Suppose Ali and Bettina are playing a game, in which Ali tosses a fair coin <span class="math inline">\(n\)</span> times, and Bettina wins one dollar from Ali if the proportion of heads is less than 0.4. Ali lets Bettina decide if <span class="math inline">\(n\)</span> is 10 or 100.</p>
+<div class="poll">
+<p>Which <span class="math inline">\(n\)</span> should Bettina choose?</p>
+</div>
+<div class="notes">
+<p>This ties into the plot of proportions of heads as the number of coin tosses increases. Hopefully Bettina realizes she has a better chance of getting the number of heads far away from 0.5 with fewer tosses.</p>
+</div>
+</section></section><section id="concept-question-3" class="level1"><h1>Concept Question 3</h1>
+<!--
+## {.scrollable} 
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+countdown::countdown(2, top = 0)
+```
+
+::: {.cell-output-display}
+
+
+```{=html}
+<div class="countdown" id="timer_fe9449bd" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+```
+
+
+:::
+:::
+
+
+
+ Consider the box of tickets shown below. 
+ 
+![](images/box-slides-cq-feb-22-2023.png){fig-align=center width="500"} 
+ 
+ The plots below show:
+ 
+1. The probability histogram for the value of a ticket drawn at random from the box
+2. An empirical histogram for which the data were generated by drawing **10** tickets from the box with replacement 
+3. An empirical histogram for which the data were generated by drawing **100** tickets from the box with replacement
+4. An empirical histogram generated by **20** draws from a different box. 
+
+
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+box <-  c(rep(0,4), 3,3,5,6,7,7)
+set.seed(12345)
+
+p1 <- data.frame(box) %>%
+   group_by(box) %>% 
+   summarise(probs = n()/10) %>% 
+  ggplot(aes(x=factor(box), y = probs)) +
+  geom_col(width = 0.98, fill = "deeppink3") + 
+  theme_bw() + 
+  xlab("box tickets") +
+  ylab("") + 
+  annotate("text", x = 3, y = 0.35, label = "(B)", size = 5) +
+  ylim(c(0,0.4))
+
+samp1 <- sample(box,10, replace = TRUE )
+
+p2 <- data.frame(samp1) %>%
+  group_by(samp1) %>% 
+  summarise(probs = n()/10) %>% 
+  ggplot(aes(x=factor(samp1), y = probs)) +
+  geom_col(width = 0.98, fill = "darkorchid4") + 
+  theme_bw() + 
+  xlab("box tickets") +
+  ylab("") + 
+  annotate("text", x = 3, y = 0.35, label = "(C)", size = 5) +
+  ylim(c(0,0.4))
+
+samp2 <- sample(box,100, replace = TRUE )
+
+p3 <- data.frame(samp2) %>%
+  group_by(samp2) %>% 
+  summarise(probs = n()/100) %>% 
+  ggplot(aes(x=factor(samp2), y = probs)) +
+  geom_col(width = 0.98, fill = "deepskyblue3") + 
+  theme_bw() + 
+  xlab("box tickets") +
+  ylab("") + 
+  annotate("text", x = 3, y = 0.35, label = "(D)", size = 5) +
+  ylim(c(0,0.4))
+
+box2 <- c(0,0,0,3,5,5,6,6,7,7)
+
+set.seed(12345)
+samp3 <- sample(box2,20, replace = TRUE )
+
+p4 <- data.frame(samp3) %>%
+  group_by(samp3) %>% 
+  summarise(probs = n()/20) %>% 
+  ggplot(aes(x=factor(samp3), y = probs)) +
+  geom_col(width = 0.98, fill = "darkorange3") + 
+  theme_bw() + 
+  xlab("box tickets") +
+  ylab("") + 
+  annotate("text", x = 2, y = 0.35, label = "(A)", size = 5) +
+  ylim(c(0,0.4))
+
+(p4 + p1)/(p2 + p3)
+```
+
+::: {.cell-output-display}
+![](slides_files/figure-html/unnamed-chunk-11-1.png){fig-align='center' width=672}
+:::
+:::
+
+
+
+
+
+:::{.poll}
+Identify which is which by matching the letters to the numbers.
+:::
+
+:::{.notes}
+Scroll to see graphs
+
+- B-1 the prob dsn of tickets
+- C-2  emp dsn of 10 draws
+- D-3 emp dsn of 100 draws
+- A-4 emp dsn from different box
+:::
+
+# Concept Question 4 -->
+<section id="section-1" class="level2 scrollable"><h2 class="scrollable anchored" data-anchor-id="section-1"></h2>
+<p>Part 1: Suppose we roll a die 4 times. The chance that we see six (the face with six spots) at least once is given by <span class="math inline">\(\displaystyle \frac{1}{6} +  \frac{1}{6} + \frac{1}{6} + \frac{1}{6} =  \frac{4}{6} = \frac{2}{3}\)</span></p>
+<div class="poll">
+<p>True or false?</p>
+</div>
+<p><br></p>
+<p>Part 2: Suppose we roll a pair of dice 24 times. The chance that we see a pair of sixes at least once is given by <span class="math inline">\(\displaystyle 24 \times \frac{1}{36} =  \frac{24}{36} = \frac{2}{3}\)</span></p>
+<div class="poll">
+<p>True or false?</p>
+</div>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">countdown</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/countdown/man/countdown.html">countdown</a></span><span class="op">(</span><span class="fl">2</span>, bottom <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="countdown" id="timer_578dff63" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls">
+<button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
+</div>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+<div class="notes">
+<p>Both parts are false since we are using the addition rule on events that are not mutually exclusive. It is important that you do NOT talk about what the actual probability is since that uses the multiplication rule and we have not discussed that in the notes. This is more an exercise in when <em>not</em> to use the addition rule.</p>
+</div>
+</section></section><section id="concept-question-4" class="level1"><h1>Concept Question 4</h1>
+<section id="section-2" class="level2"><h2 class="anchored" data-anchor-id="section-2"></h2>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">countdown</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/countdown/man/countdown.html">countdown</a></span><span class="op">(</span><span class="fl">1</span>, bottom <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="countdown" id="timer_dca087e6" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls">
+<button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
+</div>
+<code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+<p>Consider the Venn diagram below, which has 20 possible outcomes in <span class="math inline">\(\Omega\)</span>, depicted by the purple dots. Suppose the dots represent equally likely outcomes. What is the probability of <span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span> or <span class="math inline">\(C\)</span>? That is, what is <span class="math inline">\(P(A \cup B \cup C)\)</span>?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/slides-cq-venn-feb-22-2023.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<div class="notes">
+<p>Ask them what is the quickest way to do this. Maybe even give them only 15 or 30 seconds.</p>
+</div>
+</section></section><section id="activity-coin-tossing" class="level1"><h1>Activity: Coin tossing</h1>
+<div class="notes">
+<p>details in coin-flipping-activity.qmd If running short on time can skip this entirely (move to Th/Fr), or not do the coding. Take the details, and tell them you will post the plot on Ed later.</p>
+</div>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">countdown</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/countdown/man/countdown.html">countdown</a></span><span class="op">(</span><span class="fl">25</span>, top <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="countdown" id="timer_b5e6d221" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls">
+<button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
+</div>
+<code class="countdown-time"><span class="countdown-digits minutes">25</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+</section><section id="break" class="level1"><h1>Break</h1>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">countdown</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/countdown/man/countdown.html">countdown</a></span><span class="op">(</span><span class="fl">5</span>, top <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="countdown" id="timer_58ba8f4c" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls">
+<button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
+</div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+</section><section id="problem-set" class="level1"><h1>Problem Set</h1>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">countdown</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/countdown/man/countdown.html">countdown</a></span><span class="op">(</span><span class="fl">50</span>, top <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="countdown" id="timer_6c8d0b0d" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls">
+<button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
+</div>
+<code class="countdown-time"><span class="countdown-digits minutes">50</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+</section><section id="end-of-lecture" class="level1"><h1>End of Lecture</h1>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+<li class="nav-item">
+    <a class="nav-link" href="../../license.html">
+<p>License</p>
+</a>
+  </li>  
+</ul>
+</div>
+  </div>
+</footer>
+
+
+</body></html>

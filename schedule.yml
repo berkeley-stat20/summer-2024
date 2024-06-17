@@ -1,0 +1,166 @@
+- week: 1
+  days:
+    - topic: Introduction/Types of Claims
+      display-date: June 16
+      date: 6/16/24
+      items:
+        - type: Notes
+          href: 1-questions-and-data/01-understanding-the-world/notes.qmd
+          render: true
+        - type: Slides
+          href: 1-questions-and-data/01-understanding-the-world/slides.qmd
+          render: true
+    - topic: Taxonomy of Data
+      display-date: June 16
+      date: 6/16/24
+      items:
+        - type: Notes
+          href: 1-questions-and-data/02-taxonomy-of-data/notes.qmd
+          render: true
+        - type: Slides
+          href: 1-questions-and-data/02-taxonomy-of-data/slides.qmd
+          render: true
+    - topic: Summarizing Categorical Data
+      display-date: Jun 20
+      items: []
+    - topic: Summarizing Numerical Data
+      display-date: Jun 20
+      items: []
+  resources:
+    - >-
+      <a
+      href="https://www.stat20.org/1-questions-and-data/assignments/ps-01/ps.pdf"">PS
+      1 (due 6/20 at 11:59pm)</a>
+    - >-
+      <a
+      href="https://www.stat20.org/1-questions-and-data/assignments/lab-getting-started/lab.qmd"">Lab:
+      Getting Started (due 6/24 at 12pm)</a>
+- week: 2
+  days:
+    - topic: Quiz
+      display-date: Jun 24
+      items: []
+    - topic: Data Pipelines
+      display-date: Jun 24
+      items: []
+    - topic: A Grammar of Graphics
+      display-date: Jun 26
+      items: []
+    - topic: Summarizing Numerical Associations
+      display-date: Jun 27
+      items: []
+  resources:
+    - >-
+      <a
+      href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS
+      2 (due 6/27 at 11:59pm)</a>
+    - >-
+      <a
+      href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">Lab:
+      Flights (due 7/1 at 12pm)</a>
+- week: 3
+  days:
+    - topic: Intro to Probability
+      display-date: Jul 1
+      items: []
+    - topic: Conditional Probability
+      display-date: Jul 3
+      items: []
+  resources:
+    - >-
+      <a
+      href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS
+      3 (due 7/3 at 11:59pm)</a>
+- week: 4
+  days:
+    - topic: Quiz
+      display-date: Jul 8
+      items: []
+    - topic: Random Variables
+      display-date: Jul 8
+      items: []
+    - topic: Expected Value and Variance
+      display-date: Jul 10
+      items: []
+    - topic: Sampling Distributions
+      display-date: Jul 11
+      items: []
+  resources:
+    - >-
+      <a
+      href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS
+      4 (due 7/11 at 11:59pm)</a>
+- week: 5
+  days:
+    - topic: Quiz
+      display-date: Jul 15
+      items: []
+    - topic: Confidence Intervals
+      display-date: Jul 15
+      items: []
+    - topic: Bootstrapping
+      display-date: Jul 17
+      items: []
+    - topic: Hypothesis Tests
+      display-date: Jul 19
+      items: []
+  resources:
+    - >-
+      <a
+      href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS
+      5 (due 7/18 at 11:59pm)</a>
+    - >-
+      <a
+      href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">Lab:
+      PPK (due 7/22 at 12pm)</a>
+- week: 6
+  days:
+    - topic: Hypothesis Tests II
+      display-date: Jul 22
+      items: []
+    - topic: Wrong By Design
+      display-date: Jul 24
+      items: []
+    - topic: Causality
+      display-date: Jul 25
+      items: []
+  resources:
+    - >-
+      <a
+      href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS
+      6 (due 7/25 at 11:59pm)</a>
+    - >-
+      <a
+      href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">Lab:
+      La Croix (due 7/29 at 12pm)</a>
+- week: 7
+  days:
+    - topic: Simple Linear Regression
+      display-date: Jul 29
+      items: []
+    - topic: Multiple Linear Regression
+      display-date: Jul 31
+      items: []
+    - topic: Classification
+      display-date: Aug 1
+      items: []
+  resources:
+    - >-
+      <a
+      href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS
+      7 (due 8/1 at 11:59pm)</a>
+    - >-
+      <a
+      href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">EC
+      Lab: Cancer (due 8/8 at 11:59pm)</a>
+- week: 8
+  days:
+    - topic: Overfitting
+      display-date: Aug 5
+      items: []
+    - topic: Final
+      display-date: Aug 7
+      items: []
+    - topic: End of Semester/EC Assessment Workday
+      display-date: Aug 8
+      items: []
