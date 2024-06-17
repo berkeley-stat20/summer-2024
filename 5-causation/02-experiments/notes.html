@@ -60,8 +60,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../5-causation/03-matching/notes.html" rel="next">
-<link href="../../5-causation/01-defining-causality/notes.html" rel="prev">
 <link href="../../assets/favicon.ico" rel="icon">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -137,7 +135,7 @@ window.Quarto = {
 <meta name="twitter:image" content="https://stat20.berkeley.edu/summer-2024/5-causation/02-experiments/assets/stat20-hex.png">
 <meta name="twitter:card" content="summary_large_image">
 </head>
-<body class="nav-sidebar floating nav-fixed slimcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-sm " data-bs-theme="dark"><div class="navbar-container container-fluid">
@@ -160,7 +158,7 @@ window.Quarto = {
 <span class="menu-text">Office Hours</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../notes.html" aria-current="page"> 
+    <a class="nav-link" href="../../notes.html"> 
 <span class="menu-text">Notes</span></a>
   </li>  
   <li class="nav-item">
@@ -180,195 +178,8 @@ window.Quarto = {
 </a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../5-causation/02-experiments/notes.html">Randomized Experiments</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-    </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Notes</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../1-questions-and-data/01-understanding-the-world/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Understanding the World with Data</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../1-questions-and-data/02-taxonomy-of-data/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">The Taxonomy of Data</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../2-summarizing-data/01-summarizing-categorical-data/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Summarizing Categorical Data</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../2-summarizing-data/02-summarizing-numerical-data/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Summarizing Numerical Data</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../2-summarizing-data/04-conditioning/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data Pipelines</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../2-summarizing-data/03-a-grammar-of-graphics/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">A Grammar of Graphics</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../2-summarizing-data/06-summarizing-associations/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Summarizing Numerical Associations</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../2-summarizing-data/07-multiple-linear-regression/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multiple Linear Regression</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../3-probability/01-chance-intro/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introducing Probability</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../3-probability/02-cond-prob-indep/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Computing Probabilities</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../3-probability/03-probability-dsns/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Probability Distributions</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../3-probability/04-random-variables/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Random Variables</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../3-probability/05-ev-se/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Expected value and variance of a random variable</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../3-probability/06-normal-approx/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Continuous Distributions and Normal Approximations</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../4-generalization/01-sampling-distributions/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">From Samples to Populations</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../4-generalization/02-confidence-intervals/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Confidence Intervals</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../4-generalization/03-bootstrapping/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Bootstrapping</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../4-generalization/04-hypothesis-tests/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Hypothesis Testing</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../4-generalization/05-hypothesis-tests-2/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Hypothesis Tests II</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../4-generalization/06-wrong-by-design/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wrong by Design</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../6-prediction/01-method-of-least-squares/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">The Method of Least Squares</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../6-prediction/02-improving-predictions/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Evaluating and Improving Predictions</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../6-prediction/03-overfitting/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Overfitting</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../6-prediction/05-logistic-regression/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Logistic Regression</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../5-causation/01-defining-causality/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Defining Causality</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../5-causation/02-experiments/notes.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Randomized Experiments</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../5-causation/03-matching/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Causal Effects in Observational Studies</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../5-causation/04-time/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Using Time to Measure Causal Effects</span></a>
-  </div>
-</li>
-    </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
@@ -436,23 +247,23 @@ in cases where researchers were not able to perform an experiment.--></p>
 <p>We can visualize the distinction between the two groups in a small example with three people in the control group (pdf) and three people in the treatment group (website).</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="uqhnpminoj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#uqhnpminoj table {
+<div id="hvpzrlirom" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hvpzrlirom table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#uqhnpminoj thead, #uqhnpminoj tbody, #uqhnpminoj tfoot, #uqhnpminoj tr, #uqhnpminoj td, #uqhnpminoj th {
+#hvpzrlirom thead, #hvpzrlirom tbody, #hvpzrlirom tfoot, #hvpzrlirom tr, #hvpzrlirom td, #hvpzrlirom th {
   border-style: none;
 }
 
-#uqhnpminoj p {
+#hvpzrlirom p {
   margin: 0;
   padding: 0;
 }
 
-#uqhnpminoj .gt_table {
+#hvpzrlirom .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -478,12 +289,12 @@ in cases where researchers were not able to perform an experiment.--></p>
   border-left-color: #D3D3D3;
 }
 
-#uqhnpminoj .gt_caption {
+#hvpzrlirom .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#uqhnpminoj .gt_title {
+#hvpzrlirom .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -495,7 +306,7 @@ in cases where researchers were not able to perform an experiment.--></p>
   border-bottom-width: 0;
 }
 
-#uqhnpminoj .gt_subtitle {
+#hvpzrlirom .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -507,7 +318,7 @@ in cases where researchers were not able to perform an experiment.--></p>
   border-top-width: 0;
 }
 
-#uqhnpminoj .gt_heading {
+#hvpzrlirom .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -519,13 +330,13 @@ in cases where researchers were not able to perform an experiment.--></p>
   border-right-color: #D3D3D3;
 }
 
-#uqhnpminoj .gt_bottom_border {
+#hvpzrlirom .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#uqhnpminoj .gt_col_headings {
+#hvpzrlirom .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -540,7 +351,7 @@ in cases where researchers were not able to perform an experiment.--></p>
   border-right-color: #D3D3D3;
 }
 
-#uqhnpminoj .gt_col_heading {
+#hvpzrlirom .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -560,7 +371,7 @@ in cases where researchers were not able to perform an experiment.--></p>
   overflow-x: hidden;
 }
 
-#uqhnpminoj .gt_column_spanner_outer {
+#hvpzrlirom .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -572,15 +383,15 @@ in cases where researchers were not able to perform an experiment.--></p>
   padding-right: 4px;
 }
 
-#uqhnpminoj .gt_column_spanner_outer:first-child {
+#hvpzrlirom .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#uqhnpminoj .gt_column_spanner_outer:last-child {
+#hvpzrlirom .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#uqhnpminoj .gt_column_spanner {
+#hvpzrlirom .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -592,11 +403,11 @@ in cases where researchers were not able to perform an experiment.--></p>
   width: 100%;
 }
 
-#uqhnpminoj .gt_spanner_row {
+#hvpzrlirom .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#uqhnpminoj .gt_group_heading {
+#hvpzrlirom .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -622,7 +433,7 @@ in cases where researchers were not able to perform an experiment.--></p>
   text-align: left;
 }
 
-#uqhnpminoj .gt_empty_group_heading {
+#hvpzrlirom .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -637,15 +448,15 @@ in cases where researchers were not able to perform an experiment.--></p>
   vertical-align: middle;
 }
 
-#uqhnpminoj .gt_from_md > :first-child {
+#hvpzrlirom .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#uqhnpminoj .gt_from_md > :last-child {
+#hvpzrlirom .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#uqhnpminoj .gt_row {
+#hvpzrlirom .gt_row {
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 5px;
@@ -664,7 +475,7 @@ in cases where researchers were not able to perform an experiment.--></p>
   overflow-x: hidden;
 }
 
-#uqhnpminoj .gt_stub {
+#hvpzrlirom .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -677,7 +488,7 @@ in cases where researchers were not able to perform an experiment.--></p>
   padding-right: 5px;
 }
 
-#uqhnpminoj .gt_stub_row_group {
+#hvpzrlirom .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -691,15 +502,15 @@ in cases where researchers were not able to perform an experiment.--></p>
   vertical-align: top;
 }
 
-#uqhnpminoj .gt_row_group_first td {
+#hvpzrlirom .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#uqhnpminoj .gt_row_group_first th {
+#hvpzrlirom .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#uqhnpminoj .gt_summary_row {
+#hvpzrlirom .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -709,16 +520,16 @@ in cases where researchers were not able to perform an experiment.--></p>
   padding-right: 5px;
 }
 
-#uqhnpminoj .gt_first_summary_row {
+#hvpzrlirom .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#uqhnpminoj .gt_first_summary_row.thick {
+#hvpzrlirom .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#uqhnpminoj .gt_last_summary_row {
+#hvpzrlirom .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -728,7 +539,7 @@ in cases where researchers were not able to perform an experiment.--></p>
   border-bottom-color: #D3D3D3;
 }
 
-#uqhnpminoj .gt_grand_summary_row {
+#hvpzrlirom .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -738,7 +549,7 @@ in cases where researchers were not able to perform an experiment.--></p>
   padding-right: 5px;
 }
 
-#uqhnpminoj .gt_first_grand_summary_row {
+#hvpzrlirom .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -748,7 +559,7 @@ in cases where researchers were not able to perform an experiment.--></p>
   border-top-color: #D3D3D3;
 }
 
-#uqhnpminoj .gt_last_grand_summary_row_top {
+#hvpzrlirom .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -758,11 +569,11 @@ in cases where researchers were not able to perform an experiment.--></p>
   border-bottom-color: #D3D3D3;
 }
 
-#uqhnpminoj .gt_striped {
+#hvpzrlirom .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#uqhnpminoj .gt_table_body {
+#hvpzrlirom .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -771,7 +582,7 @@ in cases where researchers were not able to perform an experiment.--></p>
   border-bottom-color: #D3D3D3;
 }
 
-#uqhnpminoj .gt_footnotes {
+#hvpzrlirom .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -785,7 +596,7 @@ in cases where researchers were not able to perform an experiment.--></p>
   border-right-color: #D3D3D3;
 }
 
-#uqhnpminoj .gt_footnote {
+#hvpzrlirom .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -794,7 +605,7 @@ in cases where researchers were not able to perform an experiment.--></p>
   padding-right: 5px;
 }
 
-#uqhnpminoj .gt_sourcenotes {
+#hvpzrlirom .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -808,7 +619,7 @@ in cases where researchers were not able to perform an experiment.--></p>
   border-right-color: #D3D3D3;
 }
 
-#uqhnpminoj .gt_sourcenote {
+#hvpzrlirom .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -816,63 +627,63 @@ in cases where researchers were not able to perform an experiment.--></p>
   padding-right: 5px;
 }
 
-#uqhnpminoj .gt_left {
+#hvpzrlirom .gt_left {
   text-align: left;
 }
 
-#uqhnpminoj .gt_center {
+#hvpzrlirom .gt_center {
   text-align: center;
 }
 
-#uqhnpminoj .gt_right {
+#hvpzrlirom .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#uqhnpminoj .gt_font_normal {
+#hvpzrlirom .gt_font_normal {
   font-weight: normal;
 }
 
-#uqhnpminoj .gt_font_bold {
+#hvpzrlirom .gt_font_bold {
   font-weight: bold;
 }
 
-#uqhnpminoj .gt_font_italic {
+#hvpzrlirom .gt_font_italic {
   font-style: italic;
 }
 
-#uqhnpminoj .gt_super {
+#hvpzrlirom .gt_super {
   font-size: 65%;
 }
 
-#uqhnpminoj .gt_footnote_marks {
+#hvpzrlirom .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#uqhnpminoj .gt_asterisk {
+#hvpzrlirom .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#uqhnpminoj .gt_indent_1 {
+#hvpzrlirom .gt_indent_1 {
   text-indent: 5px;
 }
 
-#uqhnpminoj .gt_indent_2 {
+#hvpzrlirom .gt_indent_2 {
   text-indent: 10px;
 }
 
-#uqhnpminoj .gt_indent_3 {
+#hvpzrlirom .gt_indent_3 {
   text-indent: 15px;
 }
 
-#uqhnpminoj .gt_indent_4 {
+#hvpzrlirom .gt_indent_4 {
   text-indent: 20px;
 }
 
-#uqhnpminoj .gt_indent_5 {
+#hvpzrlirom .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1011,23 +822,23 @@ were randomized to receive a job training opportunity, while the others did not.
 <p>Let’s return to our hypothetical pdf vs.&nbsp;website experiment and imagine that in addition to our subject’s names and understanding level we were able to collect some additional information about each of them.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="cppatmhsbx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#cppatmhsbx table {
+<div id="voieivdmsw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#voieivdmsw table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#cppatmhsbx thead, #cppatmhsbx tbody, #cppatmhsbx tfoot, #cppatmhsbx tr, #cppatmhsbx td, #cppatmhsbx th {
+#voieivdmsw thead, #voieivdmsw tbody, #voieivdmsw tfoot, #voieivdmsw tr, #voieivdmsw td, #voieivdmsw th {
   border-style: none;
 }
 
-#cppatmhsbx p {
+#voieivdmsw p {
   margin: 0;
   padding: 0;
 }
 
-#cppatmhsbx .gt_table {
+#voieivdmsw .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1053,12 +864,12 @@ were randomized to receive a job training opportunity, while the others did not.
   border-left-color: #D3D3D3;
 }
 
-#cppatmhsbx .gt_caption {
+#voieivdmsw .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#cppatmhsbx .gt_title {
+#voieivdmsw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1070,7 +881,7 @@ were randomized to receive a job training opportunity, while the others did not.
   border-bottom-width: 0;
 }
 
-#cppatmhsbx .gt_subtitle {
+#voieivdmsw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1082,7 +893,7 @@ were randomized to receive a job training opportunity, while the others did not.
   border-top-width: 0;
 }
 
-#cppatmhsbx .gt_heading {
+#voieivdmsw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1094,13 +905,13 @@ were randomized to receive a job training opportunity, while the others did not.
   border-right-color: #D3D3D3;
 }
 
-#cppatmhsbx .gt_bottom_border {
+#voieivdmsw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cppatmhsbx .gt_col_headings {
+#voieivdmsw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1115,7 +926,7 @@ were randomized to receive a job training opportunity, while the others did not.
   border-right-color: #D3D3D3;
 }
 
-#cppatmhsbx .gt_col_heading {
+#voieivdmsw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1135,7 +946,7 @@ were randomized to receive a job training opportunity, while the others did not.
   overflow-x: hidden;
 }
 
-#cppatmhsbx .gt_column_spanner_outer {
+#voieivdmsw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1147,15 +958,15 @@ were randomized to receive a job training opportunity, while the others did not.
   padding-right: 4px;
 }
 
-#cppatmhsbx .gt_column_spanner_outer:first-child {
+#voieivdmsw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cppatmhsbx .gt_column_spanner_outer:last-child {
+#voieivdmsw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cppatmhsbx .gt_column_spanner {
+#voieivdmsw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1167,11 +978,11 @@ were randomized to receive a job training opportunity, while the others did not.
   width: 100%;
 }
 
-#cppatmhsbx .gt_spanner_row {
+#voieivdmsw .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#cppatmhsbx .gt_group_heading {
+#voieivdmsw .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1197,7 +1008,7 @@ were randomized to receive a job training opportunity, while the others did not.
   text-align: left;
 }
 
-#cppatmhsbx .gt_empty_group_heading {
+#voieivdmsw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1212,15 +1023,15 @@ were randomized to receive a job training opportunity, while the others did not.
   vertical-align: middle;
 }
 
-#cppatmhsbx .gt_from_md > :first-child {
+#voieivdmsw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cppatmhsbx .gt_from_md > :last-child {
+#voieivdmsw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cppatmhsbx .gt_row {
+#voieivdmsw .gt_row {
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 5px;
@@ -1239,7 +1050,7 @@ were randomized to receive a job training opportunity, while the others did not.
   overflow-x: hidden;
 }
 
-#cppatmhsbx .gt_stub {
+#voieivdmsw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1252,7 +1063,7 @@ were randomized to receive a job training opportunity, while the others did not.
   padding-right: 5px;
 }
 
-#cppatmhsbx .gt_stub_row_group {
+#voieivdmsw .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1266,15 +1077,15 @@ were randomized to receive a job training opportunity, while the others did not.
   vertical-align: top;
 }
 
-#cppatmhsbx .gt_row_group_first td {
+#voieivdmsw .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#cppatmhsbx .gt_row_group_first th {
+#voieivdmsw .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#cppatmhsbx .gt_summary_row {
+#voieivdmsw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1284,16 +1095,16 @@ were randomized to receive a job training opportunity, while the others did not.
   padding-right: 5px;
 }
 
-#cppatmhsbx .gt_first_summary_row {
+#voieivdmsw .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#cppatmhsbx .gt_first_summary_row.thick {
+#voieivdmsw .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#cppatmhsbx .gt_last_summary_row {
+#voieivdmsw .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1303,7 +1114,7 @@ were randomized to receive a job training opportunity, while the others did not.
   border-bottom-color: #D3D3D3;
 }
 
-#cppatmhsbx .gt_grand_summary_row {
+#voieivdmsw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1313,7 +1124,7 @@ were randomized to receive a job training opportunity, while the others did not.
   padding-right: 5px;
 }
 
-#cppatmhsbx .gt_first_grand_summary_row {
+#voieivdmsw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1323,7 +1134,7 @@ were randomized to receive a job training opportunity, while the others did not.
   border-top-color: #D3D3D3;
 }
 
-#cppatmhsbx .gt_last_grand_summary_row_top {
+#voieivdmsw .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1333,11 +1144,11 @@ were randomized to receive a job training opportunity, while the others did not.
   border-bottom-color: #D3D3D3;
 }
 
-#cppatmhsbx .gt_striped {
+#voieivdmsw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cppatmhsbx .gt_table_body {
+#voieivdmsw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1346,7 +1157,7 @@ were randomized to receive a job training opportunity, while the others did not.
   border-bottom-color: #D3D3D3;
 }
 
-#cppatmhsbx .gt_footnotes {
+#voieivdmsw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1360,7 +1171,7 @@ were randomized to receive a job training opportunity, while the others did not.
   border-right-color: #D3D3D3;
 }
 
-#cppatmhsbx .gt_footnote {
+#voieivdmsw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1369,7 +1180,7 @@ were randomized to receive a job training opportunity, while the others did not.
   padding-right: 5px;
 }
 
-#cppatmhsbx .gt_sourcenotes {
+#voieivdmsw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1383,7 +1194,7 @@ were randomized to receive a job training opportunity, while the others did not.
   border-right-color: #D3D3D3;
 }
 
-#cppatmhsbx .gt_sourcenote {
+#voieivdmsw .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1391,63 +1202,63 @@ were randomized to receive a job training opportunity, while the others did not.
   padding-right: 5px;
 }
 
-#cppatmhsbx .gt_left {
+#voieivdmsw .gt_left {
   text-align: left;
 }
 
-#cppatmhsbx .gt_center {
+#voieivdmsw .gt_center {
   text-align: center;
 }
 
-#cppatmhsbx .gt_right {
+#voieivdmsw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cppatmhsbx .gt_font_normal {
+#voieivdmsw .gt_font_normal {
   font-weight: normal;
 }
 
-#cppatmhsbx .gt_font_bold {
+#voieivdmsw .gt_font_bold {
   font-weight: bold;
 }
 
-#cppatmhsbx .gt_font_italic {
+#voieivdmsw .gt_font_italic {
   font-style: italic;
 }
 
-#cppatmhsbx .gt_super {
+#voieivdmsw .gt_super {
   font-size: 65%;
 }
 
-#cppatmhsbx .gt_footnote_marks {
+#voieivdmsw .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#cppatmhsbx .gt_asterisk {
+#voieivdmsw .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#cppatmhsbx .gt_indent_1 {
+#voieivdmsw .gt_indent_1 {
   text-indent: 5px;
 }
 
-#cppatmhsbx .gt_indent_2 {
+#voieivdmsw .gt_indent_2 {
   text-indent: 10px;
 }
 
-#cppatmhsbx .gt_indent_3 {
+#voieivdmsw .gt_indent_3 {
   text-indent: 15px;
 }
 
-#cppatmhsbx .gt_indent_4 {
+#voieivdmsw .gt_indent_4 {
   text-indent: 20px;
 }
 
-#cppatmhsbx .gt_indent_5 {
+#voieivdmsw .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2099,17 +1910,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="../../5-causation/01-defining-causality/notes.html" class="pagination-link  aria-label=" defining="" causality="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Defining Causality</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../5-causation/03-matching/notes.html" class="pagination-link" aria-label="Causal Effects in Observational Studies">
-        <span class="nav-page-text">Causal Effects in Observational Studies</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
+</script>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">

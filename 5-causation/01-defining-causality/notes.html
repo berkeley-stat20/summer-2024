@@ -26,8 +26,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../5-causation/02-experiments/notes.html" rel="next">
-<link href="../../6-prediction/05-logistic-regression/notes.html" rel="prev">
 <link href="../../assets/favicon.ico" rel="icon">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -111,7 +109,7 @@ window.Quarto = {
 <meta name="twitter:image-width" content="452">
 <meta name="twitter:card" content="summary_large_image">
 </head>
-<body class="nav-sidebar floating nav-fixed slimcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-sm " data-bs-theme="dark"><div class="navbar-container container-fluid">
@@ -134,7 +132,7 @@ window.Quarto = {
 <span class="menu-text">Office Hours</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../notes.html" aria-current="page"> 
+    <a class="nav-link" href="../../notes.html"> 
 <span class="menu-text">Notes</span></a>
   </li>  
   <li class="nav-item">
@@ -154,195 +152,8 @@ window.Quarto = {
 </a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../5-causation/01-defining-causality/notes.html">Defining Causality</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-    </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Notes</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../1-questions-and-data/01-understanding-the-world/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Understanding the World with Data</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../1-questions-and-data/02-taxonomy-of-data/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">The Taxonomy of Data</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../2-summarizing-data/01-summarizing-categorical-data/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Summarizing Categorical Data</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../2-summarizing-data/02-summarizing-numerical-data/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Summarizing Numerical Data</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../2-summarizing-data/04-conditioning/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data Pipelines</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../2-summarizing-data/03-a-grammar-of-graphics/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">A Grammar of Graphics</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../2-summarizing-data/06-summarizing-associations/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Summarizing Numerical Associations</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../2-summarizing-data/07-multiple-linear-regression/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multiple Linear Regression</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../3-probability/01-chance-intro/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introducing Probability</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../3-probability/02-cond-prob-indep/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Computing Probabilities</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../3-probability/03-probability-dsns/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Probability Distributions</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../3-probability/04-random-variables/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Random Variables</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../3-probability/05-ev-se/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Expected value and variance of a random variable</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../3-probability/06-normal-approx/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Continuous Distributions and Normal Approximations</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../4-generalization/01-sampling-distributions/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">From Samples to Populations</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../4-generalization/02-confidence-intervals/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Confidence Intervals</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../4-generalization/03-bootstrapping/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Bootstrapping</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../4-generalization/04-hypothesis-tests/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Hypothesis Testing</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../4-generalization/05-hypothesis-tests-2/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Hypothesis Tests II</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../4-generalization/06-wrong-by-design/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wrong by Design</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../6-prediction/01-method-of-least-squares/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">The Method of Least Squares</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../6-prediction/02-improving-predictions/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Evaluating and Improving Predictions</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../6-prediction/03-overfitting/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Overfitting</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../6-prediction/05-logistic-regression/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Logistic Regression</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../5-causation/01-defining-causality/notes.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Defining Causality</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../5-causation/02-experiments/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Randomized Experiments</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../5-causation/03-matching/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Causal Effects in Observational Studies</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../5-causation/04-time/notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Using Time to Measure Causal Effects</span></a>
-  </div>
-</li>
-    </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
@@ -385,7 +196,7 @@ window.Quarto = {
 <li>The Consumer Price Index rose 8.3% because of the war in Ukraine.</li>
 <li>The Consumer Price Index will likely rise throughout the summer.</li>
 </ol>
-<div id="fig-inflation" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" width="600px">
+<div id="fig-inflation" class="quarto-figure quarto-figure-center quarto-float anchored" width="600px" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-inflation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/nyt-inflation.png" id="fig-inflation" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" width="600">
 </div>
@@ -549,23 +360,23 @@ A population parameter that captures the effect of being administered a particul
 </div>
 <div class="cell quarto-layout-cell" style="flex-basis: 45.5%;justify-content: center;">
 <div class="cell-output-display">
-<div id="zsdakendpw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zsdakendpw table {
+<div id="kijyvxzarp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kijyvxzarp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zsdakendpw thead, #zsdakendpw tbody, #zsdakendpw tfoot, #zsdakendpw tr, #zsdakendpw td, #zsdakendpw th {
+#kijyvxzarp thead, #kijyvxzarp tbody, #kijyvxzarp tfoot, #kijyvxzarp tr, #kijyvxzarp td, #kijyvxzarp th {
   border-style: none;
 }
 
-#zsdakendpw p {
+#kijyvxzarp p {
   margin: 0;
   padding: 0;
 }
 
-#zsdakendpw .gt_table {
+#kijyvxzarp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -591,12 +402,12 @@ A population parameter that captures the effect of being administered a particul
   border-left-color: #D3D3D3;
 }
 
-#zsdakendpw .gt_caption {
+#kijyvxzarp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zsdakendpw .gt_title {
+#kijyvxzarp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -608,7 +419,7 @@ A population parameter that captures the effect of being administered a particul
   border-bottom-width: 0;
 }
 
-#zsdakendpw .gt_subtitle {
+#kijyvxzarp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -620,7 +431,7 @@ A population parameter that captures the effect of being administered a particul
   border-top-width: 0;
 }
 
-#zsdakendpw .gt_heading {
+#kijyvxzarp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -632,13 +443,13 @@ A population parameter that captures the effect of being administered a particul
   border-right-color: #D3D3D3;
 }
 
-#zsdakendpw .gt_bottom_border {
+#kijyvxzarp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zsdakendpw .gt_col_headings {
+#kijyvxzarp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -653,7 +464,7 @@ A population parameter that captures the effect of being administered a particul
   border-right-color: #D3D3D3;
 }
 
-#zsdakendpw .gt_col_heading {
+#kijyvxzarp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -673,7 +484,7 @@ A population parameter that captures the effect of being administered a particul
   overflow-x: hidden;
 }
 
-#zsdakendpw .gt_column_spanner_outer {
+#kijyvxzarp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -685,15 +496,15 @@ A population parameter that captures the effect of being administered a particul
   padding-right: 4px;
 }
 
-#zsdakendpw .gt_column_spanner_outer:first-child {
+#kijyvxzarp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zsdakendpw .gt_column_spanner_outer:last-child {
+#kijyvxzarp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zsdakendpw .gt_column_spanner {
+#kijyvxzarp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -705,11 +516,11 @@ A population parameter that captures the effect of being administered a particul
   width: 100%;
 }
 
-#zsdakendpw .gt_spanner_row {
+#kijyvxzarp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zsdakendpw .gt_group_heading {
+#kijyvxzarp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -735,7 +546,7 @@ A population parameter that captures the effect of being administered a particul
   text-align: left;
 }
 
-#zsdakendpw .gt_empty_group_heading {
+#kijyvxzarp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -750,15 +561,15 @@ A population parameter that captures the effect of being administered a particul
   vertical-align: middle;
 }
 
-#zsdakendpw .gt_from_md > :first-child {
+#kijyvxzarp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zsdakendpw .gt_from_md > :last-child {
+#kijyvxzarp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zsdakendpw .gt_row {
+#kijyvxzarp .gt_row {
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 5px;
@@ -777,7 +588,7 @@ A population parameter that captures the effect of being administered a particul
   overflow-x: hidden;
 }
 
-#zsdakendpw .gt_stub {
+#kijyvxzarp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -790,7 +601,7 @@ A population parameter that captures the effect of being administered a particul
   padding-right: 5px;
 }
 
-#zsdakendpw .gt_stub_row_group {
+#kijyvxzarp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -804,15 +615,15 @@ A population parameter that captures the effect of being administered a particul
   vertical-align: top;
 }
 
-#zsdakendpw .gt_row_group_first td {
+#kijyvxzarp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zsdakendpw .gt_row_group_first th {
+#kijyvxzarp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zsdakendpw .gt_summary_row {
+#kijyvxzarp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -822,16 +633,16 @@ A population parameter that captures the effect of being administered a particul
   padding-right: 5px;
 }
 
-#zsdakendpw .gt_first_summary_row {
+#kijyvxzarp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zsdakendpw .gt_first_summary_row.thick {
+#kijyvxzarp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zsdakendpw .gt_last_summary_row {
+#kijyvxzarp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -841,7 +652,7 @@ A population parameter that captures the effect of being administered a particul
   border-bottom-color: #D3D3D3;
 }
 
-#zsdakendpw .gt_grand_summary_row {
+#kijyvxzarp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -851,7 +662,7 @@ A population parameter that captures the effect of being administered a particul
   padding-right: 5px;
 }
 
-#zsdakendpw .gt_first_grand_summary_row {
+#kijyvxzarp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -861,7 +672,7 @@ A population parameter that captures the effect of being administered a particul
   border-top-color: #D3D3D3;
 }
 
-#zsdakendpw .gt_last_grand_summary_row_top {
+#kijyvxzarp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -871,11 +682,11 @@ A population parameter that captures the effect of being administered a particul
   border-bottom-color: #D3D3D3;
 }
 
-#zsdakendpw .gt_striped {
+#kijyvxzarp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zsdakendpw .gt_table_body {
+#kijyvxzarp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -884,7 +695,7 @@ A population parameter that captures the effect of being administered a particul
   border-bottom-color: #D3D3D3;
 }
 
-#zsdakendpw .gt_footnotes {
+#kijyvxzarp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -898,7 +709,7 @@ A population parameter that captures the effect of being administered a particul
   border-right-color: #D3D3D3;
 }
 
-#zsdakendpw .gt_footnote {
+#kijyvxzarp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -907,7 +718,7 @@ A population parameter that captures the effect of being administered a particul
   padding-right: 5px;
 }
 
-#zsdakendpw .gt_sourcenotes {
+#kijyvxzarp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -921,7 +732,7 @@ A population parameter that captures the effect of being administered a particul
   border-right-color: #D3D3D3;
 }
 
-#zsdakendpw .gt_sourcenote {
+#kijyvxzarp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -929,63 +740,63 @@ A population parameter that captures the effect of being administered a particul
   padding-right: 5px;
 }
 
-#zsdakendpw .gt_left {
+#kijyvxzarp .gt_left {
   text-align: left;
 }
 
-#zsdakendpw .gt_center {
+#kijyvxzarp .gt_center {
   text-align: center;
 }
 
-#zsdakendpw .gt_right {
+#kijyvxzarp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zsdakendpw .gt_font_normal {
+#kijyvxzarp .gt_font_normal {
   font-weight: normal;
 }
 
-#zsdakendpw .gt_font_bold {
+#kijyvxzarp .gt_font_bold {
   font-weight: bold;
 }
 
-#zsdakendpw .gt_font_italic {
+#kijyvxzarp .gt_font_italic {
   font-style: italic;
 }
 
-#zsdakendpw .gt_super {
+#kijyvxzarp .gt_super {
   font-size: 65%;
 }
 
-#zsdakendpw .gt_footnote_marks {
+#kijyvxzarp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zsdakendpw .gt_asterisk {
+#kijyvxzarp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zsdakendpw .gt_indent_1 {
+#kijyvxzarp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zsdakendpw .gt_indent_2 {
+#kijyvxzarp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zsdakendpw .gt_indent_3 {
+#kijyvxzarp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zsdakendpw .gt_indent_4 {
+#kijyvxzarp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zsdakendpw .gt_indent_5 {
+#kijyvxzarp .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1036,23 +847,23 @@ A population parameter that captures the effect of being administered a particul
 </div>
 <div class="cell quarto-layout-cell" style="flex-basis: 27.3%;justify-content: center;">
 <div class="cell-output-display">
-<div id="mszhpctjum" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#mszhpctjum table {
+<div id="xadxrclgbq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xadxrclgbq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#mszhpctjum thead, #mszhpctjum tbody, #mszhpctjum tfoot, #mszhpctjum tr, #mszhpctjum td, #mszhpctjum th {
+#xadxrclgbq thead, #xadxrclgbq tbody, #xadxrclgbq tfoot, #xadxrclgbq tr, #xadxrclgbq td, #xadxrclgbq th {
   border-style: none;
 }
 
-#mszhpctjum p {
+#xadxrclgbq p {
   margin: 0;
   padding: 0;
 }
 
-#mszhpctjum .gt_table {
+#xadxrclgbq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1078,12 +889,12 @@ A population parameter that captures the effect of being administered a particul
   border-left-color: #D3D3D3;
 }
 
-#mszhpctjum .gt_caption {
+#xadxrclgbq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#mszhpctjum .gt_title {
+#xadxrclgbq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1095,7 +906,7 @@ A population parameter that captures the effect of being administered a particul
   border-bottom-width: 0;
 }
 
-#mszhpctjum .gt_subtitle {
+#xadxrclgbq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1107,7 +918,7 @@ A population parameter that captures the effect of being administered a particul
   border-top-width: 0;
 }
 
-#mszhpctjum .gt_heading {
+#xadxrclgbq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1119,13 +930,13 @@ A population parameter that captures the effect of being administered a particul
   border-right-color: #D3D3D3;
 }
 
-#mszhpctjum .gt_bottom_border {
+#xadxrclgbq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mszhpctjum .gt_col_headings {
+#xadxrclgbq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1140,7 +951,7 @@ A population parameter that captures the effect of being administered a particul
   border-right-color: #D3D3D3;
 }
 
-#mszhpctjum .gt_col_heading {
+#xadxrclgbq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1160,7 +971,7 @@ A population parameter that captures the effect of being administered a particul
   overflow-x: hidden;
 }
 
-#mszhpctjum .gt_column_spanner_outer {
+#xadxrclgbq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1172,15 +983,15 @@ A population parameter that captures the effect of being administered a particul
   padding-right: 4px;
 }
 
-#mszhpctjum .gt_column_spanner_outer:first-child {
+#xadxrclgbq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mszhpctjum .gt_column_spanner_outer:last-child {
+#xadxrclgbq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mszhpctjum .gt_column_spanner {
+#xadxrclgbq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1192,11 +1003,11 @@ A population parameter that captures the effect of being administered a particul
   width: 100%;
 }
 
-#mszhpctjum .gt_spanner_row {
+#xadxrclgbq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#mszhpctjum .gt_group_heading {
+#xadxrclgbq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1222,7 +1033,7 @@ A population parameter that captures the effect of being administered a particul
   text-align: left;
 }
 
-#mszhpctjum .gt_empty_group_heading {
+#xadxrclgbq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1237,15 +1048,15 @@ A population parameter that captures the effect of being administered a particul
   vertical-align: middle;
 }
 
-#mszhpctjum .gt_from_md > :first-child {
+#xadxrclgbq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mszhpctjum .gt_from_md > :last-child {
+#xadxrclgbq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mszhpctjum .gt_row {
+#xadxrclgbq .gt_row {
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 5px;
@@ -1264,7 +1075,7 @@ A population parameter that captures the effect of being administered a particul
   overflow-x: hidden;
 }
 
-#mszhpctjum .gt_stub {
+#xadxrclgbq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1277,7 +1088,7 @@ A population parameter that captures the effect of being administered a particul
   padding-right: 5px;
 }
 
-#mszhpctjum .gt_stub_row_group {
+#xadxrclgbq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1291,15 +1102,15 @@ A population parameter that captures the effect of being administered a particul
   vertical-align: top;
 }
 
-#mszhpctjum .gt_row_group_first td {
+#xadxrclgbq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#mszhpctjum .gt_row_group_first th {
+#xadxrclgbq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#mszhpctjum .gt_summary_row {
+#xadxrclgbq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1309,16 +1120,16 @@ A population parameter that captures the effect of being administered a particul
   padding-right: 5px;
 }
 
-#mszhpctjum .gt_first_summary_row {
+#xadxrclgbq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#mszhpctjum .gt_first_summary_row.thick {
+#xadxrclgbq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#mszhpctjum .gt_last_summary_row {
+#xadxrclgbq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1328,7 +1139,7 @@ A population parameter that captures the effect of being administered a particul
   border-bottom-color: #D3D3D3;
 }
 
-#mszhpctjum .gt_grand_summary_row {
+#xadxrclgbq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1338,7 +1149,7 @@ A population parameter that captures the effect of being administered a particul
   padding-right: 5px;
 }
 
-#mszhpctjum .gt_first_grand_summary_row {
+#xadxrclgbq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1348,7 +1159,7 @@ A population parameter that captures the effect of being administered a particul
   border-top-color: #D3D3D3;
 }
 
-#mszhpctjum .gt_last_grand_summary_row_top {
+#xadxrclgbq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1358,11 +1169,11 @@ A population parameter that captures the effect of being administered a particul
   border-bottom-color: #D3D3D3;
 }
 
-#mszhpctjum .gt_striped {
+#xadxrclgbq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mszhpctjum .gt_table_body {
+#xadxrclgbq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1371,7 +1182,7 @@ A population parameter that captures the effect of being administered a particul
   border-bottom-color: #D3D3D3;
 }
 
-#mszhpctjum .gt_footnotes {
+#xadxrclgbq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1385,7 +1196,7 @@ A population parameter that captures the effect of being administered a particul
   border-right-color: #D3D3D3;
 }
 
-#mszhpctjum .gt_footnote {
+#xadxrclgbq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1394,7 +1205,7 @@ A population parameter that captures the effect of being administered a particul
   padding-right: 5px;
 }
 
-#mszhpctjum .gt_sourcenotes {
+#xadxrclgbq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1408,7 +1219,7 @@ A population parameter that captures the effect of being administered a particul
   border-right-color: #D3D3D3;
 }
 
-#mszhpctjum .gt_sourcenote {
+#xadxrclgbq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1416,63 +1227,63 @@ A population parameter that captures the effect of being administered a particul
   padding-right: 5px;
 }
 
-#mszhpctjum .gt_left {
+#xadxrclgbq .gt_left {
   text-align: left;
 }
 
-#mszhpctjum .gt_center {
+#xadxrclgbq .gt_center {
   text-align: center;
 }
 
-#mszhpctjum .gt_right {
+#xadxrclgbq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mszhpctjum .gt_font_normal {
+#xadxrclgbq .gt_font_normal {
   font-weight: normal;
 }
 
-#mszhpctjum .gt_font_bold {
+#xadxrclgbq .gt_font_bold {
   font-weight: bold;
 }
 
-#mszhpctjum .gt_font_italic {
+#xadxrclgbq .gt_font_italic {
   font-style: italic;
 }
 
-#mszhpctjum .gt_super {
+#xadxrclgbq .gt_super {
   font-size: 65%;
 }
 
-#mszhpctjum .gt_footnote_marks {
+#xadxrclgbq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#mszhpctjum .gt_asterisk {
+#xadxrclgbq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#mszhpctjum .gt_indent_1 {
+#xadxrclgbq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#mszhpctjum .gt_indent_2 {
+#xadxrclgbq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#mszhpctjum .gt_indent_3 {
+#xadxrclgbq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#mszhpctjum .gt_indent_4 {
+#xadxrclgbq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#mszhpctjum .gt_indent_5 {
+#xadxrclgbq .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1907,17 +1718,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="../../6-prediction/05-logistic-regression/notes.html" class="pagination-link  aria-label=" logistic="" regression="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Logistic Regression</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../5-causation/02-experiments/notes.html" class="pagination-link" aria-label="Randomized Experiments">
-        <span class="nav-page-text">Randomized Experiments</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
+</script>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
