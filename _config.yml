@@ -25,12 +25,16 @@ schedule:
 
       - topic: "Summarizing Categorical Data"
         display-date: Jun 20
+        date: 6/20/24
+        items:
           - type: Notes
             href: 1-questions-and-data/01-summarizing-categorical-data/notes.qmd
             render: true
 
       - topic: "Summarizing Numerical Data"
         display-date: Jun 20
+        date: 6/20/24
+        items:
           - type: Notes
             href: 1-questions-and-data/02-summarizing-numerical-data/notes.qmd
             render: true
