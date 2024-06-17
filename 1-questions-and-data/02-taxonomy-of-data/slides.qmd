@@ -22,24 +22,21 @@ format:
 
 ## Agenda
 
-- Announcements
-- Concept Questions: Conceptual
-- Problem Set 1: *Taxonomy of Data*
-- *Break*
-- Concept Questions: Coding
-- Lab 0 work time
+- Taxonomy of Data lecture
+  -   Data Types
+  -   Data Frames
+- Problem Set 1 and Lab work time
+- Appendix (extra material!)
 
-## Announcements
+# Taxonomy of Data lecture
 
--   Problem Set 1 and Lab 0 are both due **Tuesday, January 23rd** at 9am on Gradescope
+# Work time
 
-. . . 
+```{r}
+countdown::countdown(minutes = 25, top = 0)
+```
 
--   *RQ: Summarizing Categorical Data* due **Monday, January 22nd** at 11:59pm on Gradescope
-
-. . .
-
--   Please read the Ed expectations post [here](https://edstem.org/us/courses/51198/discussion/4137868) before posting on Ed!
+# Appendix (extra material!)
 
 # Concept Questions: Conceptual
 
@@ -210,17 +207,12 @@ countdown::countdown(1, top = 0)
 ```
 
 
-# Problem Set 1: *Taxonomy of Data*
+# Problem Set 1
 
 ```{r}
 countdown::countdown(20, top = 0)
 ```
 
-# *Break*
-
-```{r}
-countdown::countdown(5, top = 0)
-```
 
 # Concept Questions: Coding
 
@@ -346,14 +338,11 @@ countdown::countdown(1, top = 0)
 :::
 
 
-# Time to work on Lab 0
+# Work time
 
 ```{r}
 countdown::countdown(minutes = 25, top = 0)
 ```
-
-
-# End of Lecture
 
 
 <!--

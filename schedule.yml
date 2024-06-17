@@ -28,12 +28,18 @@
       items: []
   resources:
     - >-
+      <a href="https://gradescope.com"">RQ: Summarizing Numerical Data (due 6/20
+      at 12pm)</a>
+    - >-
+      <a href="https://gradescope.com"">RQ: Summarizing Categorical Data (due
+      6/20 at 12pm)</a>
+    - >-
       <a
-      href="https://www.stat20.org/1-questions-and-data/assignments/ps-01/ps.pdf"">PS
+      href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/assignments/ps-01/ps.pdf"">PS
       1 (due 6/20 at 11:59pm)</a>
     - >-
       <a
-      href="https://www.stat20.org/1-questions-and-data/assignments/lab-getting-started/lab.qmd"">Lab:
+      href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/assignments/lab-getting-started/lab.qmd"">Lab:
       Getting Started (due 6/24 at 12pm)</a>
 - week: 2
   days:
@@ -52,11 +58,11 @@
   resources:
     - >-
       <a
-      href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS
+      href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS
       2 (due 6/27 at 11:59pm)</a>
     - >-
       <a
-      href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">Lab:
+      href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">Lab:
       Flights (due 7/1 at 12pm)</a>
 - week: 3
   days:
@@ -69,7 +75,7 @@
   resources:
     - >-
       <a
-      href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS
+      href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS
       3 (due 7/3 at 11:59pm)</a>
 - week: 4
   days:
@@ -88,7 +94,7 @@
   resources:
     - >-
       <a
-      href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS
+      href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS
       4 (due 7/11 at 11:59pm)</a>
 - week: 5
   days:
@@ -107,11 +113,11 @@
   resources:
     - >-
       <a
-      href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS
+      href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS
       5 (due 7/18 at 11:59pm)</a>
     - >-
       <a
-      href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">Lab:
+      href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">Lab:
       PPK (due 7/22 at 12pm)</a>
 - week: 6
   days:
@@ -127,11 +133,11 @@
   resources:
     - >-
       <a
-      href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS
+      href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS
       6 (due 7/25 at 11:59pm)</a>
     - >-
       <a
-      href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">Lab:
+      href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">Lab:
       La Croix (due 7/29 at 12pm)</a>
 - week: 7
   days:
@@ -147,11 +153,11 @@
   resources:
     - >-
       <a
-      href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS
+      href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS
       7 (due 8/1 at 11:59pm)</a>
     - >-
       <a
-      href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">EC
+      href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">EC
       Lab: Cancer (due 8/8 at 11:59pm)</a>
 - week: 8
   days:

@@ -16,8 +16,13 @@ sidebar: false
 
 ### Staff
 
--   Instructor of Record: Jeremy Eli Sanchez 
+-   Instructor of Record: Jeremy Eli Sanchez (jeremysanchez@berkeley.edu)
 -   Tutors: Evelyn Cheng, Christopher Lee, Emma Wu
+
+### Lecture time and location
+
+-   Mondays and Wednesdays: 2-4pm, Wheeler 212
+-   Thursdays: 2-4pm, Cory 77
 
 ### Course Culture
 
