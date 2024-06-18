@@ -382,7 +382,7 @@
     "href": "assignments.html#problem-sets",
     "title": "Assignments",
     "section": "Problem Sets",
-    "text": "Problem Sets\nProblem sets are than the worksheets given to you in class. The goal of the problems sets is simply practice: they help you drill the techniques needed to complete the labs and learn the material.\n\n\n\nPS 1: Problem Set 1\n\n\n\nNo matching items"
+    "text": "Problem Sets\nProblem sets are than the worksheets given to you in class. The goal of the problems sets is simply practice: they help you drill the techniques needed to complete the labs and learn the material.\n\n\n\nPS 1: Stat 20: Problem Set 1\n\n\n\nNo matching items"
   },
   {
     "objectID": "2-summarizing-data/07-multiple-linear-regression/slides.html#agenda",
@@ -4275,7 +4275,7 @@
     "href": "4-generalization/06-wrong-by-design/slides.html#section-5",
     "title": "Wrong By Design",
     "section": "",
-    "text": "null &lt;- ppk |&gt;\n  specify(response = support_before,\n          success = \"TRUE\") |&gt;\n  hypothesize(null = \"point\", p = .5) |&gt;\n  generate(reps = 500, type = \"draw\") |&gt;\n  calculate(stat = \"prop\")\nnull\n\nResponse: support_before (factor)\nNull Hypothesis: point\n# A tibble: 500 × 2\n   replicate  stat\n   &lt;fct&gt;     &lt;dbl&gt;\n 1 1         0.505\n 2 2         0.530\n 3 3         0.496\n 4 4         0.487\n 5 5         0.508\n 6 6         0.494\n 7 7         0.505\n 8 8         0.503\n 9 9         0.510\n10 10        0.5  \n# ℹ 490 more rows"
+    "text": "null &lt;- ppk |&gt;\n  specify(response = support_before,\n          success = \"TRUE\") |&gt;\n  hypothesize(null = \"point\", p = .5) |&gt;\n  generate(reps = 500, type = \"draw\") |&gt;\n  calculate(stat = \"prop\")\nnull\n\nResponse: support_before (factor)\nNull Hypothesis: point\n# A tibble: 500 × 2\n   replicate  stat\n   &lt;fct&gt;     &lt;dbl&gt;\n 1 1         0.5  \n 2 2         0.492\n 3 3         0.501\n 4 4         0.522\n 5 5         0.502\n 6 6         0.504\n 7 7         0.510\n 8 8         0.514\n 9 9         0.490\n10 10        0.489\n# ℹ 490 more rows"
   },
   {
     "objectID": "4-generalization/06-wrong-by-design/slides.html#section-6",
