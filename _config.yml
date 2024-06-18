@@ -28,7 +28,7 @@ schedule:
         date: 6/20/24
         items:
           - type: Notes
-            href: 1-questions-and-data/01-summarizing-categorical-data/notes.qmd
+            href: 2-summarizing-data/01-summarizing-categorical-data/notes.qmd
             render: true
 
       - topic: "Summarizing Numerical Data"
@@ -36,7 +36,7 @@ schedule:
         date: 6/20/24
         items:
           - type: Notes
-            href: 1-questions-and-data/02-summarizing-numerical-data/notes.qmd
+            href: 2-summarizing-data/02-summarizing-numerical-data/notes.qmd
             render: true
             
     resources:
