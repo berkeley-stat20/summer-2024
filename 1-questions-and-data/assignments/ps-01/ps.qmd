@@ -1,5 +1,5 @@
 ---
-title: "Problem Set 1"
+title: "Stat 20: Problem Set 1"
 format:
   pdf:
     fontsize: 10pt
@@ -280,6 +280,150 @@ c. a-3, b-2, c-1
 d. a-1, b-3, c-2
 e. a-2, b-3, c-1 
 f. a-3, b-1, c-2
+
+
+## Question 21
+
+As discussed in the lecture notes, this is not a data frame:
+
+   ![](images/non-tidy-contingency-table.png){fig-alt="Contingency table showing the counts of handedness by sex at birth." width="260" fig-align="center"}
+
+It does, however, depict a data set, just in a different format. Sketch the data that is summarized here but structured as a data frame. Think through: what was the unit of observation? What were the variables? How many rows are there? How many columns? (you need not fill out the entire data frame; just a schematic)
+
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+
+## Questions 22-23
+
+RMS Titanic was a British passenger liner with 2,224 people aboard (including both passengers and crew). The Titanic sank in the North Atlantic Ocean on 15 April 1912 after striking an iceberg on her way to New York City. It was the deadliest sinking of a single ship at the time with almost 70% of the 2,224 passengers and crew dying.
+
+
+Below are the first five rows of 2,224 for a data frame called `titanic`.
+
+\includegraphics{images/df.png}
+
+### Question 22
+
+What is the unit of observation for `titanic`?
+
+\   
+
+### Question 23
+
+The three graphs below were generated using `titanic`.
+
+\begin{figure}[h]
+\includegraphics{images/graphs.png}
+\centering
+\end{figure}
+
+Which graph is **best** used to answer the following questions? *Write the letter associated with the graph to the right of each question*
+
+*How many first class passengers survived the Titanic's sinking?* _______
+
+*Is there an association between a passenger's class and their survival?* _______
+
+*What is the mode of the `Class` variable?* _______
+
+
+## Questions 24-25
+
+Open up RStudio and write down the code you used to complete each of the following questions in the space below. *Make sure you load in any libraries where necessary!*
+
+
+### Question 24
+
+Consider the vector `q6` which was made as follows:
+
+```{r}
+q6 <- c(1,2,3,4,5,6,NA)
+```
+
+Load `q6` as is into your session. Then, write R code to calculate the mean of `q6` so that the result is 3.5 (this is the mean of the numbers 1 through 6). *Hint: how can you learn more about the function `mean()`?*
+
+\   
+\   
+
+### Question 25
+
+The `promote` dataset can be found in the `stat20data` package. Using this data, write `ggplot2` code to make a stacked, normalized bar chart having identified gender on the x axis, with the bars being filled in by promotion decision. Write the code you used below. Then, make a claim about the association between the two variables (we will revisit this study in more detail later in the course)!
+
+\
+\
+\
+
+## Question 26
+
+Below is a smaller version of the data from a future lab called `flights_mini`. It contains all flights out of Oakland (OAK) from December 2020. This data frame is used to create the plot that follows. `distance` refers to the distance a given plane travels on its flight, measured in miles. `carrier` refers to the carrier code for a specific airline.
+
+```{r}
+#| echo: false
+library(tidyverse)
+library(stat20data)
+data(flights)
+
+flights_mini <- flights %>%
+  filter(month == 12,
+         origin == "OAK") %>%
+  select(month, day, carrier, origin, distance, air_time)
+```
+
+
+```{r}
+#| echo: false
+#| fig-height: 2.5
+#| fig-width: 3.8
+#| fig-align: center
+flights %>%
+  filter(month == 12,
+         origin == "OAK") %>%
+  ggplot(aes(x = carrier, y = distance)) +
+  geom_boxplot() +
+  theme_gray(base_size = 9)
+```
+
+ 
+Which of the following interpretations of the plot above are true? *Circle all that apply*.
+
+A. The carrier with the most heavily skewed distance distribution is HA.    
+B. The median distance of the flights operated by DL, G4, and OO are roughly equivalent.   
+C. The minimum distance traveled in this data set is roughly 200.   
+D. There is no clear association between the carrier and the distance of their flights.    
+E. The carrier with the greatest variability in distance, as measured by the IQR, is AS.    
+
+## Questions 27-28
+
+The `mpg` dataset is available as a part of the `tidyverse` library. It contains information on fuel consumption for 38 models of car between 1999 and 2008. *Datasets can have help files, too!* You do not need to include code for loading in libraries or accessing help files in your answers to the below questions. 
+
+## Question 27
+
+Write `dplyr` code to calculate the median and IQR city miles per gallon for the vehicles in the dataset and copy it below. The result of your code should be one data structure. 
+
+\
+\
+\
+\
+\
+\
+
+## Question 28
+
+Write `dplyr` code to calculate the mean and standard deviation city miles per gallon for the vehicles in the dataset *for each class of car* and copy it below. The result of your code should be one data structure. 
+
+\
+\
+\
+\
+\
+\
 
 
 

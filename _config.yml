@@ -44,6 +44,7 @@ schedule:
       - '<a href="https://gradescope.com"">RQ: Summarizing Categorical Data (due 6/20 at 12pm)</a>'
       - '<a href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/assignments/ps-01/ps.pdf"">PS 1 (due 6/20 at 11:59pm)</a>'
       - '<a href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/assignments/lab-getting-started/lab.html"">Lab: Getting Started (due 6/24 at 12pm)</a>'
+      - '<a href="https://markdownlivepreview.com"">Markdown Live Preview (helpful for your lab!)</a>' 
             
   - week: 2
     days:
