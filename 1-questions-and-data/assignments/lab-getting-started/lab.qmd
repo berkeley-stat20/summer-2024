@@ -31,7 +31,16 @@ In an R chunk, perform any calculation that results in the number 20. Make sure 
 
 ### part b
 
-Create the data frame of **Problem Set 1, Question 3** using R code and save it into the object `my_classmates`. 
+In the first class, you recorded some information about a few of the students sitting next to you:
+
+-   Name
+-   Major
+-   Contact Info
+-   Hometown
+-   Fun Fact
+
+
+Create a data frame containing this information using R code and save it into the object `my_classmates`. *Remember that a data frame is made up of vectors!*
 
 ## Question 3
 
