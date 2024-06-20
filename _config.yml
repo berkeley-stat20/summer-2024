@@ -34,7 +34,7 @@ schedule:
             href: 2-summarizing-data/02-summarizing-numerical-data/notes.qmd
             render: true
           - type: Slides
-            href: 2-summarizing-data/08-summarizing-data/notes.qmd
+            href: 2-summarizing-data/08-summarizing-data/slides.qmd
             render: true
 
             
