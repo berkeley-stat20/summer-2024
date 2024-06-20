@@ -20,19 +20,18 @@
         - type: Slides
           href: 1-questions-and-data/02-taxonomy-of-data/slides.qmd
           render: true
-    - topic: Summarizing Categorical Data
+    - topic: Summarizing Data
       display-date: Jun 20
       date: 6/20/24
       items:
-        - type: Notes
+        - type: Notes (Categorical Data)
           href: 2-summarizing-data/01-summarizing-categorical-data/notes.qmd
           render: true
-    - topic: Summarizing Numerical Data
-      display-date: Jun 20
-      date: 6/20/24
-      items:
-        - type: Notes
+        - type: Notes (Numerical Data)
           href: 2-summarizing-data/02-summarizing-numerical-data/notes.qmd
+          render: true
+        - type: Slides
+          href: 2-summarizing-data/08-summarizing-data/notes.qmd
           render: true
   resources:
     - >-

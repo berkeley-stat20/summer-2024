@@ -4877,5 +4877,201 @@
     "title": "Lab 0: Getting Started with R, RStudio and Quarto",
     "section": "Question 3",
     "text": "Question 3\nSurvey respondents are often asked questions containing answer choices belonging to what is called Likert Scale.\n\npart a\nVisit the Wikipedia page for the Likert Scale and create a vector containing the options within a typical, five-level Likert Scale.\n\n\npart b\nThen, use the factor() function to sort the levels of the vector you made in part a from decreasing to increasing."
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#agenda-1",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#agenda-1",
+    "title": "Numerical and Visual Summaries",
+    "section": "Agenda",
+    "text": "Agenda\n\nAnnouncements\nConceptual Review: bringing three reading notes together (mini-lecture/chart)\nCoding Review\nBreak\nConcept Questions\nWork time on assignments"
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#announcements-1",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#announcements-1",
+    "title": "Numerical and Visual Summaries",
+    "section": "Announcements",
+    "text": "Announcements\n\nQuiz 1 on Monday. Covers Understanding the World with Data through Summarizing Numerical Data.\n\n\n\nProblem Set 1 can now be turned in through Friday night for full credit.\n\n\n\n\nLab: Getting Started is due Monday, June 24 at 12pm. Make sure you read the Lab Submission Guidelines posted to Ed."
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#images-as-data",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#images-as-data",
+    "title": "Numerical and Visual Summaries",
+    "section": "Images as data",
+    "text": "Images as data"
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#images-as-data-1",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#images-as-data-1",
+    "title": "Numerical and Visual Summaries",
+    "section": "Images as data",
+    "text": "Images as data\n\n\n\nImages are composed of pixels (this image is 1012 by 1520)\nThe color in each pixel is in RGB\n\nEach band takes a value from 0-255\nThis image is data with 1020 x 1520 x 3 values."
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#grayscale",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#grayscale",
+    "title": "Numerical and Visual Summaries",
+    "section": "Grayscale",
+    "text": "Grayscale\n\n\n\nGrayscale images have only one band\n0 is black, 255 is white\nThis image is data with 1020 x 1520 x 1 values.\n\n\n\nTo simplify, assume our photos are 8 x 8 grayscale images."
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#images-in-a-data-frame",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#images-in-a-data-frame",
+    "title": "Numerical and Visual Summaries",
+    "section": "Images in a Data Frame",
+    "text": "Images in a Data Frame\n\n\n\n\n\n\n\n\n\n\nIf you were to put the data from these (8 x 8 grayscale) images into a data frame, what would the dimensions of that data frame be in rows x columns? Answer at pollev.com/jeremysanchez.\n\n\n\n\n−+\n03:00\n\n\n\n\nAfter this is done, you can ask what type each of the variables are in the data frame."
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#concept-question-2a",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#concept-question-2a",
+    "title": "Numerical and Visual Summaries",
+    "section": "Concept Question 2a",
+    "text": "Concept Question 2a\nThe table below displays data from a survey on a class of students.\n\n\nWhat proportion of the entire class was in the marching band?\n\n\n\n\n−+\n01:30\n\n\n\n\nAn example of a marginal proportion."
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#concept-question-2b",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#concept-question-2b",
+    "title": "Numerical and Visual Summaries",
+    "section": "Concept Question 2b",
+    "text": "Concept Question 2b\n\n\nWhat were the dimensions of the raw data from which this table was constructed? (rows x cols)\n\n\n\n\n−+\n01:30\n\n\n\n\nAn example of a marginal proportion."
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#concept-question-2c",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#concept-question-2c",
+    "title": "Numerical and Visual Summaries",
+    "section": "Concept Question 2c",
+    "text": "Concept Question 2c\n\n\nHow would you characterize the association between these two variables?\n\n\n\n\n−+\n02:00\n\n\n\n\nDraw the stacked normalized bar chart to say that there is no association."
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#concept-question-2d",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#concept-question-2d",
+    "title": "Numerical and Visual Summaries",
+    "section": "Concept Question 2d",
+    "text": "Concept Question 2d\nBelow is a two-variable bar chart describing affiliation and college degree status of 500 survey participants."
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#concept-question-2d-cont.",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#concept-question-2d-cont.",
+    "title": "Numerical and Visual Summaries",
+    "section": "Concept Question 2d (cont.)",
+    "text": "Concept Question 2d (cont.)\nBased off of the graphic on the previous slide, which group is largest?\n\n\nDemocrats with no college degree\nDemocrats with a college degree\nRepublicans with a college degree\nRepublicans without a college degree\n\n\n\n\n−+\n02:00\n\n\n\n\nThe General Social Survey is a widely used sources of data on the attitudes, behaviors, and attributes of Americans. This plot shows the relationship between the political affiliation and college degree status of 500 participants.\nCannot tell which group is the largest since this plot as been normalized so that the proportions within each party sum to 1. The unnormalized plot on the following slide is one that allows us to answer this questions."
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#concept-question-2d-cont.-1",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#concept-question-2d-cont.-1",
+    "title": "Numerical and Visual Summaries",
+    "section": "Concept Question 2d (cont.)",
+    "text": "Concept Question 2d (cont.)\n\nThe regular stacked bar chart of counts preserves original counts and thus is good at comparing joint proportions.\n\n\n\nThe stacked, normalized bar chart shows conditional proportions and thus is good for showing associations between variables."
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#concept-question-2d-cont.-2",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#concept-question-2d-cont.-2",
+    "title": "Numerical and Visual Summaries",
+    "section": "Concept Question 2d (cont.)",
+    "text": "Concept Question 2d (cont.)\n\nThe regular stacked bar chart of counts preserves original counts and thus is good at comparing joint proportions.\n\n\n\nThe stacked, normalized bar chart shows conditional proportions and thus is good for showing associations between variables."
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#mean-median-mode-which-is-best",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#mean-median-mode-which-is-best",
+    "title": "Numerical and Visual Summaries",
+    "section": "Mean, median, mode: which is best?",
+    "text": "Mean, median, mode: which is best?\n\n\nIt depends on your desiderata: the nature of your data and what you seek to capture in your summary.\n\n\n\n\nGet out a piece of paper. You’ll be watching a 3 minute video that discusses characteristics of a typical human. Note which numerical summaries are used and what for."
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#general-advice",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#general-advice",
+    "title": "Numerical and Visual Summaries",
+    "section": "General Advice",
+    "text": "General Advice\n\n\nMeans are often a good default for symmetric data.\n\n\n\n\nMeans are sensitive to very large and small values, so can be deceptive on skewed data. &gt; Use a median\n\n\n\n\nModes are often the only option for categorical data.\n\n\n\nBut there are other notions of typical, depending on the context."
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#wrapup---summarizing-distributions-of-data",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#wrapup---summarizing-distributions-of-data",
+    "title": "Numerical and Visual Summaries",
+    "section": "Wrapup - Summarizing Distributions of Data",
+    "text": "Wrapup - Summarizing Distributions of Data\n\nYou can construct a statistical graphic to show the shape, which you can describe in terms of modality and skew\n\n\n\nyou can calculate a measure of center to convey a sense of a typical observation\n\n\n\n\nand you can calculate a measure of spread to capture how much variability there is in the data"
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#loading-libraries",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#loading-libraries",
+    "title": "Numerical and Visual Summaries",
+    "section": "Loading Libraries",
+    "text": "Loading Libraries\n\nR has a vast ecosystem of libraries that add new functions. Any installed libraries can be loaded with the library() function.\n\n\n\n\n\n\n\n\nLoading libraries (cont.)\nOur two main libraries:\n\ntidyverse\n\nContains the dplyr package (data manipulation) and the ggplot2 (data visualization) package.\n\nstat20data\n\nContains some cool datasets, many of which we’ll be using throughout the semester.\n\n\n\n\nLoad them with:\n\n\nlibrary(tidyverse)\nlibrary(stat20data)\n\n\n\n\n::::"
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#loading-libraries-cont.",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#loading-libraries-cont.",
+    "title": "Numerical and Visual Summaries",
+    "section": "Loading libraries (cont.)",
+    "text": "Loading libraries (cont.)\nOur two main libraries:\n\ntidyverse\n\nContains the dplyr package (data manipulation) and the ggplot2 (data visualization) package.\n\nstat20data\n\nContains some cool datasets, many of which we’ll be using throughout the semester.\n\n\n\n\nLoad them with:\n\n\nlibrary(tidyverse)\nlibrary(stat20data)"
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#loading-data-from-a-librarypackage",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#loading-data-from-a-librarypackage",
+    "title": "Numerical and Visual Summaries",
+    "section": "Loading data from a library/package",
+    "text": "Loading data from a library/package\nMost data you will not be creating by hand. You will either be\n\nLoading it in from a separate file.\nLoading it from within an R library/package (most of our are in stat20data)\n\n\nTo load data from a library/package,\n\nload that package with library()\nYou can then print the data to the console by typing its name and pressing enter or see it in the viewer with View(&lt;df name&gt;).\n\n\n\n\nlibrary(stat20data)\npenguins"
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#functions-from-the-tidyverse",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#functions-from-the-tidyverse",
+    "title": "Numerical and Visual Summaries",
+    "section": "3 functions from the tidyverse",
+    "text": "3 functions from the tidyverse\nThe tidyverse package contains several functions used to manipulate data frames. Here are a few, for now:\n\n\nselect() : subset (pick out) certain columns\n\n\n\n\narrange() : sort rows\n\n\n\n\nmutate() : create a new column from existing column(s)"
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#selecting-columns",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#selecting-columns",
+    "title": "Numerical and Visual Summaries",
+    "section": "Selecting columns",
+    "text": "Selecting columns\n\n\nselect(penguins, species, island)\n\n\n\n\n\n# A tibble: 333 × 2\n   species island   \n   &lt;fct&gt;   &lt;fct&gt;    \n 1 Adelie  Torgersen\n 2 Adelie  Torgersen\n 3 Adelie  Torgersen\n 4 Adelie  Torgersen\n 5 Adelie  Torgersen\n 6 Adelie  Torgersen\n 7 Adelie  Torgersen\n 8 Adelie  Torgersen\n 9 Adelie  Torgersen\n10 Adelie  Torgersen\n# ℹ 323 more rows"
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#arranging-the-rows-of-a-data-frame",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#arranging-the-rows-of-a-data-frame",
+    "title": "Numerical and Visual Summaries",
+    "section": "Arranging the rows of a data frame",
+    "text": "Arranging the rows of a data frame\n\n\narrange(penguins, bill_length_mm)\n\n\n\n\n\n# A tibble: 333 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Dream               32.1          15.5               188        3050\n 2 Adelie  Dream               33.1          16.1               178        2900\n 3 Adelie  Torgersen           33.5          19                 190        3600\n 4 Adelie  Dream               34            17.1               185        3400\n 5 Adelie  Torgersen           34.4          18.4               184        3325\n 6 Adelie  Biscoe              34.5          18.1               187        2900\n 7 Adelie  Torgersen           34.6          21.1               198        4400\n 8 Adelie  Torgersen           34.6          17.2               189        3200\n 9 Adelie  Biscoe              35            17.9               190        3450\n10 Adelie  Biscoe              35            17.9               192        3725\n# ℹ 323 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\n\n\n\nYou can sort in descending order by wrapping the variable name in desc()."
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#mutating-a-new-column",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#mutating-a-new-column",
+    "title": "Numerical and Visual Summaries",
+    "section": "Mutating a new column",
+    "text": "Mutating a new column\n\n\nmutate(penguins, bill_index = bill_depth_mm + bill_length_mm)\n\n\n\n\n\n# A tibble: 333 × 9\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           36.7          19.3               193        3450\n 5 Adelie  Torgersen           39.3          20.6               190        3650\n 6 Adelie  Torgersen           38.9          17.8               181        3625\n 7 Adelie  Torgersen           39.2          19.6               195        4675\n 8 Adelie  Torgersen           41.1          17.6               182        3200\n 9 Adelie  Torgersen           38.6          21.2               191        3800\n10 Adelie  Torgersen           34.6          21.1               198        4400\n# ℹ 323 more rows\n# ℹ 3 more variables: sex &lt;fct&gt;, year &lt;int&gt;, bill_index &lt;dbl&gt;\n\n\n\n\n\nRemember that you can nest functions."
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#nesting-functions",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#nesting-functions",
+    "title": "Numerical and Visual Summaries",
+    "section": "Nesting functions",
+    "text": "Nesting functions\n\n\nselect(mutate(penguins, bill_index = bill_depth_mm + bill_length_mm), bill_index)\n\n\n\n\n\n# A tibble: 333 × 1\n   bill_index\n        &lt;dbl&gt;\n 1       57.8\n 2       56.9\n 3       58.3\n 4       56  \n 5       59.9\n 6       56.7\n 7       58.8\n 8       58.7\n 9       59.8\n10       55.7\n# ℹ 323 more rows"
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#your-turn",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#your-turn",
+    "title": "Numerical and Visual Summaries",
+    "section": "Your turn",
+    "text": "Your turn\nThere is a built-in data set to R called mtcars that has information on cars that appeared in Motor Trend magazine. It’s already loaded and can be accessed as mtcars.\n\n\nCreate a slimmer data frame that only contains the columns hp and wt and save it to mtcars_slim.\nCreate a new column called power_to_weight that is the ratio of hp to wt. Save the three-column data frame back over mtcars_slim.\nSort the data frame in descending order by the power-to-weight ratio.\n\n\nHint: look up help files!\n\n\n\n−+\n08:00"
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#concept-question-3",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#concept-question-3",
+    "title": "Numerical and Visual Summaries",
+    "section": "Concept Question 3",
+    "text": "Concept Question 3\nBelow is a two-variable bar chart describing affiliation and college degree status of 500 survey participants."
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#concept-question-3-cont.",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#concept-question-3-cont.",
+    "title": "Numerical and Visual Summaries",
+    "section": "Concept Question 3 (cont.)",
+    "text": "Concept Question 3 (cont.)\nBased off of the graphic on the previous slide, which group is largest?\n\n\nDemocrats with no college degree\nDemocrats with a college degree\nRepublicans with a college degree\nRepublicans without a college degree\n\n\n\n\n−+\n02:00\n\n\n\n\nThe General Social Survey is a widely used sources of data on the attitudes, behaviors, and attributes of Americans. This plot shows the relationship between the political affiliation and college degree status of 500 participants.\nCannot tell which group is the largest since this plot as been normalized so that the proportions within each party sum to 1. The unnormalized plot on the following slide is one that allows us to answer this questions."
+  },
+  {
+    "objectID": "2-summarizing-data/08-summarizing-data/slides.html#concept-question-3-cont.-1",
+    "href": "2-summarizing-data/08-summarizing-data/slides.html#concept-question-3-cont.-1",
+    "title": "Numerical and Visual Summaries",
+    "section": "Concept Question 3 (cont.)",
+    "text": "Concept Question 3 (cont.)\n\nThe regular stacked bar chart of counts preserves original counts and thus is good at comparing joint proportions.\n\n\n\nThe stacked, normalized bar chart shows conditional proportions and thus is good for showing associations between variables."
   }
 ]
