@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Stat 20 - A Grammar of Graphics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WP7F4QKDC8"></script><script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-WP7F4QKDC8', { 'anonymize_ip': true});
+</script>
+<meta property="og:title" content="Stat 20 - A Grammar of Graphics">
+<meta property="og:description" content="A unified framework for constructing statistical graphics.">
+<meta property="og:image" content="https://stat20.berkeley.edu/summer-2024/2-summarizing-data/03-a-grammar-of-graphics/images/penguin-plot.png">
+<meta property="og:site_name" content="Stat 20">
+<meta property="og:image:height" content="826">
+<meta property="og:image:width" content="1144">
+<meta name="twitter:title" content="Stat 20 - A Grammar of Graphics">
+<meta name="twitter:description" content="A unified framework for constructing statistical graphics.">
+<meta name="twitter:image" content="https://stat20.berkeley.edu/summer-2024/2-summarizing-data/03-a-grammar-of-graphics/images/penguin-plot.png">
+<meta name="twitter:image-height" content="826">
+<meta name="twitter:image-width" content="1144">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-sm " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../assets/stat20-hex-small.png" alt="Stat 20 logo" class="navbar-logo"></a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../../syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../office-hours.html"> 
+<span class="menu-text">Office Hours</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../notes.html"> 
+<span class="menu-text">Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../assignments.html"> 
+<span class="menu-text">Assignments</span></a>
+  </li>  
+</ul>
+</div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools tools-wide">
+    <a href="https://edstem.org/us/courses/51198" title="" class="quarto-navigation-tool px-1" aria-label="Ed Discussion Forum"><i class="bi bi-chat-fill"></i></a>
+    <a href="https://www.gradescope.com/courses/693050" title="" class="quarto-navigation-tool px-1" aria-label="Gradescope"><i class="bi bi-bar-chart-fill"></i></a>
+    <a href="https://stat20.datahub.berkeley.edu/" title="" class="quarto-navigation-tool px-1" aria-label="RStudio"><i class="bi bi-r-circle-fill"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li>
+<a href="#the-grammar-of-graphics" id="toc-the-grammar-of-graphics" class="nav-link active" data-scroll-target="#the-grammar-of-graphics">The Grammar of Graphics</a>
+  <ul class="collapse">
+<li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#aesthetics" id="toc-aesthetics" class="nav-link" data-scroll-target="#aesthetics">Aesthetics</a></li>
+  <li><a href="#geometries" id="toc-geometries" class="nav-link" data-scroll-target="#geometries">Geometries</a></li>
+  <li><a href="#grammar-of-graphics-summary" id="toc-grammar-of-graphics-summary" class="nav-link" data-scroll-target="#grammar-of-graphics-summary">Grammar of Graphics Summary</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#communicating-with-graphics" id="toc-communicating-with-graphics" class="nav-link" data-scroll-target="#communicating-with-graphics">Communicating with Graphics</a>
+  <ul class="collapse">
+<li><a href="#mapping-vs-setting" id="toc-mapping-vs-setting" class="nav-link" data-scroll-target="#mapping-vs-setting">Mapping vs Setting</a></li>
+  <li><a href="#adding-labels-for-clarity" id="toc-adding-labels-for-clarity" class="nav-link" data-scroll-target="#adding-labels-for-clarity">Adding Labels for Clarity</a></li>
+  <li><a href="#the-importance-of-scale" id="toc-the-importance-of-scale" class="nav-link" data-scroll-target="#the-importance-of-scale">The Importance of Scale</a></li>
+  <li><a href="#choosing-a-theme" id="toc-choosing-a-theme" class="nav-link" data-scroll-target="#choosing-a-theme">Choosing a Theme</a></li>
+  <li><a href="#annotations" id="toc-annotations" class="nav-link" data-scroll-target="#annotations">Annotations</a></li>
+  <li><a href="#communication-summary" id="toc-communication-summary" class="nav-link" data-scroll-target="#communication-summary">Communication Summary</a></li>
+  </ul>
+</li>
+  </ul><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="notes.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">A Grammar of Graphics</h1>
+<p class="subtitle lead">A unified framework for constructing statistical graphics.</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><p><span class="dropcap">I</span>n the last set of notes, we saw that there is a side to the discipline of Statistics that looks like engineering. Summary statistics - medians, standard deviations, etc. - are carefully crafted tools that capture different characteristics of a data set for use in very specific situations. There is another practice in statistics that looks more like a science; that is, a field that seeks to take many different phenomena and explain them using a systematic overarching theory. That practice is data visualization.</p>
+<p>At this point in the course, you’ve seen several several examples of data visualizations.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/plot-collage.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>The diversity of shapes and structures used in these plots suggest that each one is a thing-unto-itself, specially devised to provide one particular style of visualization. But what elements do they share?</p>
+<p>Focus on the nature of the data being used. Exactly half of the plots above are illustrating the distribution of a single variable; the other half illustrate the relation between two variables. Can you tell which is which?</p>
+<p>Consider the manner in which variability in the data is being conveyed used different visual cues. How many of the plots above utilize an x-axis? A y-axis? Color?</p>
+<p>Finally, how are the observations finding their way onto the plot? Three of the plots above share the same data variable, utilize the same visual cues, and differ only in the shape used to encode the observations.</p>
+<p>By asking these questions, we begin to find recurring structures in a wide range of plot types. These recurring structures have been compiled into a widely-used framework called the Grammar of Graphics.</p>
+<section id="the-grammar-of-graphics" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="the-grammar-of-graphics">The Grammar of Graphics</h2>
+<p>In 1999, a statistician named Leland Wilkinson published the first edition of what has been the most influential work in data visualization, <em>The Grammar of Graphics</em><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. The title is fitting. In the same way that a grammar defines the regular structures and composition of a language, his book outlines a framework to structure statistical graphics.</p>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><img src="images/grammar-of-graphics.png" class="img-fluid"></div></div>
+<p>Nearly every current software tool used to build plots has been informed by this book<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Its influence can be found in Tableau, Plotly, and the Python libraries bokeh, altair, seaborn, and plotnine. The most complete implementation of the grammar is found in an R package called ggplot2 by Hadley Wickham<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
+<p>In Wickham’s adaptation of the grammar of graphics, a plot can be decomposed into three primary elements:</p>
+<ol type="1">
+<li>the <strong>data</strong>,</li>
+<li>the <strong>aesthetic mapping</strong> of the variables in the data to visual cues, and</li>
+<li>the <strong>geometry</strong> used to encode the observations on the plot.</li>
+</ol>
+<p>Let’s go through each of these components one-by-one to understand the role that they play in a plot like this, which we’ll refer to as the “penguin plot”.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, </span>
+<span>       mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_length_mm</span>,</span>
+<span>                     y <span class="op">=</span> <span class="va">bill_depth_mm</span>,</span>
+<span>                     color <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="notes_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="499"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The above plot is an example new type of plot which involves at least <em>two</em> numerical variables: a <strong>scatter plot</strong>. The points may also be colored by a third variable, generally a categorical one.</p>
+<section id="data" class="level3"><h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>What variables are needed to construct the penguin plot above?</p>
+<p>We see <code>bill_length_mm</code> and <code>bill_depth_mm</code>; those are labeled clearly on the x and y axes. We must also know the <code>species</code> of each of these penguins in order to know which color to label each point. In other words, there are three columns of a data frame that we need to have on hand.</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">bill_length_mm</span>,</span>
+<span>       <span class="va">bill_depth_mm</span>, </span>
+<span>       <span class="va">species</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 333 × 3
+   bill_length_mm bill_depth_mm species
+            &lt;dbl&gt;         &lt;dbl&gt; &lt;fct&gt;  
+ 1           39.1          18.7 Adelie 
+ 2           39.5          17.4 Adelie 
+ 3           40.3          18   Adelie 
+ 4           36.7          19.3 Adelie 
+ 5           39.3          20.6 Adelie 
+ 6           38.9          17.8 Adelie 
+ 7           39.2          19.6 Adelie 
+ 8           41.1          17.6 Adelie 
+ 9           38.6          21.2 Adelie 
+10           34.6          21.1 Adelie 
+# ℹ 323 more rows</code></pre>
+</div>
+</div>
+<p>Through working on your assignments, you may have also seen the following plot, which is a variant of the “penguin plot”:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="notes_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="499"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Notice that the Adelie penguins are missing. Based on your last set of notes, they must have been <em>filtered out</em>! What this means is that to make this plot, we first had to modify the dataset and then use the modified version in our plot. We can do these steps in one piece of code by using the <em>pipe</em>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">!=</span> <span class="st">"Adelie"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_length_mm</span>,</span>
+<span>                     y <span class="op">=</span> <span class="va">bill_depth_mm</span>,</span>
+<span>                     color <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Connecting pipeline pieces together is still done with <code>|&gt;</code>. Once we reach <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>, we switch to <code>+</code>, as this is our method of adding layers to our plot.</p>
+<p>In this course we’ve talked plenty about the structure of a data frame, so this part of the grammar of graphics is straight-forward. Be sure that every variable that you wish to include in your plot is present in the same data frame. Make sure also that if you want to focus on specific pieces of your data, that you zero in on these before making your visualization.</p>
+<!-- But maintain some skepticism about the data that you intend to use. In the data frame above, we see that some of the values are listed as `NA`, meaning that they're missing ("NA" stands for "not applicable" or "no answer"). Why are they missing? How will this affect your plot? Real data is often riddled with errors, typos, or other unexpected features, so be sure to check your data[^datacheck]. -->
+<p>More fundamentally, be sure the data you’re using is well-suited to the message you aim to convey with your plot. Many plots go wrong right here at the outset, so be sure you’re on firm footing.</p>
+</section><section id="aesthetics" class="level3"><h3 class="anchored" data-anchor-id="aesthetics">Aesthetics</h3>
+<p>The most impactful decision that you’ll make when constructing a plot using the grammar of graphics is deciding how to encode variables in a data frame into visual variation in your plot.</p>
+<p>The penguin plot relies upon three forms of visual variation. The first is the location along the x-axis. Penguins with longer bills are placed on the right side of the plot and those with shorter bills are placed on the left. Variation in bill depth is captured by variation in the location along the y-axis, which is the second form. The third form is color: each of the three species is designated by one of three colors.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/mapping.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>We can summarize this encoding, or “aesthetic mapping”, as:</p>
+<ul>
+<li>
+<code>bill_length_mm</code> is mapped to the x-axis</li>
+<li>
+<code>bill_depth_mm</code> is mapped to the y-axis</li>
+<li>
+<code>species</code> is mapped to color</li>
+</ul>
+<p>These are three of many different techniques for visually encoding variability. Here is a list of the aesthetic attributes that are most commonly used:</p>
+<ul>
+<li>
+<code>x</code>: location along the x-axis</li>
+<li>
+<code>y</code>: location along the y-axis</li>
+<li>
+<code>color</code>: hue of the mark that represents the observation</li>
+<li>
+<code>alpha</code>: the level of transparency of the color</li>
+<li>
+<code>size</code>: the size of the mark representing the observation</li>
+<li>
+<code>shape</code>: the shape of the mark representing the observation</li>
+<li>
+<code>fill</code>: the color of the inside of the representation of an observation</li>
+</ul></section><section id="geometries" class="level3"><h3 class="anchored" data-anchor-id="geometries">Geometries</h3>
+<p>With the data set in place and the aesthetic mappings selected, the final choice in making our plot is to decide how to graphically express the observations themselves. For the penguin plot above, each observation in represented by a point, so it is said to use a “point” geometry. That is just one of many options. Other options are listed below.</p>
+<ul>
+<li><code>point</code></li>
+<li><code>bar</code></li>
+<li><code>line</code></li>
+<li><code>histogram</code></li>
+<li><code>density</code></li>
+<li><code>violin</code></li>
+<li><code>dotplot</code></li>
+<li><code>boxplot</code></li>
+</ul>
+<p>When we speak about whether a plot is a scatter plot, a bar chart, a histogram, etc, we are discussing the geometry of a plot. The impact of this choice can be seen in the following two plots.</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">penguins</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_length_mm</span>,</span>
+<span>                           y <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">geom_violin</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">penguins</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_length_mm</span>,</span>
+<span>                           y <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">p1</span> <span class="op">+</span> <span class="va">p2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="notes_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Both plots share the same data (<code>penguins</code>) and the same aesthetic mappings(<code>bill_length</code> to the x-axis and <code>species</code> to the y-axis). Where they differ is the geometry: the plot on the left uses the violin while the one on the right uses the boxplot.</p>
+<!--
+### Example: Arbuthnot
+
+In the Arbuthnot Lab you created your very first plot, which looked like this.
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+library(stat20data)
+arbuthnot <- mutate(arbuthnot, total = boys + girls)
+ggplot(arbuthnot, aes(x = year, y = total)) +
+    geom_line()
+```
+
+::: {.cell-output-display}
+![](notes_files/figure-html/unnamed-chunk-7-1.png){fig-align='center' width=384}
+:::
+:::
+
+
+We can now decompose this graphic using the grammar of graphics.
+
+- *data*: the arbuthnot data frame
+- *aesthetic mappings*: year is mapped to the x-axis, total is mapped to the y-axis
+- *geometry*: the observations are expressed as a line
+
+This process makes clear what decisions were made in constructing the plot and suggests ways in which we might consider changing the graphic. What if we changed the geometry so that the observations are expressed as points?
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+ggplot(arbuthnot, aes(x = year, y = total)) +
+    geom_point()
+```
+
+::: {.cell-output-display}
+![](notes_files/figure-html/unnamed-chunk-8-1.png){fig-align='center' width=384}
+:::
+:::
+
+
+Is this a better graphic? That depends on the message you aim to convey. The line geometry emphasizes the general trend over time. The point geometry makes clearer the total births in each particular year.
+
+What if you wanted to convey both of those messages? If two geometries are compatible, they can be combined.
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+ggplot(arbuthnot, aes(x = year, y = total)) +
+    geom_point() +
+    geom_line()
+```
+
+::: {.cell-output-display}
+![](notes_files/figure-html/unnamed-chunk-9-1.png){fig-align='center' width=384}
+:::
+:::
+
+
+Is this a better graphic? Again, that depends. It makes it possible to see both the trend over time and the individual observations. But this plot is more complicated and therefore articulates each of those individual messages less clearly. Sometimes simplicity and a single message is best.
+
+Here's another example of a plot that combines two geometries:
+
+![](images/income-dist.png){fig-align=center width="400px"}
+
+Here, a density geometry is overlaid on top of a histogram geometry. It is unclear whether this was a good design decision. What do you think? What is the advantage of a stair-step histogram versus the smooth line of a density curve?
+
+## ggplot2
+
+The Grammar of Graphics is an abstract framework of data visualization and so far we've kept things abstract. But to construct your own plots you'll need to be able to implement them in software. We are fortunate to have a translation of the grammar into readible, flexible, and powerful code: the ggplot2 package in R.
+
+The basic template for describing a plot in code using ggplot2 is:
+
+:::{style="font-size: 1.5em; text-align: center"}
+```
+ggplot(DATAFRAME, aes(ATTR = VAR)) +
+    geom_GEOMETRY()
+```
+:::
+
+Where `DATAFRAME` is the name of your data frame, `ATTR` is the aesthetic attribute that you'll be using, `VAR` is a variable in your data frame, and `GEOMETRY` is the name of a geometry.
+
+Let's code up the penguin plot bit by bit.
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code  code-fold="false"}
+ggplot(penguins)
+```
+
+::: {.cell-output-display}
+![](notes_files/figure-html/unnamed-chunk-10-1.png){fig-align='center' width=499.2}
+:::
+:::
+
+
+The `ggplot()` function takes as its first argument a data frame. By itself, there's not much to look at; it just creates our blank canvas.
+
+Let's now indicate how we want to map our aesthetic attributes to variables in that data frame by including them inside the `aes()` function as the second argument to `ggplot()`.
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code  code-fold="false"}
+ggplot(penguins, aes(x = bill_length_mm,
+                     y = bill_depth_mm))
+```
+
+::: {.cell-output-display}
+![](notes_files/figure-html/unnamed-chunk-11-1.png){fig-align='center' width=499.2}
+:::
+:::
+
+
+Now we're getting somewhere. Our axes are now set up with labels and values that are determined by looking into the data frame and checking the range of each variable. Note that we can pass more than one aesthetic mapping inside `aes()`, we just need to separate them with a comma.
+
+All that is left is to actually put the observations on the plot by declaring what geometry we want. Let's express each penguin as a point by using `+` to add on a new layer called `geom_point()`.
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code  code-fold="false"}
+ggplot(penguins, aes(x = bill_length_mm,
+                     y = bill_depth_mm)) +
+    geom_point()
+```
+
+::: {.cell-output-display}
+![](notes_files/figure-html/unnamed-chunk-12-1.png){fig-align='center' width=499.2}
+:::
+:::
+
+
+Here is something that you may recognize as a scatter plot. This is a good choice of plot for visualizing the relationship between two numerical variables. The original penguin plot, though, visualizes the relationship between *three* variables. To complete our plot, let's add in that third variable by mapping species to the color aesthetic attribute.
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code  code-fold="false"}
+ggplot(penguins, aes(x = bill_length_mm,
+                     y = bill_depth_mm,
+                     color = species)) +
+    geom_point()
+```
+
+::: {.cell-output-display}
+![](notes_files/figure-html/unnamed-chunk-13-1.png){fig-align='center' width=499.2}
+:::
+:::
+
+
+Beautiful!
+
+Over the coming weeks, you'll get lots of practice with ggplot2. It is an incredibly flexible and powerful piece of software that helps you not just *build* plots, but *think* about each of the design decisions that you make. Throughout your journey it is helpful to have a source of documentation to learn about the functionality of the tool. The help files on each function are only so useful. A better option is the official `ggplot2` documentation: <https://ggplot2.tidyverse.org/>.
+
+Now that you have a sense of how to build a ggplot, scroll back up to the plots in these notes and click the small arrow above each plot on the left side. This will reveal the code that was used to generate the plot. Copy and paste the code into RStudio to recreate them and try experimenting around with different aesthetic mappings and geometries (note that you'll need to load in `library(tidyverse)` and any data sets that you use).
+
+<!-- ## Why we visualize -->
+</section><section id="grammar-of-graphics-summary" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="grammar-of-graphics-summary">Grammar of Graphics Summary</h3>
+<p>The Grammar of Graphics is a framework to express a great variety of statistical graphics in terms of their shared elements. In this framework, the core features of the plot are the data, the aesthetic mapping between aesthetic attributions and variables in the data frame, and the geometry that is used to express the observation. There are a wide range of geometries and aesthetic attributes that can be drawn from and recombined in powerful ways. What we have done so far is cover just the fundamentals of the framework, so if you are unsatisfied with the resulting plots, that’s good. Now, we will polish up these plots to make thoughtful graphics that focus on effectively conveying a single message.</p>
+<!-- hack a margin on the right side -->
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="margin-aside"></span></div></div>
+</section></section><section id="communicating-with-graphics" class="level2"><h2 class="anchored" data-anchor-id="communicating-with-graphics">Communicating with Graphics</h2>
+<p><span class="dropcap">A</span>t this point in the course, you have a bevy of different types of statistical graphics under your belt: scatterplots, histograms, dot plots, violin plots, box plots, density curves, and bar plots of several kinds. You also have a broad framework to explain how these graphics are composed: the Grammar of Graphics. But to what purpose? Why plot data? For whom?</p>
+<p>Every time you build a plot, you do so with one of two audiences in mind.</p>
+<ol type="1">
+<li>Yourself.</li>
+<li>Someone else.</li>
+</ol>
+<p>The process of building understanding from a data set is one that should be driven by curiosity, skepticism, and thoughtfulness. As a data scientist, you’ll find yourself in conversation with your data: asking questions of it, probing it for structure, and seeing how it responds. This thoughtful conversation is called <strong>exploratory data analysis</strong> (or <strong>EDA</strong>).</p>
+<p>During EDA, the aim is to uncover the shape and structure of your data and to uncover unexpected features. It’s an informal iterative process where you are your own audience. In this setting, you should construct graphics that work best for you.</p>
+<p>At some point, you’ll find yourself confident in the claim that can be supported by your data and the focus changes to communicating that claim as effectively as possible with a graphic. Here, your audience shifts from yourself to someone else: other scientists, customers, co-workers in a different part of your company, or casual readers. You must consider the context in which they’ll be viewing your graphic: what they know, what they expect, what they want.</p>
+<p>In these notes we discuss six ways to hone the message of your data visualization. They are:</p>
+<ol class="example" type="1">
+<li>Mapping versus setting</li>
+<li>Labels for clarity</li>
+<li>The importance of scale <!--
+@. Overplotting
+-->
+</li>
+<li>Choosing a theme</li>
+<li>Annotations</li>
+</ol>
+<p>We will use two running examples throughout these notes: a <strong>line plot</strong> of the number of christenings in 17th century London which were collected by a man named John Arbuthnot, <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> and a scatter plot showing the bill sizes of penguins near Palmer Station, Antarctica<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
+<p><strong>Line plots</strong> also include two numerical variables and are useful for modeling trends that occur over time. The time variable goes on the x-axis; the trend variable goes on the y-axis. In the line plot shown here, we model the number of children that were christened in 16th and 17th century England.</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">stat20data</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">arbuthnot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">arbuthnot</span>, total <span class="op">=</span> <span class="va">boys</span> <span class="op">+</span> <span class="va">girls</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">arbuthnot</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>,</span>
+<span>                            y <span class="op">=</span> <span class="va">total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_length_mm</span>,</span>
+<span>                           y <span class="op">=</span> <span class="va">bill_depth_mm</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p1</span> <span class="op">+</span> <span class="va">p2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="notes_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="mapping-vs-setting" class="level3"><h3 class="anchored" data-anchor-id="mapping-vs-setting">Mapping vs Setting</h3>
+<p>Once you have your first draft of a plot complete and you’re thinking about how to fine tune it for your audience, your eye will turn to the aesthetic attributes. Is that color right? What about the size of the points?</p>
+<p>Consider the first draft of the penguins plot above. It might feel a bit drab to have a large mass of points all in black, the same color as the labels and surrounding text. Let’s make the points blue instead to make them stand out a bit more.</p>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_length_mm</span>,</span>
+<span>                     y <span class="op">=</span> <span class="va">bill_depth_mm</span>,</span>
+<span>                     color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details><summary>
+Click here when you’re ready to see the result.
+</summary><div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="notes_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</details><p>This is . . . unexpected. Why did it color the points red? Is this a bug?</p>
+<p>What we’ve stumbled into is a subtle but essential distinction in the grammar of graphics: <strong>mapping</strong> vs <strong>setting</strong>. When you put an aesthetic attribute (<code>x</code>, <code>color</code>, <code>size</code>, etc.) into the <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> function, you’re mapping that attribute in the plot to whatever data lives in the corresponding column in the data frame. Mapping was this process:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/mapping.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="450"></p>
+</figure>
+</div>
+<p>That’s not what we set out to do here. We just wanted to tweak the look of our aesthetic attributes in a way that doesn’t have anything to do with the data in our data frame. This process is called <strong>setting</strong> the attribute.</p>
+<p>To set the color to blue<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>, we need to make just a small change to the syntax. Let’s move the <code>color = "blue"</code> argument outside of the <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> function and into the <code>geom_()</code> function.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_length_mm</span>,</span>
+<span>                     y <span class="op">=</span> <span class="va">bill_depth_mm</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="notes_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Ah, that looks much better!</p>
+<p>Color isn’t the only aesthetic attribute that you can set. Let’s increase slightly the size of our points by setting the size to three times the size of the default.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_length_mm</span>,</span>
+<span>                     y <span class="op">=</span> <span class="va">bill_depth_mm</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"blue"</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="notes_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>It’s not clear that that improves the readability of the plot - there is more overlap between the points now - but the setting worked. One thing we might do to get more visibility on some of the points that were clumped is to use the <code>alpha</code> mapping!</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_length_mm</span>,</span>
+<span>                     y <span class="op">=</span> <span class="va">bill_depth_mm</span>,</span>
+<span>                     size <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"blue"</span>, </span>
+<span>               size <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>               alpha <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="notes_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>How would it have looked if instead we had mapped the size? When you map, you need a map to a column in your data frame, so let’s map size to species.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_length_mm</span>,</span>
+<span>                     y <span class="op">=</span> <span class="va">bill_depth_mm</span>,</span>
+<span>                     size <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="notes_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We’ve made a mess of our plot now, but it is clear what happened. R looked inside the <code>species</code> column, found a categorical variable with three levels and selected a distinct size for each of those levels.</p>
+<p>All in all, this is another area in which the grammar of graphic guides clear thinking when constructing a graphic. The aesthetic attributes of a plot can be determined either by variability found in a data set or by fixed values that we set. The former is present in all data visualization but it’s the latter that comes into play when fine-tuning your plot for an audience.</p>
+</section><section id="adding-labels-for-clarity" class="level3"><h3 class="anchored" data-anchor-id="adding-labels-for-clarity">Adding Labels for Clarity</h3>
+<p>You may have noticed that <code>ggplot2</code> pulls the labels for the x-axis, the y-axis, and the legend directly from the names of the variables in the data frame. This results in labels like <code>bill_length_mm</code>, which is no problem when you’re making plots for yourself - you know what this variable means. But will an outside audience?</p>
+<p>You can change the labels of your plot by adding a <code><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs()</a></code> layer.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_length_mm</span>,</span>
+<span>                     y <span class="op">=</span> <span class="va">bill_depth_mm</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Bill Length (mm)"</span>,</span>
+<span>         y <span class="op">=</span> <span class="st">"Bill Depth (mm)"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="notes_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Axis and legend labels should be concise and often include the units of measurement. If you find them getting too wordy, know that you can clarify or expand on what is being plotted either in a figure caption or in the accompanying text.</p>
+<p>Speaking of captions, those a can be added too, as well as a title.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_length_mm</span>,</span>
+<span>                     y <span class="op">=</span> <span class="va">bill_depth_mm</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Bill Length (mm)"</span>,</span>
+<span>         y <span class="op">=</span> <span class="st">"Bill Depth (mm)"</span>,</span>
+<span>         title <span class="op">=</span> <span class="st">"Penguins show little association between bill length\n and bill depth"</span>,</span>
+<span>         caption <span class="op">=</span> <span class="st">"Source: Data collected by Dr. Kristen Gorman at Palmer Station, Antarctica"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="notes_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The title of a plot is valuable real estate for communicating the primary story of your plot. It should highlight the most important structure in the data. In the plot above, there appears to be little correspondence between bill length and bill depth. Of course, that changes when we map species to color. Let’s make that plot and title it accordingly.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_length_mm</span>,</span>
+<span>                     y <span class="op">=</span> <span class="va">bill_depth_mm</span>,</span>
+<span>                     color <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Bill Length (mm)"</span>,</span>
+<span>         y <span class="op">=</span> <span class="st">"Bill Depth (mm)"</span>,</span>
+<span>         title <span class="op">=</span> <span class="st">"Bill length and bill depth positively correlated and\n strongly dependent on species"</span>,</span>
+<span>         caption <span class="op">=</span> <span class="st">"Source: Data collected by Dr. Kristen Gorman at Palmer Station, Antarctica"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="notes_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The practice of using the plot title to convey the main message of the plot is used to powerful effect by the visualization experts at the British publication, <em>The Financial Times</em><a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>. They have developed a wealth of visualizations to help readers understand what is happening with public health throughout the pandemic. The sobering graphic below uses the title to guide the viewer to the most important visual structure in the plot: the yawning vertical gap between dosage rates between high and low income countries.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/ft.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+</section><section id="the-importance-of-scale" class="level3"><h3 class="anchored" data-anchor-id="the-importance-of-scale">The Importance of Scale</h3>
+<p>When a person views your plot, their first impression will be determined by a coarse interpretation of the boldest visual statement. When using a line plot, that is usually the general trend seen when reading left to right.</p>
+<p>What is the first word that comes to mind to describe the trend in each of the four plots below?</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="notes_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Clockwise from the upper left, you likely said something like “increasing”, “decreasing”, “variable”, and “stable”. Now take a second look. What exactly is being plotted here?</p>
+<p>The labels along the axes are a hint to what you’re looking at here. These are, in fact, four plots from the exact same data: the Arbuthnot christening records, with the proportion of girls christened on the x-axis. What differs is the limits of the x- and y-axes.</p>
+<p>Most software will automatically set the limits of your plot based on the range of the data. In the Arbuthnot data, the years range from 1629 to 1710 and the proportion of girls christened ranges from .463 to .497. The leads to the default graphic found in the lower left panel. Each of the other three plots have modified the limits of the x- or y-axis to capture different parts the data scaled in different ways. In <code>ggplot2</code> this is done by adding an <strong><code><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim()</a></code></strong> or <strong><code><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim()</a></code></strong> layer.</p>
+<p>This is the power of scaling. From one data set, you can convey four different (and incompatible!) messages by changing the scale. So which one is correct? It depends on the context and the question that drove the collection of the data. John Arbuthnot’s mission in collecting his data was to understand the whether the chance of being born a girl is 1/2. That question is answered most clearly by the following plot (with the title driving home that main message).</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">arbuthnot</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>,</span>
+<span>                      y <span class="op">=</span> <span class="va">p_girls</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Proportion girls christened slightly but persistently\n below 50%"</span>,</span>
+<span>         x <span class="op">=</span> <span class="st">"Year"</span>,</span>
+<span>         y <span class="op">=</span> <span class="st">"Proportion"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="notes_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The importance of scale extends beyond scatter and line plots. Barcharts are often the subject of careful scaling to convey a particular message. What do you think the goal was of the creator of the plot titled “Should Britain Leave EU?”<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/brexit.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+<!--
+## 4. Overplotting
+
+Introductory statistics students filled out a survey that asked them their opinion on several topics including:
+
+![](images/q-tech.png){fig-align=center width="500px"}
+
+![](images/q-crypto.png){fig-align=center width="500px"}
+
+The result was a data frame with 707 rows (one for every respondent) and 2 columns of discrete numerical data. A natural way to visualize this data is by creating a scatter plot.
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+ggplot(class_survey, aes(x = tech,
+                         y = crypto)) +
+    geom_point() +
+    labs(x = "Technology is destructive to relationships",
+         y = "cryptocurrency will play a\n dominant role in finance",
+         title = "No association between opinions on technology and \n cryptocurrency")
+```
+
+::: {.cell-output-display}
+![](notes_files/figure-html/unnamed-chunk-26-1.png){fig-align='center' width=480}
+:::
+:::
+
+
+The eye is immediately drawn to the eerie geometric regularity of this data. Isn't real data messier than this? What's going on?
+
+A hint is in the sample size. The number of observations in the data set was over 600 and yet the number of points shown here is just a bit under 100. Where did those other observations go?
+
+It turns out they are in this plot, they're just piled on on top of the other. Since there are only 10 possible values for each question, many students ended up selecting the same values for both, leading their points to be drawn on top of one another.
+
+This phenomenon is called *overplotting* and it is very common in large data sets. There are several strategies for dealing with it, but here we cover two of them.
+
+One approach to fixing the problem of points piled on top of one another is to unpile them by adding just a little bit of random noise to their x- and y-coordinate. This technique is called *jittering* and can be done in `ggplot2` by replacing `geom_point()` with `geom_jitter()`.
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+set.seed(20)
+ggplot(class_survey, aes(x = tech,
+                         y = crypto)) +
+    geom_jitter() +
+    labs(x = "Technology is destructive to relationships",
+         y = "cryptocurrency will play a\n dominant role in finance",
+         title = "No association between opinions on technology and \n cryptocurrency")
+```
+
+::: {.cell-output-display}
+![](notes_files/figure-html/unnamed-chunk-27-1.png){fig-align='center' width=480}
+:::
+:::
+
+
+Ahh . . . there are those previously hidden students. Interestingly, the title on the first plot still holds true: even when we're looking at *all* of the students, there doesn't appear to be much of a pattern. There is certainly not the case in all overplotted data sets! Often overplotting will obscure a pattern that jumps out after the overplotting has been attended to.
+
+The second technique is to make the points transparent by changing an aestheric attribute called the *alpha* value. Let's combine tranparency with jittering to understand the effect.
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+set.seed(20)
+ggplot(class_survey, aes(x = tech,
+                         y = crypto)) +
+    geom_jitter(alpha = .3) +
+    labs(x = "Technology is destructive to relationships",
+         y = "cryptocurrency will play a\n dominant role in finance",
+         title = "No association between opinions on technology and \n cryptocurrency")
+```
+
+::: {.cell-output-display}
+![](notes_files/figure-html/unnamed-chunk-28-1.png){fig-align='center' width=480}
+:::
+:::
+
+
+Alpha is a number between 0 and 1, where 1 is fully opaque and 0 is fully see-through. Here, `alpha = .3`, which changes all observations from black to gray. Where the points overlap, their alpha values add to create a dark blob.
+
+There's still no sign of a strong association between these variables, but at least, by taking overplotting into consideration, we've made that determination after incorporating all of the data.
+-->
+</section><section id="choosing-a-theme" class="level3"><h3 class="anchored" data-anchor-id="choosing-a-theme">Choosing a Theme</h3>
+<p>What piece of software did I use to produce the following plot?</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="notes_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If you said “Excel”, you are correct! Well… it is Excel in spirit. What makes this plot look like it was made in Excel are a series of small visual choices that were made: the background is a dark gray, there are black horizontal guide lines, and the plot and the legend is surrounded by a black box. Small decisions like these that effect the overall look and feel of the plot are called the <strong>theme</strong>. The theme used here belongs to the <code>ggthemes</code> library. Here’s the code used.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_length_mm</span>,</span>
+<span>                     y <span class="op">=</span> <span class="va">bill_depth_mm</span>,</span>
+<span>                     color <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Bill Length (mm)"</span>,</span>
+<span>         y <span class="op">=</span> <span class="st">"Bill Depth (mm)"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_excel.html">theme_excel</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s look at a few more. Do they look familiar?</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_length_mm</span>,</span>
+<span>                     y <span class="op">=</span> <span class="va">bill_depth_mm</span>,</span>
+<span>                     color <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Bill Length (mm)"</span>,</span>
+<span>         y <span class="op">=</span> <span class="st">"Bill Depth (mm)"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_wsj.html">theme_wsj</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_length_mm</span>,</span>
+<span>                     y <span class="op">=</span> <span class="va">bill_depth_mm</span>,</span>
+<span>                     color <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Bill Length (mm)"</span>,</span>
+<span>         y <span class="op">=</span> <span class="st">"Bill Depth (mm)"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_length_mm</span>,</span>
+<span>                     y <span class="op">=</span> <span class="va">bill_depth_mm</span>,</span>
+<span>                     color <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Bill Length (mm)"</span>,</span>
+<span>         y <span class="op">=</span> <span class="st">"Bill Depth (mm)"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html">theme_economist</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p1</span> <span class="op">/</span> <span class="va">p3</span> <span class="op">/</span> <span class="va">p2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="notes_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>They are, from top to bottom, a theme based on <em>The Wall Street Journal</em>, <em>The Economist</em>, and one of the themes built into <code>ggplot2</code> packaged called <code>bw</code> for “black and white” (there are no grays). The <code>ggplot2</code> library has several themes to choose from and yet more live in other packages like <code>ggthemes</code>. To use a theme, all you need to do is add a layer called <code>theme_NAME</code> (e.g.&nbsp;for the black and white theme, use <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw()</a></code>).</p>
+<p>Themeing your plots is an easy way to change the look of your plot. Tinker with a few different themes and considering adding them to your labs<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>. But, as with all design decisions around graphics, be sure to think about your audience. You might find the Excel aesthetics ugly and dated, but will your audience? If you’re presenting your plot to a community that works with Excel plots day in and day out, that’s probably a sound choice. If you are preparing a plot for submission to a scientific journal, a more minimalist theme is more appropriate.</p>
+</section><section id="annotations" class="level3"><h3 class="anchored" data-anchor-id="annotations">Annotations</h3>
+<p>In the same way that a title highlights the main message of a plot, you can rely upon visual cues to draw attention to certain components or provide helpful context.</p>
+<p>Although the Arbuthnot records seem very simple, they actually capture a wealth of historical information. We can add this information to our plot by adding <strong>annotations</strong>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">arbuthnot</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>,</span>
+<span>                      y <span class="op">=</span> <span class="va">total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"steelblue"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Year"</span>, y <span class="op">=</span> <span class="st">"Total Christenings"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, </span>
+<span>             label <span class="op">=</span> <span class="st">"English Civil War begins"</span>,</span>
+<span>             x <span class="op">=</span> <span class="fl">1642</span>, y <span class="op">=</span> <span class="fl">13000</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"segment"</span>, </span>
+<span>             x <span class="op">=</span> <span class="fl">1642</span>, xend <span class="op">=</span> <span class="fl">1642</span>,</span>
+<span>             y <span class="op">=</span> <span class="fl">12600</span>, yend <span class="op">=</span> <span class="fl">10900</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="notes_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Were you curious about what caused that dip in the number of christenings in 17th century London? It happens to correspond to the duration of the English Civil War, when the monarchy was overthrown by a dictator named Oliver Cromwell. This very important context can be conveyed by adding a text label and a line segment through two new <code><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate()</a></code> layers.</p>
+<p>Within <code>ggplot2</code>, annotations are a flexible way to add the context or comparisons that help guide readers in interpreting your data. You can add text, shapes, lines, points. To learn more, consult the documentation<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>.</p>
+<p>So if the drop after 1642 corresponds to the English Civil War, what about the spike down around 1666? What about 1703? If you’re curious, explore Wikipedia to find out and add those events as annotations to this plot.</p>
+<!-- ## 7. Drill Down using Facets -->
+</section><section id="communication-summary" class="level3"><h3 class="anchored" data-anchor-id="communication-summary">Communication Summary</h3>
+<p>There are two main uses for data visualization. The first is as part of exploratory data analysis, when you are constructing plots for yourself to better understand the structure of the data. When you’re ready to communicate with an outside audience using graphics, more thought is needed: you must think about the difference between mapping and setting, the use of labels for clarity, the importance of scale, overplotting, themes, and annotations.</p>
+<p>This is far from a complete list of what all can be done to improve your plots, but it is sufficient to produce polished graphics that effectively communicate your message.</p>
+
+
+</section></section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<ol>
+<li id="fn1"><p>Wilkinson, Leland. <em>The grammar of graphics</em>. Springer Science &amp; Business Media, 2005.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>For more context around The Grammar of Graphics and the development of modern visualization tools, read the brief <em>Three Waves of Data Visualization</em> by Elijah Meeks, Senior Data Visualization Engineer at Netflix: <a href="https://www.tableau.com/about/blog/2019/2/three-waves-data-visualization-brief-history-and-predictions-future-100830" class="uri">https://www.tableau.com/about/blog/2019/2/three-waves-data-visualization-brief-history-and-predictions-future-100830</a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>The <code>ggplot2</code> package is described in the manuscript, <a href="https://vita.had.co.nz/papers/layered-grammar.pdf"><em>A layered grammar of graphics</em></a>, by Hadley Wickham in the Journal of Computational and Graphical Statistics in 2010.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>For data documentation, see the <code>stat20data</code> R package.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>For data documentation, see the <code>palmerpenguins</code> R package.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>To see the vast (and somewhat strange) palette of color names that R knows, type <code><a href="https://rdrr.io/r/grDevices/colors.html">colors()</a></code> at the console.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Visualization drawn from the excellent collection of graphics at the Financial Times Covid Tracker <a href="https://ig.ft.com/coronavirus-vaccine-tracker/" class="uri">https://ig.ft.com/coronavirus-vaccine-tracker/</a>.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Graphics from the keynote of John Burn-Murdoch at rstudio::conf() 2021.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Explore the themes available within <code>ggplot2</code> by reading the documentation <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="uri">https://ggplot2.tidyverse.org/reference/ggtheme.html</a>. For the additional themes held in the <code>ggthemes</code> package, read this: <a href="https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/" class="uri">https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/</a>.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Documentation for annotation layers in ggplot2: <a href="https://ggplot2.tidyverse.org/reference/annotate.html" class="uri">https://ggplot2.tidyverse.org/reference/annotate.html</a>.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+<li class="nav-item">
+    <a class="nav-link" href="../../license.html">
+<p>License</p>
+</a>
+  </li>  
+</ul>
+</div>
+  </div>
+</footer>
+
+
+</body></html>
