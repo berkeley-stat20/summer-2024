@@ -53,27 +53,42 @@
       for your lab!)</a>
 - week: 2
   days:
-    - topic: Quiz
+    - topic: Quiz; Data Pipelines
       display-date: Jun 24
-      items: []
-    - topic: Data Pipelines
-      display-date: Jun 24
-      items: []
+      date: 6/24/24
+      items:
+        - type: Notes
+          href: 2-summarizing-data/04-conditioning/notes.qmd
+          render: true
     - topic: A Grammar of Graphics
       display-date: Jun 26
-      items: []
+      date: 6/26/24
+      items:
+        - type: Notes
+          href: 2-summarizing-data/03-a-grammar-of-graphics/notes.qmd
+          render: true
     - topic: Summarizing Numerical Associations
       display-date: Jun 27
-      items: []
+      date: 6/27/24
+      items:
+        - type: Notes
+          href: 2-summarizing-data/08-summarizing-associations/notes.qmd
+          render: true
   resources:
     - >-
+      <a href="https://gradescope.com"">RQ: Grammar of Graphics (due 6/26 at
+      12pm)</a>
+    - >-
+      <a href="https://gradescope.com"">RQ: Summarizing Numerical Associations
+      (due 6/27 at 12pm)</a>
+    - >-
       <a
-      href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS
+      href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/assignments/ps.pdf"">PS
       2 (due 6/27 at 11:59pm)</a>
     - >-
       <a
-      href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">Lab:
-      Flights (due 7/1 at 12pm)</a>
+      href="https://stat20.berkeley.edu/summer-2024/2-summarizing-data/labs/03-flights/lab.html"">Lab:
+      Getting Started (due 7/1 at 12pm)</a>
 - week: 3
   days:
     - topic: Intro to Probability

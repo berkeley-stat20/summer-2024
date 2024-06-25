@@ -47,9 +47,21 @@ ukbabynames %>%
 
 a.  List the variables you believe were necessary to create this visualization.
 
+\
+\
+\
+
+
 b.  List the aesthetic mappings of each of the variables you noted in **part a** as per the *Grammar of Graphics.*
 
+\
+\
+\
+
 c.  Identify the type of each variable in the *Taxonomy of Data.*
+
+\
+\
 
 \newpage
 
@@ -74,6 +86,22 @@ p3 <- ggplot(mcu_films, aes(x = gross_us,
 p1 + p2 + p3
 ```
 
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+
+
+
+
+
 ## Question 3 - Practice with `ggplot2` II
 
 The following three plots come from a data set called `penguins` *that is inside the `stat20data` package.* Please write out the `ggplot2` code that will produce each one.
@@ -97,6 +125,18 @@ p3 <- ggplot(penguins,
 p1 + p2 + p3
 ```
 
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
 
 ## Question 4 - Adele
 
@@ -125,11 +165,39 @@ Consider now the following data set (call it `Adele`), which tracks reviews of s
 
 a. With the column names given in the data set above, write code with `ggplot()` that would visualize the reviews of the two albums using a two-variable plot. Make sure to label your axes and give the plot a title. What is the geometry and aesthetic mapping(s) of the plot you chose?
 
+\
+\
+\
+\
+\
+\
+
 b. Then **sketch the plot out** as you have coded it, and plot the points in the data set on the graph. 
+
+\
+\
+\
+\
+\
+\
+\
+\
+\
 
 c. Did you run into any issues plotting your points? If so, what were they?
 
+\
+\
+\
+\
+
 d. Now write code with `ggplot()` that would visualize the reviews of the two albums in such a way that would resolve the issues you should have identified in **part c**.
+
+\
+\
+\
+\
+\
 
 
 # Questions 5-6 (A Grammar of Graphics)
@@ -142,15 +210,24 @@ a. allows you to set x and y limits.
 b. allows you to make add an annotation to the plot
 c. allows you to add or modify axis, legend, and labels.
 
+\
+\
+
 ## Question 6
 
 For each of the following statements determine whether an aesthetic mapping or a setting, or neither has been applied.
 
 a. Consider the `penguins` data. When plotting the relationship between `bill_length_mm` and `bill_depth_mm`, I decide to color all of the points red.
 
+\
+
 b. Consider the `penguins` data. When plotting the relationship between `bill_length_mm` and `bill_depth_mm`, I decide to color the points by species of penguin.
 
+\
+
 c. Consider the `penguins` data. I make a histogram of the `bill_length_mm` variable; and the frequencies (counts) of each of the histogram bins is mapped to the y-axis.
+
+\
 
 d. Consider a dataset called `images` based off of the shoebill image activity from the second day of class. Each row is one image, and there are three columns: `red`, `blue` and `green`, which each take values from 0 to 255, where 0 indicates no saturation of color and 255 indicates full saturation of color. Here is some code I wrote for a `ggplot` which involves use of the blue color. Mapping, or setting?
 
@@ -161,14 +238,18 @@ ggplot(data = images, mapping = aes(x = red)) +
   geom_histogram(binwidth = 25, color = "blue")
 ```
 
-f. Consider the `flights` data. I make side-by-side boxplots of the `dep_delay` variable, grouped by airline `carrier`. The `carrier` variable is mapped to the y-axis.
+\
+
+e. Consider the `flights` data. I make side-by-side boxplots of the `dep_delay` variable, grouped by airline `carrier`. The `carrier` variable is mapped to the y-axis.
+
+\
 
 
 # Questions 7-9 (Data Pipelines)
 
 ## Question 7 - Multiple Choice
 
-Consider a made up dataset called `Students` with two columns: `ID` and `Birth_Year`. Which of the following lines of code would create a new column `ID_3000` which reads `TRUE` for rows whose `ID` number is greater than 3000 before arranging the data frame in ascending order by `Birth_Year`?
+Consider a made up dataset called `Students` with two columns: `ID` and `Birth_Year`. Which of the following lines of code would create a new column `ID_3000` which reads `TRUE` for rows whose `ID` number is greater than 3000 before arranging the data frame in ascending order by `Birth_Year`? *Circle the correct choice.*
 
       Students %>% 
           mutate(ID_3000 = (ID < 3000)) %>%               
@@ -190,24 +271,53 @@ Consider a made up dataset called `Students` with two columns: `ID` and `Birth_Y
 
 ## Question 8 - more on the `penguins` dataset in the `stat20data` library
 
+Write your code answers in the spaces provided.
+
+
 a. Extract a data frame from the original `penguins` data frame that excludes the Adelie penguins. 
+
+\
+\
+
 
 b. Then, with the new, extracted data frame, create a column that has the value `TRUE` for penguins with bill lengths between 40 and 50 mm and `FALSE` otherwise. 
 
+\
+\
+
 c. Using the new column you created, calculate the proportion of penguins in the data frame that have bill lengths between 40 and 50 mm.
+
+\
+\
 
 d. Consider a new metric called `bill_size` that's the sum of the length and depth. What is the average bill size and it's standard deviation among each species, broken out among each of the island? You may end up with potentially nine pairs of statistics. Sort your resulting data structure in decreasing order by average bill size.
 
+\
+\
+\
+
 e. What are the total number of penguins in the data set belonging to each species-island combination? Why may have you not gotten nine pairs of statistics in the last question?
+
+\
+\
+\
 
 
 ## Question 9 - Air Quality data 
 
-You can access the `airquality` data directly just by typing “airquality” in a pipeline. The data descriptor reads "*daily air quality measurements in New York, May to September 1973.*"
+You can access the `airquality` data directly just by typing “airquality” in a pipeline. The data descriptor reads "*daily air quality measurements in New York, May to September 1973.*" Write your code answers below.
 
 a. Calculate the overall: mean, median, variance, standard deviation and IQR of the daily temperatures in New York City.
 
+\
+\
+\
+
 b. Then, calculate all of these statistics by month. 
+
+\
+\
+\
 
 \newpage
 
@@ -274,23 +384,61 @@ d. if **part a** or **part b** is true: whether the association is linear or non
       labs(x = NULL, y = NULL)
 ```
 
+\
+\
+\
+\
+\
+
+
+
+
 ## Question 11 - `mtcars` dataset
 
-There is a data set built into R called `mtcars` that includes several measures on different types of cars. Learn more about the data set using `?mtcars`.
+There is a data set built into R called `mtcars` that includes several measures on different types of cars. Learn more about the data set using `?mtcars`. Write your code answers below.
 
 a. Summarize the association between the fuel efficiency (measured in miles per gallon) and the weight of the car using a scatter plot, the correlation coefficient, and a linear model. Since we seek to explain the fuel efficiency, put that one on the y.
 
+\
+\
+\
+\
+
 b. Repeat **part b** but use the horsepower of the car instead of the weight. Compare the scatter plots: why does one of them have a higher correlation coefficient than the other?
+
+\
+\
+\
+\
+\
 
 c. What is the better way to compare the strength of the linear relationship between these two pairs of variables (mpg and wt; mpg and hp): the correlation coefficients or the slopes of the linear models? Why?
 
+
+\
+\
+\
+
 d. Which car has the lowest fuel efficiency given its weight?
+
+
+\
+\
+\
+\
+\
 
 e. Visualize the relationship between number of forward gears and the number of cylinders. Address any overplotting that might occur, and title the plot with a claim about the strength of the association between the two variables.
 
+\
+\
+\
+\
+\
+
 # Question 12 (Data Pipelines + Grammar of Graphics)
 
-Use the `russian_influence_on_us_election_2016` dataset within the `MASS` library to generate the following plot as closely as possible.
+Use the `russian_influence_on_us_election_2016` dataset within the `MASS` library to generate the following plot as closely as possible. Write the code you used below.
 
 
 ```{r}
@@ -300,3 +448,12 @@ Use the `russian_influence_on_us_election_2016` dataset within the `MASS` librar
 knitr::include_graphics("images/russia-2.png")
 ```
 
+\
+\
+\
+\
+\
+\
+\
+\
+\
