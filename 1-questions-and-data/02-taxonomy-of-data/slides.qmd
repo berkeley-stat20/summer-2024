@@ -38,7 +38,7 @@ countdown::countdown(minutes = 25, top = 0)
 
 # Appendix (extra material!)
 
-# Concept Questions: Conceptual
+# Concept Questions: Conceptual 
 
 ## Concept Question 1 - Quick Refresher
 
