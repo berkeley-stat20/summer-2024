@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.549">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Stat 20 - Lab 2: Flights</title>
+<title>Stat 20 - Lab: Flights</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -101,13 +101,13 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-WP7F4QKDC8', { 'anonymize_ip': true});
 </script>
-<meta property="og:title" content="Stat 20 - Lab 2: Flights">
+<meta property="og:title" content="Stat 20 - Lab: Flights">
 <meta property="og:description" content="Introduction to Probability and Statistics at UC Berkeley">
 <meta property="og:image" content="https://stat20.berkeley.edu/summer-2024/2-summarizing-data/labs/03-flights/images/airline.png">
 <meta property="og:site_name" content="Stat 20">
 <meta property="og:image:height" content="486">
 <meta property="og:image:width" content="730">
-<meta name="twitter:title" content="Stat 20 - Lab 2: Flights">
+<meta name="twitter:title" content="Stat 20 - Lab: Flights">
 <meta name="twitter:description" content="Introduction to Probability and Statistics at UC Berkeley">
 <meta name="twitter:image" content="https://stat20.berkeley.edu/summer-2024/2-summarizing-data/labs/03-flights/images/airline.png">
 <meta name="twitter:image-height" content="486">
@@ -164,13 +164,42 @@ gtag('config', 'G-WP7F4QKDC8', { 'anonymize_ip': true});
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#part-i-understanding-the-context-of-the-data" id="toc-part-i-understanding-the-context-of-the-data" class="nav-link active" data-scroll-target="#part-i-understanding-the-context-of-the-data">Part I: Understanding the Context of the Data</a></li>
-  <li><a href="#part-ii-computing-on-the-data" id="toc-part-ii-computing-on-the-data" class="nav-link" data-scroll-target="#part-ii-computing-on-the-data">Part II: Computing on the Data</a></li>
+<li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a></li>
+  <li><a href="#the-dataset" id="toc-the-dataset" class="nav-link" data-scroll-target="#the-dataset">The dataset:</a></li>
+  <li>
+<a href="#conceptual-questions" id="toc-conceptual-questions" class="nav-link" data-scroll-target="#conceptual-questions">Conceptual Questions</a>
+  <ul class="collapse">
+<li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#coding-questions" id="toc-coding-questions" class="nav-link" data-scroll-target="#coding-questions">Coding Questions</a>
+  <ul class="collapse">
+<li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a></li>
+  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a></li>
+  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a></li>
+  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10">Question 10</a></li>
+  <li><a href="#question-11" id="toc-question-11" class="nav-link" data-scroll-target="#question-11">Question 11</a></li>
+  <li><a href="#question-12" id="toc-question-12" class="nav-link" data-scroll-target="#question-12">Question 12</a></li>
+  <li><a href="#question-13" id="toc-question-13" class="nav-link" data-scroll-target="#question-13">Question 13</a></li>
+  <li><a href="#question-14" id="toc-question-14" class="nav-link" data-scroll-target="#question-14">Question 14</a></li>
+  <li><a href="#question-15" id="toc-question-15" class="nav-link" data-scroll-target="#question-15">Question 15</a></li>
+  <li><a href="#question-16" id="toc-question-16" class="nav-link" data-scroll-target="#question-16">Question 16</a></li>
+  <li><a href="#question-17" id="toc-question-17" class="nav-link" data-scroll-target="#question-17">Question 17</a></li>
+  <li><a href="#question-18" id="toc-question-18" class="nav-link" data-scroll-target="#question-18">Question 18</a></li>
+  </ul>
+</li>
+  <li><a href="#end-of-lab-1" id="toc-end-of-lab-1" class="nav-link" data-scroll-target="#end-of-lab-1">End of Lab 1</a></li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">Lab 2: Flights</h1>
+<h1 class="title">Lab: Flights</h1>
 </div>
 
 
@@ -185,204 +214,109 @@ gtag('config', 'G-WP7F4QKDC8', { 'anonymize_ip': true});
 
 
 </header><!-- The bit before that is commented out adds publish date to document metadata and button links at the top of the doc. This workflow can be revisited but currently doesn't work because listings aren't updated with these dates, only the renderd docs. --><p><a href="../../../2-summarizing-data/labs/03-flights/slides.html"><span class="btn btn-primary">Slides</span></a></p>
-<section id="part-i-understanding-the-context-of-the-data" class="level2"><h2 class="anchored" data-anchor-id="part-i-understanding-the-context-of-the-data">Part I: Understanding the Context of the Data</h2>
-<p>For the questions on the handout, consult the image of the data frame found in the slides linked above.</p>
+<section id="instructions" class="level1"><h1>Instructions</h1>
+<p>You will be submitting a <em>merged PDF</em> which combines a <em>Conceptual Section PDF</em> with a <em>Coding Section PDF</em>. Each of these PDFs has different requirements. Be sure to read the <strong>Lab Submission and Format Instructions</strong> on Ed.</p>
+<p>Lab 1 is due <strong>Monday, July 1 at 12pm</strong> on Gradescope.</p>
+</section><section id="the-dataset" class="level1"><h1>The dataset:</h1>
+<p>This lab focuses on a dataset containing all departing flight information from the Bay Area’s two biggest airports: SFO (San Francisco International Airport) and OAK (Oakland International Airport) during the year 2020. There are a lot of interesting variables in this dataset which can be used to do some really neat descriptive statistics! Note also that 2020 marked the start of the larger COVID-19 epidemic in the United States.</p>
+<p>The dataset is named <code>flights</code> and is located within the <code>stat20data</code> package. You can run the line <code>?flights</code> to gain access to a data dictionary which gives more information about what each column (variable) represents.</p>
+<div style="page-break-after: always;"></div>
+</section><section id="conceptual-questions" class="level1"><h1>Conceptual Questions</h1>
+<section id="question-1" class="level3"><h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
+<p>What is the unit of observation in this data-set?</p>
+</section><section id="question-2" class="level3"><h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
+<p>Come up with:</p>
 <ul>
-<li><a href="../../../2-summarizing-data/labs/03-flights/lab-context.pdf">Part 1: Understanding the Context of the Data</a></li>
-</ul></section><section id="part-ii-computing-on-the-data" class="level2"><h2 class="anchored" data-anchor-id="part-ii-computing-on-the-data">Part II: Computing on the Data</h2>
-<p>The data for this lab can be found in the <code>flights</code> data frame in the <code>stat20data</code> package. Run <code>?flights</code> at the console to learn more about the columns. <em>Where applicable, answer each question with one pipeline, which may include <code>dplyr</code> code, <code>ggplot2</code> code or both</em>.</p>
-<section id="question-1" class="level4"><h4 class="anchored" data-anchor-id="question-1">Question 1</h4>
-<p>How many flights in the dataset left in the springtime and were destined for Portland, Oregon?</p>
-</section><section id="question-2" class="level4"><h4 class="anchored" data-anchor-id="question-2">Question 2</h4>
-<p>Arrange the data set to find out: which flight holds the record for longest departure delay (in hrs) and what was its destination? What was the destination and delay time (in hrs) for the flight that was least delayed, i.e.&nbsp;that left the most ahead of schedule? This can be done in two separate pipelines.</p>
-</section><section id="question-3" class="level4"><h4 class="anchored" data-anchor-id="question-3">Question 3</h4>
+<li>one descriptive claim,</li>
+<li>one generalization,</li>
+<li>one causal claim, and;</li>
+<li>one predictive claim</li>
+</ul>
+<p>which you could pose using the variables in this data-set.</p>
+</section><section id="question-3" class="level3"><h3 class="anchored" data-anchor-id="question-3">Question 3</h3>
+<p>Write down some variables whose data types in the Taxonomy of Data are ambiguous to you (may have more than one type).</p>
+</section><section id="question-4" class="level3"><h3 class="anchored" data-anchor-id="question-4">Question 4</h3>
+<p>Then, pick one of the variables you wrote down and <em>sketch</em> (pen and paper/tablet) two visualizations:</p>
+<ul>
+<li>one featuring that variable as one data type</li>
+<li>one featuring that variable as another data type.</li>
+</ul>
+<p>Make the sketches according to what you think the distribution of the variable looks like. Write down the aesthetic mapping(s) and geometry of the plot.</p>
+</section><section id="question-5" class="level3"><h3 class="anchored" data-anchor-id="question-5">Question 5</h3>
+<p>I created a new data frame from <code>flights</code> which contains an additional column called <code>avg_speed</code>: which denotes the average speed flown at for each flight, <em>measured in miles per hour</em>.</p>
+<p>I did this with the following code, starting from the original <code>flights</code> dataset loaded into R.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">mutate</span><span class="op">(</span><span class="va">flights</span>, avg_speed <span class="op">=</span> <span class="op">(</span><span class="va">distance</span><span class="op">/</span><span class="va">air_time</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>I then attempted to find the six (on average) fastest flying flights in descending order using the following code. The <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> function prints out the first six rows of the data frame from the previous pipeline step and is correctly used here. The call to <code>arrange()</code> is nested inside of the call to <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu">arrange</span><span class="op">(</span><span class="va">flights</span>, <span class="fu">desc</span><span class="op">(</span><span class="va">avg_speed</span><span class="op">)</span><span class="op">)</span>, n <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>However, I received an error and the code would not run.</p>
+<p>Explain the origin of this error and describe how you could modify the two lines of code above to solve the issue.</p>
+</section><section id="question-6" class="level3"><h3 class="anchored" data-anchor-id="question-6">Question 6</h3>
+<p>What <code>dplyr</code> function could I use along with the code of <strong>Question 5</strong> to display only the <code>avg_speed</code> and <code>tailnum</code> (tail number of the plane) columns?</p>
+<div style="page-break-after: always;"></div>
+</section></section><section id="coding-questions" class="level1"><h1>Coding Questions</h1>
+<section id="question-7" class="level3"><h3 class="anchored" data-anchor-id="question-7">Question 7</h3>
+<p>Recreate the two visualizations you sketched in <strong>Question 4</strong> using <code>ggplot2</code>.</p>
+</section><section id="question-8" class="level3"><h3 class="anchored" data-anchor-id="question-8">Question 8</h3>
+<p>Create a histogram showing the distribution of departure delays for all flights, setting the limits of the x-axis to focus on where most of the data lie.</p>
+<p>Add a text annotation somewhere on the plot that explains the meaning of a negative departure delay.</p>
+<p>Finally, describe in words the shape and modality of the distribution.</p>
+</section><section id="question-9" class="level3"><h3 class="anchored" data-anchor-id="question-9">Question 9</h3>
 <p>I attempted to find some summary statistics on the arrival delay of flights, grouped by their airline carrier. You can find the mininmum and maximum of numerical variables using the <code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code> and <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code> function, respectively. This is the code that I ran.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">group_by</span><span class="op">(</span><span class="va">carrier</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">summarise</span><span class="op">(</span>min_arr_delay <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">arr_delay</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">summarise</span><span class="op">(</span>max_arr_delay <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">arr_delay</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">summarise</span><span class="op">(</span>prop_long_flight <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">distance</span> <span class="op">&gt;</span> <span class="fl">1000</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">carrier</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">summarise</span><span class="op">(</span>mean_arr_delay <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">arr_delay</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">summarise</span><span class="op">(</span>sd_arr_delay <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">arr_delay</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>However, I received an error and the code would not run. Explain the origin of this error, then modify/correct the code and run it to display the output I was hoping to achieve.</p>
-</section><section id="question-4" class="level4"><h4 class="anchored" data-anchor-id="question-4">Question 4</h4>
-<p>Using the airport nearest your hometown, which day of the week and which airline seems best for flying there from San Francisco? If you’re from near SFO or OAK or from abroad, use Chicago as your hometown. Be clear on how you’re defining best. Feel free to mutate a column(s) to your dataset which might be your preferred way to determine best.</p>
-<p>There is no explicit weekday column in this data set, but there is sufficient information to piece it together. The following line of code can be added to your pipeline to create that new column. Note also that it uses functions which are contained in the <code>lubridate</code> package.</p>
+<p>However, I received an error and the code would not run.</p>
+<p>Explain the origin of this error, then modify/correct the code and run it to display the output I was hoping to acheive. <em>Hint: try running pieces of the <code>dplyr</code> pipeline rather than the entire pipeline at once.</em></p>
+</section><section id="question-10" class="level3"><h3 class="anchored" data-anchor-id="question-10">Question 10</h3>
+<p>Based on your description in <strong>Question 8</strong>, calculate a measure of spread and center for this distribution.</p>
+</section><section id="question-11" class="level3"><h3 class="anchored" data-anchor-id="question-11">Question 11</h3>
+<p>How many more flights left both SFO and OAK airports in April 2020 than in March 2020?</p>
+</section><section id="question-12" class="level3"><h3 class="anchored" data-anchor-id="question-12">Question 12</h3>
+<ul>
+<li><p>What proportion of flights left on or ahead of schedule?</p></li>
+<li><p>For <em>OAK and SFO separately</em>, what proportion of flights left on or ahead of schedule?</p></li>
+</ul></section><section id="question-13" class="level3"><h3 class="anchored" data-anchor-id="question-13">Question 13</h3>
+<p>Add a new, logical variable to the <code>flights</code> dataset which records <code>TRUE</code> if a flight took place during or before March 2020 or <code>FALSE</code> otherwise. Then, use this as a second grouping variable and repeat the second part of the previous question. Describe your result.</p>
+</section><section id="question-14" class="level3"><h3 class="anchored" data-anchor-id="question-14">Question 14</h3>
+<p>Using the airport nearest your hometown, which day of the week and which airline seems best for flying there from San Francisco? If you’re from near SFO or OAK or from abroad, use Chicago as your hometown. Be clear on how you’re defining best.</p>
+<p>Hint: There is no explicit weekday column in this data set, but there is sufficient information to piece it together. The following line of code can be added to your pipeline to create that new column. Note also that it uses functions which are contained in the <code>lubridate</code> package.</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">mutate</span><span class="op">(</span>day_of_week <span class="op">=</span></span>
-<span>            <span class="fu">wday</span><span class="op">(</span><span class="fu">ymd</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">month</span>, <span class="va">day</span>, set <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>            label <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">mutate</span><span class="op">(</span>day_of_week <span class="op">=</span> </span>
+<span>         <span class="fu">wday</span><span class="op">(</span><span class="fu">ymd</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">month</span>, <span class="va">day</span>, set <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>              label <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="question-5" class="level4"><h4 class="anchored" data-anchor-id="question-5">Question 5</h4>
-<p>The plot below shows the relationship between the number of flights going out of SFO and the average departure delay. It illustrates the hypothesis that more flights on a given day would lead to a more congested airport which would lead to greater delays on average. Each point represents single day in 2020; there are 366 of them on the plot. Form a single <code>dplyr</code> and <code>ggplot2</code> chain that will create this plot, starting with the original data set. <em>Hint: What does each point on the plot represent? Is it the same as the unit of observation of the initial dataset?</em></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/complex-ggplot.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</section><section id="question-15" class="level3"><h3 class="anchored" data-anchor-id="question-15">Question 15</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="lab_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
-</section><section id="question-6" class="level4"><h4 class="anchored" data-anchor-id="question-6">Question 6</h4>
-<p>Create a histogram showing the distribution of departure delays for all flights. You must follow the steps below:</p>
+</div>
+</div>
+<p>Form a single pipeline which uses both <code>dplyr</code> and <code>ggplot2</code> code to create the above plot, starting with the initial <code>flights</code> dataset. <em>Hint: What does each point on the plot represent; is it the same as the unit of observation of the initial dataset?</em></p>
+</section><section id="question-16" class="level3"><h3 class="anchored" data-anchor-id="question-16">Question 16</h3>
+<p>Examine the association between departure delay in two ways:</p>
 <ul>
-<li><p>Set the limits of the x-axis to focus on where most of the data lie.</p></li>
-<li><p>Outline the bars of your histogram with one color.</p></li>
-<li><p>Add a text annotation somewhere on the plot that explains the meaning of a negative departure delay.</p></li>
-<li><p>Finally, title your plot with a claim about the shape and modality of the distribution.</p></li>
-</ul></section><section id="question-7" class="level4"><h4 class="anchored" data-anchor-id="question-7">Question 7</h4>
-<p>Create a plot to examine the relationship between average speed and distance (you will have to make the average speed column first) in one pipeline, labeling your x and y axes. Save this plot into an object and print it to the screen.</p>
-</section><section id="question-8" class="level4"><h4 class="anchored" data-anchor-id="question-8">Question 8</h4>
-<p>Rewrite the code for the plot you made in <strong>Question 7</strong>, coloring the points by destination, and use this to provide a possible explanation for the relationship between the two variables (particularly, the noticeable gap) in the plot title.</p>
-</section><section id="question-9" class="level4"><h4 class="anchored" data-anchor-id="question-9">Question 9</h4>
-<ul>
-<li><p>First, calculate the correlation coefficient between average speed and distance.</p></li>
-<li>
-<p>Then, mutate two new variables onto the data frame:</p>
-<ul>
-<li>(natural) log of average speed</li>
-<li>(natural) log of distance</li>
+<li>Calculate the correlation coefficient between the two variables.</li>
+<li>Create a plot featuring these two variables.</li>
 </ul>
-</li>
-<li><p>Visualize the new variables and title your plot with a claim based on what you see.</p></li>
-<li><p>Finally, calculate the correlation coefficient between log of average speed and log of distance.</p></li>
-</ul>
-<p>The process of applying functions to existing variables (such as logarithm or squaring) in a dataset is often called <strong>transforming</strong> one’s data.</p>
-</section><section id="question-10" class="level4"><h4 class="anchored" data-anchor-id="question-10">Question 10</h4>
-<p>Explain which pair of variables have a relationship which is better described via a linear model:</p>
-<ul>
-<li>distance and average speed</li>
-<li>log distance and log average speed</li>
-</ul>
-<p>Explain in one or two sentences, using your results from <strong>Question 7</strong> and <strong>Question 9</strong> as support.</p>
-</section><section id="question-11" class="level4"><h4 class="anchored" data-anchor-id="question-11">Question 11</h4>
-<p>Fit a linear model to the variables you chose from <strong>Question 10</strong>. Then determine which flight had the fastest average speed given its distance traveled.</p>
-</section><section id="question-12" class="level4"><h4 class="anchored" data-anchor-id="question-12">Question 12</h4>
-<p>Fit a multiple linear regression model that explains arrival delay using departure delay and the distance of the flight and print out the coefficients (the intercept and two slopes).</p>
-</section><section id="question-13" class="level4"><h4 class="anchored" data-anchor-id="question-13">Question 13</h4>
-<p>On average, which carrier’s flights had the smallest arrival delay given their departure delay and distance?</p>
-</section><section id="question-14" class="level4"><h4 class="anchored" data-anchor-id="question-14">Question 14</h4>
-<p>Can we compare the coefficients for departure delay and distance to understand which has the stronger relationship? Why or why not? State your answer in 2-3 sentences.</p>
-<!--
-
-#### Question 1
-
-Filter the data set to contain only the flights that left in the springtime destined for Portland, Oregon and print the first few rows of the data frame. How many were there in 2020?
-
-
-#### Question 2
-
-Mutate a new variable called `avg_speed` that is the average speed of the plane during the flight, measured in miles per hour. Save it back into the data frame; you'll use it later on (Look through the column names or the help file to find variables that can be used to calculate this.)
-
-
-#### Question 3
-
-Arrange the data frame to figure out: which flight holds the record for longest departure delay (in hrs) and what was its destination? What was the destination and delay time (in hrs) for the flight that was least delayed, i.e. that left the most ahead of schedule?
-
-
-#### Question 4
-
-Confirm the records for departure delay from the question above by summarizing that variable by its maximum and its minimum value.
-
-
-#### Question 5
-
-What is the mean departure delay of flights leaving from Oakland and San Francisco separately? (calculate two means)
-
-
-#### Question 6
-
-What proportion of the flights left on or ahead of schedule? For Oakland and SFO separately, what proportion of flights left on or ahead of schedule?
-
-
-#### Question 7
-
-How many flights left SFO during March 2020? See the examples of Data Pipelines in the Conditioning notes for a helpful function.
-
-
-#### Question 8
-
-How many flights left SFO during April 2020?
-
-
-#### Question 9
-
-Create a bar chart that shows the distribution by month of all the flights leaving the Bay Area (SFO and OAK). Do you any sign of an effect of the pandemic?
-
-
-#### Question 10
-
-Create a histogram showing the distribution of departure delays for all flights. Describe in words the shape and modality of the distribution and, using numerical summaries, (i.e. summary statistics) its center and spread. Be sure to use measures of center and spread that are most appropriate for this type of distribution. Also set the limits of the x-axis to focus on where most of the data lie.
-
-
-#### Question 11
-
-Add a new column to your data frame called `before_times` that takes values of `TRUE` and `FALSE` indicating whether the flight took place up through the end of March or after April 1st, respectively. Remake the histograms above, but now separated into two subplots: one with the departure delays from the before times, the other with the flights from afterwards. Can you visually detect any difference in the distribution of departure delays?
-
-This is best done with a new layer called `facet_wrap()`. Learn about it's use by reading the documentation: <https://ggplot2.tidyverse.org/reference/facet_wrap.html>.
-
-
-#### Question 12
-
-If you flew out of OAK or SFO during this time period, what is the tail number of the plane that you were on? If you did not fly in this period, find the tail number of the plane that flew JetBlue flight 40 to New York's JFK Airport from SFO on May 1st.
-
-
-#### Question 13
-
-Create a data frame that contains the median and interquartile range for departure delays, grouped by carrier. Which carrier has the lowest typical departure delay? Which one has the least variable departure delays?
-
-
-#### Question 14
-
-Create a plot that captures the relationship of average speed vs. distance and describe the shape and structure that you see. What phenomena related to taking flights from the Bay Area might explain this structure?
-
-
-
-#### Question 15
-
-For flights leaving SFO, which month has the highest average departure delay? What about the highest median departure delay? Which of these measures is more useful to know when deciding which month(s) to avoid flying if you particularly dislike flights that are severely delayed?
-
-#### Question 16
-
-Each individual airplane can be uniquely identified by its tailnumber in the same way that US citizens can be by their social security numbers. Which airplane flew the farthest during this year for which we have data? How many times around the planet does that translate to?
-
-
-#### Question 17
-
-What is the tailnumber of the fastest plane in the data set? What type of plane is it (google it!)? Be sure to be clear how you're defining fastest.
-
-#### Question 18
-
-Using the airport nearest your hometown, which day of the week and which airline seems best for flying there from San Francisco?  If you're from near SFO or OAK or from abroad, use Chicago as your hometown. Be clear on how you're defining *best*.
-
-Note that there is no explicit weekday column in this data set, but there is sufficient information to piece it together. The following line of code can be added to your pipeline to create that new column. It uses functions in the `lubridate` package, so be sure to load it in at the start of this exercise.
-
-
-::: {.cell}
-
-```{.r .cell-code  code-fold="false"}
-mutate(day_of_week = wday(ymd(paste(year, month, day, set = "-")), label = T))
-```
-:::
-
-
-#### Question 19
-
-The plot below shows the relationship between the number of flights going out of SFO and the average departure delay. It illustrates the hypothesis that more flights on a given day would lead to a more congested airport which would lead to greater delays on average. Each point represents single day in 2020; there are 366 of them on the plot. Please form a single chain that will create this plot, starting with the raw data set.
-
-![](images/complex-ggplot.png){fig-align=center}
-
-#### Question 20
-
-Create a plot to illustrate the association between departure delay and arrival delay. Summarize the linear relationship by calculating the correlation coefficient and by fitting a linear model.
-
-Which flight has the highest arrival delay given its departure delay? (Consult the slides from Summarizing Associations for helpful code. For an extra challenge, use the code from the notes to superimpose the linear model on the scatter plot).
-
-
-#### Question 21
-
-Fit a multiple linear regression model that explains arrival delay using departure delay and the distance of the flight and print out the coefficients (the intercept and two slopes). Speculate as to why the *sign* (positive or negative) of the distance coefficient is what it is. Can we compare the coefficients for departure delay and distance to understand which has the stronger relationship? Why or why not?
-
--->
-
-
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+<p>Based on the information yielded by the numerical and visual summary you made, comment on whether it is suitable to fit a linear model between these two variables.</p>
+</section><section id="question-17" class="level3"><h3 class="anchored" data-anchor-id="question-17">Question 17</h3>
+<p>Regardless of your answer to the previous question, do fit a linear model between departure delay and arrival delay and report the coefficients of the line. Write out the equation of the line using these coefficients.</p>
+</section><section id="question-18" class="level3"><h3 class="anchored" data-anchor-id="question-18">Question 18</h3>
+<p>Which flight has the highest arrival delay given its departure delay?</p>
+</section></section><section id="end-of-lab-1" class="level1"><h1>End of Lab 1</h1>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
