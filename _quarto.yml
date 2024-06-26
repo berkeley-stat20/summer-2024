@@ -1,10 +1,170 @@
 project:
   type: website
-  pre-render: prep-website.ts
-  post-render: clean-website.ts
   
-metadata-files:
-  - "sidebar-nav.yml"
+scheduled-docs:
+  draft-after: "system-time"
+  timezone: "-07:00" # GMT offset in +/-hh:mm does not adjust for daylight savings
+  schedule:
+  - week: 1
+    days:
+      - topic: "Introduction/Types of Claims"
+        display-date: June 16
+        date: 6/16/24
+        docs:
+          - type: Notes
+            href: 1-questions-and-data/01-understanding-the-world/notes.qmd
+          - type: Slides
+            href: 1-questions-and-data/01-understanding-the-world/slides.qmd
+            
+      - topic: "Taxonomy of Data"
+        display-date: June 16
+        date: 6/16/24
+        docs:
+          - type: Notes
+            href: 1-questions-and-data/02-taxonomy-of-data/notes.qmd
+          - type: Slides
+            href: 1-questions-and-data/02-taxonomy-of-data/slides.qmd
+
+      - topic: "Summarizing Data"
+        display-date: Jun 20
+        date: 6/20/24
+        docs:
+          - type: Notes (Categorical Data)
+            href: 2-summarizing-data/01-summarizing-categorical-data/notes.qmd
+          - type: Notes (Numerical Data)
+            href: 2-summarizing-data/02-summarizing-numerical-data/notes.qmd
+          - type: Slides
+            href: 2-summarizing-data/08-summarizing-data/slides.qmd
+            
+    resources:
+      - '<a href="https://gradescope.com"">RQ: Summarizing Numerical Data (due 6/20 at 12pm)</a>'
+      - '<a href="https://gradescope.com"">RQ: Summarizing Categorical Data (due 6/20 at 12pm)</a>'
+      - '<a href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/assignments/ps-01/ps.pdf"">PS 1 (due 6/20 at 11:59pm)</a>'
+      - '<a href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/assignments/lab-getting-started/lab.html"">Lab: Getting Started (due 6/24 at 12pm)</a>'
+      - '<a href="https://markdownlivepreview.com"">Markdown Live Preview (helpful for your lab!)</a>' 
+            
+  - week: 2
+    days:
+        
+      - topic: "Quiz; Data Pipelines"
+        display-date: Jun 24
+        date: 6/24/24
+        docs:
+          - type: Notes
+            href: 2-summarizing-data/04-conditioning/notes.qmd
+            
+      - topic: "A Grammar of Graphics"
+        display-date: Jun 26
+        date: 6/26/24
+        docs:
+          - type: Notes
+            href: 2-summarizing-data/03-a-grammar-of-graphics/notes.qmd
+            
+      - topic: "Summarizing Numerical Associations"
+        display-date: Jun 27
+        date: 6/27/24
+        docs:
+          - type: Notes
+            href: 2-summarizing-data/08-summarizing-associations/notes.qmd
+    
+    resources:
+      - '<a href="https://gradescope.com"">RQ: Grammar of Graphics (due 6/26 at 12pm)</a>'
+      - '<a href="https://gradescope.com"">RQ: Summarizing Numerical Associations (due 6/27 at 12pm)</a>'
+      - '<a href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/assignments/ps.pdf"">PS 2 (due 6/27 at 11:59pm)</a>'
+      - '<a href="https://stat20.berkeley.edu/summer-2024/2-summarizing-data/labs/03-flights/lab.html"">Lab: Flights (due 7/1 at 12pm)</a>'
+      
+            
+  - week: 3
+    days:
+        
+      - topic: "Intro to Probability"
+        display-date: Jul 1
+            
+      - topic: "Conditional Probability"
+        display-date: Jul 3
+    
+    resources:
+      - '<a href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS 3 (due 7/3 at 11:59pm)</a>'
+            
+  - week: 4
+    days:
+      - topic: "Quiz"
+        display-date: Jul 8
+        
+      - topic: "Random Variables"
+        display-date: Jul 8
+
+      - topic: "Expected Value and Variance"
+        display-date: Jul 10
+            
+      - topic: "Sampling Distributions"
+        display-date: Jul 11
+          
+    resources:
+      - '<a href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS 4 (due 7/11 at 11:59pm)</a>'
+        
+  - week: 5
+    days:
+      - topic: "Quiz"
+        display-date: Jul 15
+            
+      - topic: "Confidence Intervals"
+        display-date: Jul 15
+
+      - topic: "Bootstrapping"
+        display-date: Jul 17
+        
+      - topic: "Hypothesis Tests"
+        display-date: Jul 19
+    
+    resources:
+      - '<a href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS 5 (due 7/18 at 11:59pm)</a>'         
+      - '<a href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">Lab: PPK (due 7/22 at 12pm)</a>'   
+    
+  - week: 6 
+    days:
+        
+      - topic: "Hypothesis Tests II"
+        display-date: Jul 22
+        
+      - topic: "Wrong By Design"
+        display-date: Jul 24
+            
+      - topic: "Causality"
+        display-date: Jul 25
+            
+    resources:   
+      - '<a href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS 6 (due 7/25 at 11:59pm)</a>'
+      - '<a href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">Lab: La Croix (due 7/29 at 12pm)</a>'         
+        
+  - week: 7
+    days:
+      - topic: "Simple Linear Regression"
+        display-date: Jul 29
+
+            
+      - topic: "Multiple Linear Regression"
+        display-date: Jul 31
+            
+      - topic: "Classification"
+        display-date: Aug 1
+
+    resources:
+      - '<a href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">PS 7 (due 8/1 at 11:59pm)</a>'
+      - '<a href="https://stat20.berkeley.edu/summer-2024/1-questions-and-data/01-understanding-the-world/landing-page.pdf"">EC Lab: Cancer (due 8/8 at 11:59pm)</a>'  
+  
+  - week: 8
+    days:
+
+      - topic: "Overfitting"
+        display-date: Aug 5
+            
+      - topic: "Final"
+        display-date: Aug 7
+            
+      - topic: "End of Semester/EC Assessment Workday"
+        display-date: Aug 8
+
 
 # Website Configuration and Layout
 website:
