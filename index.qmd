@@ -5,7 +5,7 @@ resources:
   - "homepage-readings"
 listing:
   id: schedule-listing
-  contents: schedule.yml
+  contents: "scheduled-docs_files/schedule.yml"
   template: assets/listings/schedule.ejs
 ---
 
