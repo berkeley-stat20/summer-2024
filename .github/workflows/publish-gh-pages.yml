@@ -46,8 +46,7 @@ jobs:
           # execute from the textbook
           cd stat20
 
-          # render partial site
-          quarto run partial-render.ts
+          # render partial site quarto run partial-render.ts
 
-          # publish rendered site
-          quarto publish gh-pages --profile partial-site --no-render --no-browser
+          # publish rendered site --profile partial-site
+          quarto publish gh-pages --no-render --no-browser
