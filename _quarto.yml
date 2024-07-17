@@ -91,13 +91,13 @@ scheduled-docs:
       - topic: "Quiz"
         display-date: Jul 8
         
-      - topic: "Random Variables"
+      - topic: "Probability Distributions"
         display-date: Jul 8
 
-      - topic: "Expected Value and Variance"
+      - topic: "Random Variables"
         display-date: Jul 10
             
-      - topic: "Sampling Distributions"
+      - topic: "Expected Value and Variance"
         display-date: Jul 11
           
     resources:
@@ -108,13 +108,13 @@ scheduled-docs:
       - topic: "Quiz"
         display-date: Jul 15
             
-      - topic: "Confidence Intervals"
+      - topic: "From Samples to Populations"
         display-date: Jul 15
 
-      - topic: "Bootstrapping"
+      - topic: "Confidence Intervals"
         display-date: Jul 17
         
-      - topic: "Hypothesis Tests"
+      - topic: "Bootstrapping"
         display-date: Jul 19
     
     resources:
@@ -124,10 +124,10 @@ scheduled-docs:
   - week: 6 
     days:
         
-      - topic: "Hypothesis Tests II"
+      - topic: "Hypothesis Tests I"
         display-date: Jul 22
         
-      - topic: "Wrong By Design"
+      - topic: "Hypothesis Tests II/Wrong by Design"
         display-date: Jul 24
             
       - topic: "Causality"
