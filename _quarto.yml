@@ -234,6 +234,8 @@ format:
     code-fold: true
     code-link: true
     code-summary: ""
+    include-in-header:
+      file: siteimprove.html
 
 # General Metadata
 execute:
